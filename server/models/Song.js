@@ -9,5 +9,11 @@ const SongSchema = new Schema({
   artist: {
     type: String,
     required: true
+  },
+  album: {
+    type: String,
+    required: false
   }
-})
+});
+
+mondule.exports = mongoose.model('songs', SongSchema);
