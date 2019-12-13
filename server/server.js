@@ -4,14 +4,21 @@ const bodyParser = require("body-parser");
 const db = require("../config/keys").MONGO_URI;
 const schema = require("./schema/schema");
 const expressGraphQL = require("express-graphql");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 
 app.use(
   "/graphql",
-  expressGraphQL({
-    schema,
-    graphiql: true
+  expressGraphQL(req => {
+    return {
+      schema,
+      context: {
+        token: req.headers.authorization
+      },
+      graphiql: true
+    }
   })
 );
 
