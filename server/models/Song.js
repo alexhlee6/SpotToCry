@@ -7,13 +7,14 @@ const SongSchema = new Schema({
     required: true 
   },
   artist: {
-    type: String,
-    required: true
-  },
-  album: {
-    type: String,
-    required: false
+    type: Schema.Types.ObjectId,
+    ref: 'artists'
   }
+  // ,
+  // album: {
+  //   type: String,
+  //   required: false
+  // }
 });
 
 mondule.exports = mongoose.model('songs', SongSchema);
