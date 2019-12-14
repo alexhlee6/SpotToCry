@@ -15,12 +15,13 @@ const App = () => {
     <div>
       <Nav />
       <br />
-
+      <SideBar/>
       <Switch>
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
         <AuthRoute exact path="/register" component={Register} routeType="auth" />
-        <Route exact path="/" component={GenreIndex} />
         
+        <Route exact path="/" component={GenreIndex} />
+
       </Switch>
       
 
