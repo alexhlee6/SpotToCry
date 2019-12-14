@@ -17,42 +17,129 @@
 
 .SideBar-Logo {
   /* border: 1px solid blue; */
-  height: 15%;
+  height: 30%;
   display: flex;
   align-items: center;
-  justify-content: center;
   font-size: 28px;
   color: white;
+  margin-left: 20px;
 }
 
 .User-Nav {
   /* border: 1px solid red; */
-  height: 20%;
+  height: 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
 .User-Nav div {
-  transition: all .2s ease-in;
-  height: 33%;
+  /* transition: all .2s ease-in; */
   display: flex;
   align-items: center;
-  padding-left: 15px;
 }
 
 .User-Nav div:hover {
-  transition: all .2s ease-in;
+  /* transition: all .2s ease-in; */
   color: white;
   cursor: pointer;
+}
+
+.nav-home {
+  /* border: 1px solid blue; */
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  padding-left: 20px;
+  transition: all .2s ease-in;
+}
+
+.nav-search {
+  /* border: 1px solid blue; */
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  padding-left: 20px;
+  transition: all .2s ease-in;
+}
+
+.nav-library {
+  /* border: 1px solid blue; */
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  padding-left: 20px;
+  transition: all .2s ease-in;
+}
+
+.nav-home:hover .nav-home-image {
+  background: url('../images/SideBar/home_hover.png');
+  background-size: cover;
+  transition: background-image .2s ease-in-out;
+}
+
+.nav-home:hover {
+  transition: all .2s ease-in;
+  color:white;
+}
+
+.nav-search:hover .nav-search-image {
+  background: url('../images/SideBar/search_hover.png');
+  background-size: cover;
+  transition: background-image .2s ease-in-out;
+}
+
+.nav-search:hover {
+  transition: all .2s ease-in;
+  color: white;
+}
+
+.nav-library:hover .nav-library-image {
+  background: url('../images/SideBar/library_hover.png');
+  background-size: cover;
+  transition: background-image .2s ease-in-out;
+}
+
+.nav-library:hover {
+  transition: all .2s ease-in;
+  color: white;
+}
+
+.nav-home-image {
+  background: url('../images/SideBar/home.png');
+  background-size: cover;
+  width: 20px;
+  height: 22px;
+  margin-right: 10px;
+  transition: background-image 0.2s ease-in-out;
+}
+
+.nav-search-image {
+  background: url('../images/SideBar/search.png');
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  transition: background-image 0.2s ease-in-out;
+}
+
+.nav-library-image {
+  background: url('../images/SideBar/library.png');
+  background-size: cover;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  transition: background-image 0.2s ease-in-out;
 }
 
 .User-Playlists {
   /* border: 3px solid blue; */
   height: 100%;
-  /* padding-left: 15px; */
-  font-size: 10px;
-  margin-top: 10%;
+  font-size: 12px;
+  margin-top: 14%;
 }
 
 .nav-playlist-title{
@@ -61,22 +148,48 @@
   display: flex;
   align-items: center;
   padding-left: 15px;
+  cursor: default;
 }
 
 .create-playlist {
   /* border: 3px solid green; */
   transition: all .2s ease-in;
-  height: 7%;
+  height: 10%;
   display: flex;
+  flex-direction: row;
   align-items: center;
   font-size: 18px;
-  padding-left: 15px;
+  padding: 15px 0 0 15px;
+  margin-top: 10px;
 }
 
 .create-playlist:hover {
   transition: all .2s ease-in;
   color: white;
   cursor: pointer;
+}
+
+.create-playlist-title {
+  /* border: 1px solid red; */
+  margin-bottom: 14px;
+  font-size: 16px;
+}
+
+.create-playlist-image {
+  background: url('../images/SideBar/playlist.png');
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  /* margin-right: 10px; */
+  margin: 0 15px 14px 0;
+  transition: background-image 0.2s ease-in-out;
+  /* border: 1px solid red; */
+}
+
+.create-playlist:hover .create-playlist-image {
+  background: url('../images/SideBar/playlist_hover.png');
+  background-size: cover;
+  transition: background-image .2s ease-in-out;
 }
 
 .playlists {
