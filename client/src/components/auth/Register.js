@@ -50,11 +50,7 @@ class Register extends Component {
           <div className="signup">
             <div className="signup-Header">
               <Link to="/">
-                <img
-                  id="signup-logo"
-                  src={"Amplify_BW_Transparent.png"}
-                  alt="logo"
-                ></img>
+                <img id="signup-logo" src="https://spottocry.s3-us-west-1.amazonaws.com/LogoMakr_88SnrK.png"></img>
               </Link>
             </div>
             <div className="content">
@@ -104,7 +100,9 @@ class Register extends Component {
                     />
                   </label>
                   <br />
-                  <button type="submit" className="signup-submit">Sign Up</button>
+                  <button type="submit" className="signup-submit">
+                    Sign Up
+                  </button>
                   <div className="login-prompt">
                     Already have an account?
                     <Link id="login-highlight" to="/login">

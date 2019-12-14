@@ -16,11 +16,9 @@
 }
 
 #signup-logo {
-    width: 197px;
-    height: 59px;
+    height: 100px;
     display: block;
     margin: 0 auto;
-    padding-top: 5px;
 }
 
 #login-fb {
@@ -144,7 +142,6 @@ input:focus::-webkit-input-placeholder {
 .input-register-error {
     height: 40px;
     border-radius: 2px;
-    /* border-color: red; */
     text-indent: 12px;
     width: 100%;
     background-color: #fff;
@@ -228,10 +225,6 @@ hr {
     outline: none;
 }
 
-.login-submit:active {
-    /* border: none; */
-}
-
 .login-submit:hover {
     background-color: rgb(37, 224, 102);
 }
@@ -312,8 +305,6 @@ hr {
     margin-top: 10px;
     text-align: center;
     text-rendering: optimizelegibility;
-    /* width: 430px; */
-    /* height: 21.5px; */
     display: block;
 }
 
@@ -343,10 +334,6 @@ hr {
     outline: none;
     text-decoration: none;
 }
-
-/* .signup-button:active {
-    border: none;
-} */
 
 .signup-button:hover {
     background-color: #616467;
