@@ -17,7 +17,7 @@
 
 .SideBar-Logo {
   /* border: 1px solid blue; */
-  height: 30%;
+  height: 15vh;
   display: flex;
   align-items: center;
   font-size: 28px;
@@ -27,7 +27,7 @@
 
 .User-Nav {
   /* border: 1px solid red; */
-  height: 50%;
+  height: 22%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -139,7 +139,7 @@
   /* border: 3px solid blue; */
   height: 100%;
   font-size: 12px;
-  margin-top: 14%;
+  margin-top: 10%;
 }
 
 .nav-playlist-title{
@@ -154,13 +154,13 @@
 .create-playlist {
   /* border: 3px solid green; */
   transition: all .2s ease-in;
-  height: 10%;
+  height: 8%;
   display: flex;
   flex-direction: row;
   align-items: center;
   font-size: 18px;
-  padding: 15px 0 0 15px;
-  margin-top: 10px;
+  padding: 5px 0 0 20px;
+  margin-top: 5px;
 }
 
 .create-playlist:hover {
@@ -178,8 +178,8 @@
 .create-playlist-image {
   background: url('../images/SideBar/playlist.png');
   background-size: cover;
-  width: 30px;
-  height: 30px;
+  width: 33px;
+  height: 33px;
   /* margin-right: 10px; */
   margin: 0 15px 14px 0;
   transition: background-image 0.2s ease-in-out;
