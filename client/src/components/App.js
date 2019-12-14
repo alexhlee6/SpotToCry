@@ -12,10 +12,10 @@ import SideBar from './SideBar';
 
 const App = () => {
   return (
-    <div>
+    <div className='full-app'>
+      <SideBar/>
       <Nav />
       <br />
-      <SideBar/>
       <Switch>
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
         <AuthRoute exact path="/register" component={Register} routeType="auth" />
