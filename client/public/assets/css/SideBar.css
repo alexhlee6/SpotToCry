@@ -1,0 +1,12 @@
+.full-app {
+  display: flex;
+  flex-direction: row;
+  border: 3px solid green;
+}
+
+.SideBar {
+  border: 1px solid red;
+  width: 230px;
+  height: 100vh;
+  display: flex;
+}
