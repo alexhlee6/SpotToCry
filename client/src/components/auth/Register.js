@@ -36,21 +36,11 @@ class Register extends Component {
         }}
         update={(client, data) => this.updateCache(client, data)}
       >
-        {/* <div className="signup">
-          <Link to="/">
-            <img
-              id="signup-logo"
-              src={"Amplify_BW_Transparent.png"}
-              alt="logo"
-            ></img>
-          </Link>
-          <div className="content">
-            <button id="signup-fb">Sign in as demo_user</button> */}
         {registerUser => (
           <div className="signup">
             <div className="signup-Header">
               <Link to="/">
-                <img id="signup-logo" src="https://spottocry.s3-us-west-1.amazonaws.com/LogoMakr_88SnrK.png"></img>
+                <img id="signup-logo" src="https://spottocry.s3-us-west-1.amazonaws.com/SpotToCry2.png"></img>
               </Link>
             </div>
             <div className="content">
@@ -114,8 +104,6 @@ class Register extends Component {
             </div>
           </div>
         )}
-        {/* </div>
-        </div> */}
       </Mutation>
     );
   }
