@@ -10,18 +10,19 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: black;
-  color: white;
+  background: #040404;
+  color: #b3b3b3;
   font-size: 18px;
 }
 
 .SideBar-Logo {
   /* border: 1px solid blue; */
-  height: 10%;
+  height: 15%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 28px;
+  color: white;
 }
 
 .User-Nav {
@@ -30,22 +31,52 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+}
+
+.User-Nav div {
+  transition: all .2s ease-in;
+  height: 33%;
+  display: flex;
+  align-items: center;
   padding-left: 15px;
+}
+
+.User-Nav div:hover {
+  transition: all .2s ease-in;
+  color: white;
+  cursor: pointer;
 }
 
 .User-Playlists {
   /* border: 3px solid blue; */
   height: 100%;
-  padding-left: 15px;
+  /* padding-left: 15px; */
   font-size: 10px;
+  margin-top: 10%;
+}
+
+.nav-playlist-title{
+  /* border: 1px solid blue; */
+  height: 3%;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
 }
 
 .create-playlist {
   /* border: 3px solid green; */
-  height: 10%;
+  transition: all .2s ease-in;
+  height: 7%;
   display: flex;
   align-items: center;
   font-size: 18px;
+  padding-left: 15px;
+}
+
+.create-playlist:hover {
+  transition: all .2s ease-in;
+  color: white;
+  cursor: pointer;
 }
 
 .playlists {
