@@ -17,11 +17,9 @@
 }
 
 #signup-logo {
-  width: 197px;
-  height: 59px;
+  height: 100px;
   display: block;
   margin: 0 auto;
-  padding-top: 5px;
 }
 
 #signup-fb {
@@ -197,6 +195,7 @@ input:focus::-webkit-input-placeholder {
   font-weight: 400;
   margin-top: -1px;
   margin-left: 5px;
+}
 
 #login-highlight:hover {
   color: rgb(34, 216, 98);
