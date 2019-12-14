@@ -15,16 +15,32 @@ class NavBar extends React.Component{
           SpotToCry
         </div>
         <div className='User-Nav'>
-          <div className='nav-home'>Home</div>
-          <div className='nav-search'>Search</div>
-          <div className='nav-library'>Your Library</div>
+          <div className='nav-home'>
+            <div className='nav-home-image'>
+            </div>
+            Home
+          </div>
+          <div className='nav-search'>
+            <div className='nav-search-image'>
+            </div>
+            Search
+          </div>
+          <div className='nav-library'>
+            <div className='nav-library-image'>
+            </div>
+            Your Library
+          </div>
         </div>
         <div className='User-Playlists'>
           <div className='nav-playlist-title'>
             PLAYLISTS
           </div>
           <div className='create-playlist'>
-            Create Playlist
+            <div className='create-playlist-image'>
+            </div>
+            <div className='create-playlist-title'>
+              Create Playlist
+            </div>
           </div>
           <div className='playlists'>
 
