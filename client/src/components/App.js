@@ -7,6 +7,7 @@ import GenreIndex from "./genres/GenreIndex";
 import AuthRoute from "../util/route_util";
 import Nav from "./Nav";
 import Register from "./auth/Register";
+import SideBar from './SideBar';
 
 
 const App = () => {
@@ -18,8 +19,8 @@ const App = () => {
       <Switch>
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
         <AuthRoute exact path="/register" component={Register} routeType="auth" />
-
         <Route exact path="/" component={GenreIndex} />
+        
       </Switch>
       
 
