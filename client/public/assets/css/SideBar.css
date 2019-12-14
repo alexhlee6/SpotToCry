@@ -1,12 +1,55 @@
 .full-app {
   display: flex;
   flex-direction: row;
-  border: 3px solid green;
+  /* border: 3px solid green; */
 }
 
 .SideBar {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   width: 230px;
   height: 100vh;
   display: flex;
+  flex-direction: column;
+  background: black;
+  color: white;
+  font-size: 18px;
 }
+
+.SideBar-Logo {
+  /* border: 1px solid blue; */
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.User-Nav {
+  /* border: 1px solid red; */
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-left: 15px;
+}
+
+.User-Playlists {
+  /* border: 3px solid blue; */
+  height: 100%;
+  padding-left: 15px;
+  font-size: 10px;
+}
+
+.create-playlist {
+  /* border: 3px solid green; */
+  height: 10%;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.playlists {
+  /* border: 1px solid red; */
+  height: 80%;
+}
+
