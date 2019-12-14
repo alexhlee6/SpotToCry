@@ -11,7 +11,23 @@ class NavBar extends React.Component{
   render(){
     return (
       <div className='SideBar'>
-        SideBar!
+        <div className='SideBar-Logo'>
+          SpotToCry
+        </div>
+        <div className='User-Nav'>
+          <div>Home</div>
+          <div>Search</div>
+          <div>Your Library</div>
+        </div>
+        <div className='User-Playlists'>
+          PLAYLISTS
+          <div className='create-playlist'>
+            Create Playlist
+          </div>
+          <div className='playlists'>
+
+          </div>
+        </div>
       </div>
     )
   }
