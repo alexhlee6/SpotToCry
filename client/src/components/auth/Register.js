@@ -3,7 +3,7 @@ import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
 import { Link } from "react-router-dom";
 
-const { REGISTER_USER } = Mutations;
+const { REGISTER_USER, LOGIN_USER } = Mutations;
 
 class Register extends Component {
   constructor(props) {
@@ -40,11 +40,35 @@ class Register extends Component {
           <div className="signup">
             <div className="signup-Header">
               <Link to="/">
-                <img id="signup-logo" src="https://spottocry.s3-us-west-1.amazonaws.com/SpotToCry2.png"></img>
+                <img
+                  id="signup-logo"
+                  src="https://spottocry.s3-us-west-1.amazonaws.com/SpotToCry2.png"
+                ></img>
               </Link>
             </div>
             <div className="content">
-              <button id="signup-fb">Log in as demo user</button>
+
+              <Mutation mutation={LOGIN_USER}>
+                {loginUser => {
+                return (
+                  <button
+                    id="signup-fb"
+                    onClick={e => {
+                      e.preventDefault();
+                      loginUser({
+                        variables: {
+                          email: "demo@demo.com",
+                          password: "hunter02"
+                        }
+                      });
+                    }}
+                  >
+                    Log in as demo user
+                  </button>
+                );
+              }}
+              </Mutation>
+
               <form
                 onSubmit={e => {
                   e.preventDefault();
