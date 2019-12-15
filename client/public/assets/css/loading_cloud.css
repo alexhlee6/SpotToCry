@@ -2,13 +2,13 @@
   width: 100%;
   min-height: 500px;
   position: absolute;
-  top: -45px;
+  top: -60px;
   left: 0;
   z-index: 15;
 }
 
 #cloud {
-  width: 165px;
+  width: 155px;
   height: 45px;
 	background: #f2f9fe;
 	background: -moz-linear-gradient(top,  #f2f9fe 5%, #d6f0fd 100%);

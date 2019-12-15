@@ -10,8 +10,11 @@ class MusicPlayer extends React.Component {
       loading: true,
       playlist: [],
       playing: false,
-      minimized: true
+      minimized: true,
+      volume: 0.5
     };
+    this.playNext = this.playNext.bind(this);
+    this.changeVolume = this.changeVolume.bind(this);
   }
 
   componentDidMount() {
@@ -41,12 +44,25 @@ class MusicPlayer extends React.Component {
     }
   }
 
+  playNext() {
+    if (window.player) {
+
+    }
+  }
+
+  changeVolume(e) {
+    if (window.player) {
+      window.player.volume = ( e.currentTarget.value / 100 );
+      this.setState({ volume: e.currentTarget.value / 100 });
+    }
+  }
+
 
   render() {
     let musicPlayer;
     if (this.state.playlist.length > 0) {
       musicPlayer = (
-        <audio volume="0.1" className="music-player" id="player">
+        <audio className="music-player" id="player">
           <source src={this.state.playlist[0].url} type="audio/mpeg" />
         </audio>
       )
@@ -63,6 +79,21 @@ class MusicPlayer extends React.Component {
           id="playpause"
           onClick={() => this.setState({ playing: true })}
         ></i>
+      )
+    );
+
+    let fastForward = (
+      this.state.playlist.length > 0 ? (
+        <div>
+          <i className="fas fa-forward"
+            id="forward"
+            onClick={ () => this.playNext }
+          ></i>
+          <i className="fas fa-volume-up"></i>
+          <input type="range" id="volume" onChange={this.changeVolume} />
+        </div>
+      ) : (
+        ""
       )
     );
 
@@ -112,7 +143,8 @@ class MusicPlayer extends React.Component {
           <div className="music-player-left">
             {musicPlayer}
             <div className="music-play-button-container">
-              {playOrPause}
+              { playOrPause }
+              { fastForward }
             </div>
             {currentSongTitle}
           </div>
