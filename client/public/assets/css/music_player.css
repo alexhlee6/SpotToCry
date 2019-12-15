@@ -22,15 +22,37 @@
   align-items: center;
 }
 
+.music-play-button-container {
+  display: flex;
+}
+
 #playpause {
   margin-left: 20px;
   font-size: 18px;
   color: rgb(135, 135, 135);
 }
 
-#playpause:hover {
+#forward {
+  margin-left: 22px;
+  font-size: 19px;
+  color: rgb(135, 135, 135);
+}
+
+#playpause:hover, #forward:hover {
   cursor: pointer;
   color: rgb(177, 177, 177);
+}
+
+#volume {
+  width: 75px;
+  margin-left: 20px;
+  opacity: 0.5;
+}
+
+.fa-volume-up {
+  color: rgb(152, 152, 152);
+  margin-left: 22px;
+  font-size: 18px;
 }
 
 .music-player-current-title {
@@ -99,6 +121,7 @@
   min-width: 300px;
   min-height: 300px;
   width: 100%;
+  cursor: pointer;
 }
 
 .music-player-modal {
