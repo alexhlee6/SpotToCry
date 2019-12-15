@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from 'react-dom'
 import { rainCloud } from "../../util/loading_cloud";
 
 class MusicPlayer extends React.Component {
@@ -34,6 +33,7 @@ class MusicPlayer extends React.Component {
   componentDidUpdate() {
     window.player = document.getElementById('player');
     if (window.player) {
+      window.player.volume = this.state.volume;
       document.getElementById('playpause').onclick = function () {
         if (window.player.paused) {
           window.player.play();
@@ -89,13 +89,58 @@ class MusicPlayer extends React.Component {
             id="forward"
             onClick={ () => this.playNext }
           ></i>
-          <i className="fas fa-volume-up"></i>
-          <input type="range" id="volume" onChange={this.changeVolume} />
         </div>
       ) : (
         ""
       )
     );
+
+    let volume;
+    if (this.state.playlist.length > 0) {
+      if (this.state.volume === 0) {
+        volume = (
+          <div>
+            <i class="fas fa-volume-off"></i>
+            <input
+              type="range"
+              id="volume"
+              onChange={this.changeVolume}
+              value={this.state.volume * 100}
+            />
+          </div>
+        )
+      } else if (this.state.volume < 0.6) {
+        volume = (
+          <div>
+            <i
+              className="fas fa-volume-down"
+              onClick={() => this.setState({ volume: 0 })}
+            ></i>
+            <input
+              type="range"
+              id="volume"
+              onChange={this.changeVolume}
+              value={this.state.volume * 100}
+            />
+          </div>
+        )
+      } else {
+        volume = (
+          <div>
+            <i
+              className="fas fa-volume-up"
+              onClick={() => this.setState({ volume: 0 })}
+            ></i>
+            <input
+              type="range"
+              id="volume"
+              onChange={this.changeVolume}
+              value={this.state.volume * 100}
+            />
+          </div>
+        )
+      }
+    }
 
     let currentSong;
     if (this.state.playlist.length > 0) {
@@ -138,40 +183,42 @@ class MusicPlayer extends React.Component {
             {rainCloud}
           </div>
         )}
-      <div className="music-player-main">
-        <div className="music-player-minimized">
-          <div className="music-player-left">
-            {musicPlayer}
-            <div className="music-play-button-container">
-              { playOrPause }
-              { fastForward }
+
+        <div className="music-player-main">
+          <div className="music-player-minimized">
+            <div className="music-player-left">
+              {musicPlayer}
+              <div className="music-play-button-container">
+                { playOrPause }
+                { fastForward }
+                { volume } 
+              </div>
+              {currentSongTitle}
             </div>
-            {currentSongTitle}
+            <div className="music-player-right">
+              <i 
+                className="fas fa-bars music-player-hambuger"
+                onClick={() => {
+                  this.state.minimized ? (
+                    this.setState({ minimized: false })
+                  ) : (
+                    this.setState({ minimized: true })
+                  )
+                }}
+              ></i>
+            </div>
           </div>
-          <div className="music-player-right">
-            <i 
-              className="fas fa-bars music-player-hambuger"
-              onClick={() => {
-                this.state.minimized ? (
-                  this.setState({ minimized: false })
-                ) : (
-                  this.setState({ minimized: true })
-                )
-              }}
-            ></i>
-          </div>
-        </div>
           
-        { this.state.minimized ? (
-          <div className="music-player-current-song-show minimized">
-            { currentSongModule }
-          </div>
-        ) : (
-          <div className="music-player-current-song-show">
-            { currentSongModule }
-          </div>
-        )}
-      </div>
+          { this.state.minimized ? (
+            <div className="music-player-current-song-show minimized">
+              { currentSongModule }
+            </div>
+          ) : (
+            <div className="music-player-current-song-show">
+              { currentSongModule }
+            </div>
+          )}
+        </div>
       </div>
     )
   }
