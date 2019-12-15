@@ -35,8 +35,11 @@ class Register extends Component {
           localStorage.setItem("auth-token", token);
         }}
         update={(client, data) => this.updateCache(client, data)}
+        onError={error => {
+          console.log("ERROR in SignupBox ", { error });
+        }}
       >
-        {registerUser => (
+        {(registerUser, {error}) => (
           <div className="signup">
             <div className="signup-Header">
               <Link to="/">
@@ -47,28 +50,9 @@ class Register extends Component {
               </Link>
             </div>
             <div className="content">
-
-              <Mutation mutation={LOGIN_USER}>
-                {loginUser => {
-                return (
-                  <button
-                    id="signup-fb"
-                    onClick={e => {
-                      e.preventDefault();
-                      loginUser({
-                        variables: {
-                          email: "demo@demo.com",
-                          password: "hunter02"
-                        }
-                      });
-                    }}
-                  >
-                    Log in as demo user
-                  </button>
-                );
-              }}
-              </Mutation>
-
+              <button id="signup-fb">
+                Log in as demo user
+              </button>
               <form
                 onSubmit={e => {
                   e.preventDefault();
@@ -112,6 +96,7 @@ class Register extends Component {
                       type="password"
                       placeholder="Password"
                     />
+                    { error ? <div className="input-error">{error.graphQLErrors[0].message}</div> : <div style={{ display: "none" }}>{null}</div>}
                   </label>
                   <br />
                   <button type="submit" className="signup-submit">

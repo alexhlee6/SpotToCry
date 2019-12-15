@@ -38,7 +38,7 @@ class Login extends Component {
   //       email: "demo@demo.com",
   //       password: "hunter02"
   //     }
-  //   }).then(() => this.props.history.push("/"));
+  //   });
   // }
 
   render() {
@@ -51,8 +51,11 @@ class Login extends Component {
           this.props.history.push("/");
         }}
         update={(client, data) => this.updateCache(client, data)}
+        onError={error => {
+          console.log("ERROR in SigninBox ", { error });
+        }}
       >
-        {loginUser => (
+        {(loginUser, {error}) => (
           <div className="login">
             <div className="signup-Header">
               <Link to="/">
@@ -109,10 +112,11 @@ class Login extends Component {
                   <input
                     value={this.state.password}
                     onChange={this.update("password")}
-                    className="input-register-2"
+                    className="input-register-2" 
                     type="password"
                     placeholder="Password"
                   />
+                  { error ? <div className="input-error">{error.graphQLErrors[0].message}</div> : <div style={{ display: "none" }}>{null}</div>}
                 </label>
                 <br />
                 <button type="submit" className="login-submit">
