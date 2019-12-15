@@ -57,7 +57,7 @@ class Login extends Component {
       >
         {(loginUser, {error}) => (
           <div className="login">
-            <div className="signup-Header">
+            <div className="signup-header">
               <Link to="/">
                 <img
                   id="signup-logo"
@@ -68,7 +68,7 @@ class Login extends Component {
             <div className="content-login-1">
               <h2 className="login-h2">To continue, log in to SpotToCry.</h2>
               <button
-                id="login-fb"
+                id="login-demo"
                 onClick={e => {
                   e.preventDefault();
                   loginUser({
