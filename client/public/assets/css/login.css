@@ -1,4 +1,4 @@
-.signup-Header {
+.signup-header {
     padding: 1.5em 0;
     display: block;
     padding-top: 15px;
@@ -21,7 +21,7 @@
     margin: 0 auto;
 }
 
-#login-fb {
+#login-demo {
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1;
@@ -48,11 +48,11 @@
     outline: none;
 }
 
-#login-fb:hover {
+#login-demo:hover {
     background-color: rgb(73, 110, 190);
 }
 
-#login-fb:active {
+#login-demo:active {
     background-color: rgb(49, 75, 131);
 }
 
@@ -79,7 +79,6 @@
     margin: auto;
     margin-bottom: 18px;
 }
-
 
 .signup-h2 {
     font-family: Arial, Helvetica, sans-serif;
@@ -162,28 +161,6 @@ hr {
     margin-bottom: 5px;
 }
 
-.line-thru:before {
-    width: 40px;
-    height: 10px;
-    background-color: #FFF;
-    content: '';
-    margin: -5px 0 0 -20px;
-    left: 50%;
-    position: absolute;
-    top: 50%;
-    z-index: -1;
-}
-
-.line-thru:after {
-    border-bottom: 1px solid #dfe0e6;
-    content: '';
-    display: block;
-    position: absolute;
-    top: 49%;
-    width: 100%;
-    z-index: -2;
-}
-
 .login-submit {
     margin-bottom: 14px;
     width: 100%;
@@ -252,13 +229,6 @@ hr {
 .demo-submit:active {
     background-color: rgb(37, 37, 37);
     /* border: none; */
-}
-
-.forgot-password-prompt {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: auto;
-    position: relative;
-    text-align: center;
 }
 
 #login-highlight {

@@ -3,7 +3,8 @@ import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
 import { Link } from "react-router-dom";
 
-const { REGISTER_USER, LOGIN_USER } = Mutations;
+const { REGISTER_USER } = Mutations;
+const { LOGIN_USER } = Mutations;
 
 class Register extends Component {
   constructor(props) {
@@ -26,6 +27,12 @@ class Register extends Component {
     });
   }
 
+  updateDemoCache(client, { data }) {
+    client.writeData({
+      data: { isLoggedIn: data.login.loggedIn }
+    });
+  }
+
   render() {
     return (
       <Mutation
@@ -39,9 +46,9 @@ class Register extends Component {
           console.log("ERROR in SignupBox ", { error });
         }}
       >
-        {(registerUser, {error}) => (
+        {(registerUser, { error }) => (
           <div className="signup">
-            <div className="signup-Header">
+            <div className="signup-header">
               <Link to="/">
                 <img
                   id="signup-logo"
@@ -50,9 +57,34 @@ class Register extends Component {
               </Link>
             </div>
             <div className="content">
-              <button id="signup-fb">
-                Log in as demo user
-              </button>
+              <Mutation
+                mutation={LOGIN_USER}
+                onCompleted={data => {
+                  const { token } = data.login;
+                  localStorage.setItem("auth-token", token);
+                  this.props.history.push("/");
+                }}
+                update={(client, data) => this.updateDemoCache(client, data)}
+              >
+                {loginUser => (
+                  <button
+                    id="signup-demo"
+                    onClick={e => {
+                      e.preventDefault();
+                      console.log(loginUser);
+                      loginUser({
+                        variables: {
+                          email: "demo@demo.com",
+                          password: "hunter02"
+                        }
+                      });
+                    }}
+                  >
+                    Log in as demo user
+                  </button>
+                )}
+              </Mutation>
+
               <form
                 onSubmit={e => {
                   e.preventDefault();
@@ -96,7 +128,13 @@ class Register extends Component {
                       type="password"
                       placeholder="Password"
                     />
-                    { error ? <div className="input-error">{error.graphQLErrors[0].message}</div> : <div style={{ display: "none" }}>{null}</div>}
+                    {error ? (
+                      <div className="input-error">
+                        {error.graphQLErrors[0].message}
+                      </div>
+                    ) : (
+                      <div style={{ display: "none" }}>{null}</div>
+                    )}
                   </label>
                   <br />
                   <button type="submit" className="signup-submit">

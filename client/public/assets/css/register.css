@@ -1,4 +1,4 @@
-.signup-Header {
+.signup-header {
   padding: 1.5em 0;
   display: block;
   padding-top: 15px;
@@ -22,7 +22,7 @@
   margin: 0 auto;
 }
 
-#signup-fb {
+#signup-demo {
   font-size: 14px;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1;
@@ -49,11 +49,11 @@
   outline: none;
 }
 
-#signup-fb:hover {
+#signup-demo:hover {
   background-color: rgb(73, 110, 190);
 }
 
-#signup-fb:active {
+#signup-demo:active {
   background-color: rgb(49, 75, 131);
 }
 
@@ -62,19 +62,6 @@
   justify-content: center;
   flex-direction: column;
   width: 430px;
-  background: #fff;
-  padding: 1.9em;
-  padding-top: 0em;
-  margin: auto;
-  margin-bottom: 18px;
-}
-
-.content-2-signup {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  width: 430px;
-  height: 265px;
   background: #fff;
   padding: 1.9em;
   padding-top: 0em;
@@ -95,7 +82,6 @@
   font-size: .9375em;
   margin-bottom: 1em;
 }
-
 
 input::-webkit-input-placeholder {
   -webkit-transition: opacity 0.3s linear;
@@ -120,28 +106,6 @@ input:focus::-webkit-input-placeholder {
   font-family: Arial, Helvetica, sans-serif;
   text-size-adjust: 100%;
   margin-bottom: 8px;
-}
-
-.line-thru:before {
-  width: 40px;
-  height: 10px;
-  background-color: #FFF;
-  content: '';
-  margin: -5px 0 0 -20px;
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  z-index: -1;
-}
-
-.line-thru:after {
-  border-bottom: 1px solid #dfe0e6;
-  content: '';
-  display: block;
-  position: absolute;
-  top: 49%;
-  width: 100%;
-  z-index: -2;
 }
 
 .signup-submit {
