@@ -7,6 +7,7 @@ import GenreIndex from "./genres/GenreIndex";
 import AuthRoute from "../util/route_util";
 import Nav from "./Nav";
 import Register from "./auth/Register";
+import MusicPlayer from "./player/MusicPlayer";
 
 
 const App = () => {
@@ -22,9 +23,7 @@ const App = () => {
         <Route exact path="/" component={GenreIndex} />
       </Switch>
       
-
-      <br />
-      <h6>Footer Here</h6>
+      <AuthRoute path="/" component={MusicPlayer} routeType="protected" />
     </div>
   );
 };
