@@ -35,6 +35,7 @@ class Register extends Component {
 
   render() {
     return (
+      <div className="auth-page-container">
       <Mutation
         mutation={REGISTER_USER}
         onCompleted={data => {
@@ -49,7 +50,7 @@ class Register extends Component {
         {(registerUser, { error }) => (
           <div className="signup">
             <div className="signup-header">
-              <Link to="/">
+              <Link to="/" className="logo-link">
                 <img
                   id="signup-logo"
                   src="https://spottocry.s3-us-west-1.amazonaws.com/SpotToCry2.png"
@@ -152,6 +153,7 @@ class Register extends Component {
           </div>
         )}
       </Mutation>
+      </div>
     );
   }
 }
