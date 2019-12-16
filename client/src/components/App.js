@@ -9,6 +9,7 @@ import Nav from "./Nav";
 import Register from "./auth/Register";
 import SideBar from './SideBar';
 import MusicPlayer from "./player/MusicPlayer";
+import Search from './Search';
 
 
 const App = () => {
@@ -20,7 +21,7 @@ const App = () => {
       <Switch>
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
         <AuthRoute exact path="/register" component={Register} routeType="auth" />
-        
+        <AuthRoute exact path='/search' component={Search} routeType='protected' />
         <Route exact path="/" component={GenreIndex} />
 
       </Switch>
