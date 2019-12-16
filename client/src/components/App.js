@@ -18,17 +18,19 @@ const App = () => {
     <div className='full-app'>
       <AuthRoute path='/' component={SideBar} routeType='protected' />
       <br />
-      <Switch>
-        <AuthRoute exact path="/login" component={Login} routeType="auth" />
-        <AuthRoute exact path="/register" component={Register} routeType="auth" />
-        <AuthRoute exact path='/search' component={Search} routeType='protected' />
-        <AuthRoute exact path='/account' component={Account} routeType='protected' />
-        <Route exact path="/" component={GenreIndex} />
+      <div className='app-content'>
+        <Nav />
+        <Switch>
+          <AuthRoute exact path="/login" component={Login} routeType="auth" />
+          <AuthRoute exact path="/register" component={Register} routeType="auth" />
+          <AuthRoute exact path='/search' component={Search} routeType='protected' />
+          <AuthRoute exact path='/account' component={Account} routeType='protected' />
+          <Route exact path="/" component={GenreIndex} />
 
-      </Switch>
-      
-      <Nav />
-      <AuthRoute path="/" component={MusicPlayer} routeType="protected" />
+        </Switch>
+        
+      </div>
+        <AuthRoute path="/" component={MusicPlayer} routeType="protected" />
     </div>
   );
 };

@@ -4,6 +4,13 @@
   /* border: 3px solid green; */
 }
 
+.app-content {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .SideBar {
   /* border: 1px solid red; */
   width: 230px;

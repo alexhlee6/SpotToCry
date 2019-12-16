@@ -1,0 +1,23 @@
+.account{
+  border: 1px solid green;
+  height: 84vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout-button{
+  color: white;
+  background: inherit;
+  width: 20%;
+  height: 5%;
+  border-radius: 15px;
+  border: 2px solid gray;
+  font-size: 14px;
+}
+
+.logout-button:hover{
+  border: 2px solid white;
+  transition: all .1s ease-in-out;
+  transform: scale(1.05);
+}
