@@ -9,6 +9,7 @@ class MusicPlayer extends React.Component {
     this.state = {
       loading: true,
       playlist: [],
+      prevSongs: [],
       playing: false,
       minimized: true,
       volume: 0.5
@@ -27,6 +28,13 @@ class MusicPlayer extends React.Component {
           title: "Lucid Dreams",
           artist: "Juice WRLD",
           photoUrl: "https://images.genius.com/6803c74ff169fe7b56de0d5da36d1aef.640x640x1.jpg"
+        },
+        {
+          id: "testId2",
+          songUrl: "https://www.dl.dropboxusercontent.com/s/cxqxjwg7rrhh24u/XXXTENTACION%20-%20Jocelyn%20Flores%20.mp3?dl=0",
+          title: "Jocelyn Flores",
+          artist: "XXXTentacion",
+          photoUrl: "https://images.genius.com/e027e56fdfde41418385f8f51b4a0072.1000x1000x1.jpg"
         }
       ]
     });
@@ -34,6 +42,7 @@ class MusicPlayer extends React.Component {
 
   componentDidUpdate() {
     window.player = document.getElementById('player');
+    
     if (window.player) {
       window.player.volume = this.state.volume;
       document.getElementById('playpause').onclick = function () {
@@ -43,12 +52,39 @@ class MusicPlayer extends React.Component {
           window.player.pause();
         }
       }
+      // window.player.addEventListener("ended", () => {
+      //   window.player.pause();
+      //   window.player.src = this.state.playlist[1] || [];
+      //   window.player.load();
+      //   window.player.play();
+      //   this.setState({ playlist: this.state.playlist.slice(1) });
+      // })
     }
   }
 
   playNext() {
-    if (window.player) {
-
+    let length = this.state.playlist.length;
+    let prevSongs = [...this.state.prevSongs];
+    if (this.state.playlist[0]) {
+      prevSongs.push(this.state.playlist[0]);
+    }
+    if (length === 1) {
+      window.player.pause();
+      if (prevSongs[0]) {
+        window.player.src = prevSongs[0].songUrl;
+      }
+      window.player.load();
+      window.player.play();
+      this.setState({ playlist: prevSongs, prevSongs: [] })
+    } else {
+      let newList = this.state.playlist.slice(1);
+      window.player.pause();
+      if (newList[0]) {
+        window.player.src = newList[0].songUrl
+        window.player.load();
+        window.player.play();
+      }
+      this.setState({ playlist: newList, prevSongs: prevSongs });
     }
   }
 
@@ -66,6 +102,11 @@ class MusicPlayer extends React.Component {
       musicPlayer = (
         <audio className="music-player" id="player">
           <source src={this.state.playlist[0].songUrl} type="audio/mpeg" />
+        </audio>
+      )
+    } else {
+      musicPlayer = (
+        <audio className="music-player" id="player">
         </audio>
       )
     }
@@ -89,7 +130,7 @@ class MusicPlayer extends React.Component {
         <div>
           <i className="fas fa-forward"
             id="forward"
-            onClick={ () => this.playNext }
+            onClick={ this.playNext }
           ></i>
         </div>
       ) : (

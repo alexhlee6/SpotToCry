@@ -7,6 +7,11 @@ class CurrentSongShow extends React.Component {
     this.state = props.song;
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.setState(this.props.song)
+    }
+  }
 
   render() {
     let photo;
