@@ -14,16 +14,14 @@ const Nav = props => {
           {({ data }) => {
             if (data.isLoggedIn) {
               return (
-                <button
-                onClick={e => {
-                  e.preventDefault();
-                  localStorage.removeItem("auth-token");
-                  client.writeData({ data: { isLoggedIn: false } });
-                  // debugger
-                  props.history.push("/");
-                }}
+                <button 
+                  className='account-button'
+                  onClick={e => {
+                    e.preventDefault();
+                    props.history.push('/account')
+                  }}
                 >
-                  Logout
+                  Account
                 </button>
               );
             } else {
