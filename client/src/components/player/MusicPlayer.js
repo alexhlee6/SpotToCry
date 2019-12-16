@@ -101,8 +101,11 @@ class MusicPlayer extends React.Component {
     if (this.state.playlist.length > 0) {
       if (this.state.volume === 0) {
         volume = (
-          <div>
-            <i class="fas fa-volume-off"></i>
+          <div className="volume-container">
+            <i 
+              className="fas fa-volume-off"
+              onClick={ () => this.setState({ volume: 0.5 }) }
+            ></i>
             <input
               type="range"
               id="volume"
@@ -113,7 +116,7 @@ class MusicPlayer extends React.Component {
         )
       } else if (this.state.volume < 0.6) {
         volume = (
-          <div>
+          <div className="volume-container">
             <i
               className="fas fa-volume-down"
               onClick={() => this.setState({ volume: 0 })}
@@ -128,7 +131,7 @@ class MusicPlayer extends React.Component {
         )
       } else {
         volume = (
-          <div>
+          <div className="volume-container">
             <i
               className="fas fa-volume-up"
               onClick={() => this.setState({ volume: 0 })}
