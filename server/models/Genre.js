@@ -6,10 +6,6 @@ const GenreSchema = new Schema({
     type: String,
     required: true 
   },
-  songs: [{
-    type: Schema.Types.ObjectId,
-    ref: 'songs'
-  }],
   artists: [{
     type: Schema.Types.ObjectId,
     ref: 'artists'
@@ -20,14 +16,16 @@ const GenreSchema = new Schema({
   }
 });
 
-GenreSchema.statics.findSongs = (genreId) => {
-  return this.findById(genreId)
-    .populate('songs')
-    .then(genre => genre.songs);
-}
+// GenreSchema.statics.findSongs = (genreId) => {
+//   const Genre = mongoose.model("genres");
+//   return Genre.findById(genreId)
+//     .populate('songs')
+//     .then(genre => genre.songs);
+// }
 
 GenreSchema.statics.findArtists = (genreId) => {
-  return this.findById(genreId)
+  const Genre = mongoose.model("genres");
+  return Genre.findById(genreId)
     .populate('artists')
     .then(genre => genre.artists);
 }

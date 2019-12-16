@@ -3,7 +3,6 @@ const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList } = graphql;
 const Artist = mongoose.model("artists");
 const axios = require("axios");
-// import { assertValidSDLExtension } from "graphql/validation/validate";
 
 const ArtistType = new GraphQLObjectType({
   name: "ArtistType",
@@ -27,10 +26,10 @@ const ArtistType = new GraphQLObjectType({
     description: { 
       type: GraphQLString,
       resolve(parentValue) {
-        return axios.get(`http://en.wikipedia.org/w/api.php?format=json&action=query&prop=revisions&rvprop=content&rvsection=0&titles=${parentValue.name}&props=extracts`)
+        return axios.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${parentValue.name}`)
           .then(res => {
-            // console.log(Object.values(res.data.query.pages)[0].extracts)
-            // return Object.values(res.data.query.pages[0].extract)
+            // console.log(Object.values(res.data.query.pages)[0].extract)
+            return Object.values(res.data.query.pages)[0].extract;
           })
       }
     }
