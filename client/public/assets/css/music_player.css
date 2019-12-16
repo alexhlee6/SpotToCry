@@ -1,3 +1,8 @@
+.music-player-main-main {
+  position: absolute;
+  bottom: 0;
+}
+
 .music-player-main {
   width: 100%;
   position: fixed;
@@ -8,6 +13,7 @@
   flex-direction: column;
   padding-bottom: 2px;
   z-index: 10;
+  flex-wrap: nowrap;
 }
 
 .music-player-minimized {
@@ -20,6 +26,12 @@
   display: flex;
   height: 48px;
   align-items: center;
+  flex-wrap: nowrap;
+}
+
+.music-play-button-container {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 #playpause {
@@ -28,9 +40,34 @@
   color: rgb(135, 135, 135);
 }
 
-#playpause:hover {
+#forward {
+  margin-left: 22px;
+  font-size: 19px;
+  color: rgb(135, 135, 135);
+}
+
+#playpause:hover, #forward:hover {
   cursor: pointer;
   color: rgb(177, 177, 177);
+}
+
+#volume {
+  width: 70px;
+  margin-left: 15px;
+  opacity: 0.5;
+}
+
+@media only screen and (max-width: 400px) {
+  #volume {
+    display: none;
+  }
+}
+
+.fa-volume-up, .fa-volume-off, .fa-volume-down {
+  color: rgb(152, 152, 152);
+  margin-left: 22px;
+  font-size: 18px;
+  width: 20px;
 }
 
 .music-player-current-title {
@@ -38,7 +75,17 @@
   margin-left: 22px;
   font-size: 15px;
   font-weight: 450;
-  padding-top: 2px;
+  padding: 0px 10px;
+  padding-top: 1px;
+  width: 100px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.volume-container {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .music-player-current-title-none {
@@ -56,7 +103,8 @@
 
 .music-player-hambuger {
   font-size: 22px;
-  margin-right: 20px;
+  margin: 0px 20px;
+  
   color: rgb(138, 137, 138);
 }
 
@@ -88,23 +136,24 @@
   min-width: 375px;
 }
 
-.current-song-photo-container {
+.current-song-image-container {
   width: 300px;
   height: 300px;
   object-fit: cover;
   margin: 0 auto;
 }
 
-.current-song-photo {
+.current-song-image {
   min-width: 300px;
   min-height: 300px;
   width: 100%;
+  cursor: pointer;
 }
 
 .music-player-modal {
   position: absolute;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   bottom: 0px;
   background-color: rgba(0, 0, 0, 0.495);
   z-index: 3;
