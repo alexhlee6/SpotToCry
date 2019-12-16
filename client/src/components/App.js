@@ -16,7 +16,6 @@ const App = () => {
   return (
     <div className='full-app'>
       <AuthRoute path='/' component={SideBar} routeType='protected' />
-      <Nav />
       <br />
       <Switch>
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
@@ -26,6 +25,7 @@ const App = () => {
 
       </Switch>
       
+      <Nav />
       <AuthRoute path="/" component={MusicPlayer} routeType="protected" />
     </div>
   );
