@@ -55,7 +55,11 @@ a {
 
 html, body {
   height: 100%;
-  width: 100%;
+	width: 100%;
+	min-height: 100vh;
+	min-width: 100vw;
+	overflow: hidden;
+	overflow-y: scroll;
 }
 
 button {
@@ -63,5 +67,7 @@ button {
 }
 
 #root {
+	min-height: 100%;
+	/* position: relative; */
 	height: 100%;
 }
