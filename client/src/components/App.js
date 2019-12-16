@@ -21,7 +21,7 @@ const App = () => {
       <AuthRoute path='/' component={SideBar} routeType='protected' />
       <br />
       <div className='app-content'>
-        <Nav />
+        <AuthRoute path='/' component={Nav} routeType='protected' />
         <Switch>
           <AuthRoute exact path="/login" component={Login} routeType="auth" />
           <AuthRoute exact path="/register" component={Register} routeType="auth" />

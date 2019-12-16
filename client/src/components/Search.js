@@ -7,7 +7,7 @@ class SearchBar extends React.Component{
 
   render(){
     return (
-      <div>
+      <div className='search'>
         I am the Search Component!
       </div>
     )
