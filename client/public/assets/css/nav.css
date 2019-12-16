@@ -1,0 +1,13 @@
+.account-button{
+  background: black;
+  color: white;
+  height: 45%;
+  border-radius: 20px;
+  width: 10%;
+  margin-right: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 5;
+}

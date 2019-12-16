@@ -5,12 +5,10 @@
 }
 
 .auth-buttons {
-  position: absolute;
-  z-index: 5;
-  margin-left: 20px;
-  font-weight: 700;
   display: flex;
-  line-height: 25px;
+  justify-content: flex-end;
+  align-items: center;
+  height: 10vh;
 }
 
 .logo-link {

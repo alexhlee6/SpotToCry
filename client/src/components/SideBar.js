@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { Query, ApolloConsumer } from "react-apollo";
 // import Queries from "../graphql/queries";
 
@@ -16,14 +16,18 @@ class NavBar extends React.Component{
         </div>
         <div className='User-Nav'>
           <div className='nav-home'>
+            <Link to='/' className='home-link'>
             <div className='nav-home-image'>
             </div>
             Home
+            </Link>
           </div>
           <div className='nav-search'>
+            <Link to='/search' className='search-link'>
             <div className='nav-search-image'>
             </div>
             Search
+            </Link>
           </div>
           <div className='nav-library'>
             <div className='nav-library-image'>

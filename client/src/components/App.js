@@ -9,26 +9,28 @@ import Nav from "./Nav";
 import Register from "./auth/Register";
 import SideBar from './SideBar';
 import MusicPlayer from "./player/MusicPlayer";
+import Search from './Search';
+import Account from './Account';
 import SplashPage from "./Splash";
+
 
 
 const App = () => {
   return (
     <div className='full-app'>
       <AuthRoute path='/' component={SideBar} routeType='protected' />
-      <Nav />
       <br />
-      <Switch>
-        {/* <AuthRoute exact path="/" component={SplashPage} routeType="auth"/> */}
-        <AuthRoute exact path="/login" component={Login} routeType="auth" />
-        <AuthRoute exact path="/register" component={Register} routeType="auth" />
-        
-        <AuthRoute exact path="/" component={GenreIndex} routeType="protected"/>
-        
-
-      </Switch>
-      
-      <AuthRoute path="/" component={MusicPlayer} routeType="protected" />
+      <div className='app-content'>
+        <AuthRoute path='/' component={Nav} routeType='protected' />
+        <Switch>
+          <AuthRoute exact path="/login" component={Login} routeType="auth" />
+          <AuthRoute exact path="/register" component={Register} routeType="auth" />
+          <AuthRoute exact path='/search' component={Search} routeType='protected' />
+          <AuthRoute exact path='/account' component={Account} routeType='protected' />       
+          <AuthRoute exact path="/" component={GenreIndex} routeType="protected"/>
+        </Switch>        
+      </div>
+        <AuthRoute path="/" component={MusicPlayer} routeType="protected" />
     </div>
   );
 };
