@@ -43,6 +43,7 @@ class Login extends Component {
 
   render() {
     return (
+      <div className="auth-page-container">
       <Mutation
         mutation={LOGIN_USER}
         onCompleted={data => {
@@ -58,11 +59,12 @@ class Login extends Component {
         {(loginUser, {error}) => (
           <div className="login">
             <div className="signup-header">
-              <Link to="/">
+              <Link to="/" className="logo-link">
+                <span>
                 <img
                   id="signup-logo"
                   src="https://spottocry.s3-us-west-1.amazonaws.com/SpotToCry2.png"
-                ></img>
+                    ></img></span>
               </Link>
             </div>
             <div className="content-login-1">
@@ -135,6 +137,7 @@ class Login extends Component {
           </div>
         )}
       </Mutation>
+      </div>
     );
   }
 }
