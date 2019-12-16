@@ -14,7 +14,7 @@ import MusicPlayer from "./player/MusicPlayer";
 const App = () => {
   return (
     <div className='full-app'>
-      <SideBar/>
+      <AuthRoute path='/' component={SideBar} routeType='protected' />
       <Nav />
       <br />
       <Switch>
