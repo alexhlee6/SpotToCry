@@ -64,6 +64,7 @@ class Login extends Component {
                     <img
                       id="signup-logo"
                       src="https://spottocry.s3-us-west-1.amazonaws.com/SpotToCry2.png"
+                      alt=""
                     ></img>
                   </span>
                 </Link>
