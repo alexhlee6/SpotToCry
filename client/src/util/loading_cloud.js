@@ -1,25 +1,25 @@
 import React from 'react';
 
 export const rainCloud = (
-  <div class="cloud-container">
+  <div className="cloud-container">
     <div id="cloud">
-      <span class="shadow"></span>
-      <div class="rain">
-        <div class="drop d1"></div>
-        <div class="drop d2"></div>
-        <div class="drop d3"></div>
-        <div class="drop d4"></div>
-        <div class="drop d5"></div>
-        <div class="drop d6"></div>
-        <div class="drop d7"></div>
-        <div class="drop d8"></div>
-        <div class="drop d9"></div>
-        <div class="drop d10"></div>
-        <div class="drop d11"></div>
-        <div class="drop d12"></div>
-        <div class="drop d13"></div>
-        <div class="drop d14"></div>
-        <div class="drop d15"></div>
+      <span className="shadow"></span>
+      <div className="rain">
+        <div className="drop d1"></div>
+        <div className="drop d2"></div>
+        <div className="drop d3"></div>
+        <div className="drop d4"></div>
+        <div className="drop d5"></div>
+        <div className="drop d6"></div>
+        <div className="drop d7"></div>
+        <div className="drop d8"></div>
+        <div className="drop d9"></div>
+        <div className="drop d10"></div>
+        <div className="drop d11"></div>
+        <div className="drop d12"></div>
+        <div className="drop d13"></div>
+        <div className="drop d14"></div>
+        <div className="drop d15"></div>
       </div>
     </div>
   </div>
