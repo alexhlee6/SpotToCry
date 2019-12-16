@@ -5,6 +5,9 @@ const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID } = graphql;
 const UserType = require("./types/user_type");
 const AuthService = require("../services/auth");
 
+const ArtistType = require("./types/artist_type");
+const Artist = mongoose.model("artists");
+
 const mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
@@ -45,6 +48,17 @@ const mutation = new GraphQLObjectType({
       },
       resolve(_, args) {
         return AuthService.verifyUser(args);
+      }
+    },
+
+    newArtist: {
+      type: ArtistType,
+      args: {
+        name: { type: GraphQLString },
+        imageUrl: { type: GraphQLString }
+      },
+      resolve(parentValue, { name, imageUrl }) {
+        return new Artist({ name, imageUrl }).save();
       }
     }
   }

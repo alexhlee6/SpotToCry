@@ -9,6 +9,17 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 
+if (!db) {
+  throw new Error("You must provide a string to connect to MongoDB Atlas");
+}
+
+mongoose
+  .connect(db, { useNewUrlParser: true })
+  .then(() => console.log("Connected to MongoDB successfully"))
+  .catch(err => console.log(err));
+
+app.use(bodyParser.json());
+
 app.use(
   "/graphql",
   expressGraphQL(req => {
@@ -21,16 +32,5 @@ app.use(
     }
   })
 );
-
-if (!db) {
-  throw new Error("You must provide a string to connect to MongoDB Atlas");
-}
-
-mongoose
-  .connect(db, { useNewUrlParser: true })
-  .then(() => console.log("Connected to MongoDB successfully"))
-  .catch(err => console.log(err));
-
-app.use(bodyParser.json());
 
 module.exports = app;
