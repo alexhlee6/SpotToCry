@@ -9,13 +9,17 @@ class SearchBar extends React.Component{
     return (
       <div className='search'>
         <div className='search-bar'>
+          <div className='search-image'>  
+          </div>
           <input
             className='search-input'
             placeholder='Search for Artists or Songs'
           />
           
         </div>
-        I am the Search Component!
+        <div className='search-results'>
+          I am the Search Component!
+        </div>
       </div>
     )
   }
