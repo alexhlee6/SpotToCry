@@ -6,4 +6,20 @@ export default {
       isLoggedIn @client
     }
   `,
+  FETCH_SONGS: gql`
+    {
+      songs{
+        _id
+        title
+      }
+    }
+  `,
+  FETCH_ARTISTS: gql`
+    {
+      artists{
+        _id
+        name
+      }
+    }
+  `,
 };
