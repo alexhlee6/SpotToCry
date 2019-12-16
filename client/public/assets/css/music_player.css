@@ -1,0 +1,111 @@
+.music-player-main {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  bottom: 0;
+  background-color: rgb(42, 41, 46);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2px;
+  z-index: 10;
+}
+
+.music-player-minimized {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.music-player-left {
+  display: flex;
+  height: 48px;
+  align-items: center;
+}
+
+#playpause {
+  margin-left: 20px;
+  font-size: 18px;
+  color: rgb(135, 135, 135);
+}
+
+#playpause:hover {
+  cursor: pointer;
+  color: rgb(177, 177, 177);
+}
+
+.music-player-current-title {
+  color: rgb(157, 157, 157);
+  margin-left: 22px;
+  font-size: 15px;
+  font-weight: 450;
+  padding-top: 2px;
+}
+
+.music-player-current-title-none {
+  color: rgb(121, 121, 121);
+  margin-left: 20px;
+  font-size: 14px;
+  padding-top: 3px;
+}
+
+.music-player-right {
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.music-player-hambuger {
+  font-size: 22px;
+  margin-right: 20px;
+  color: rgb(138, 137, 138);
+}
+
+.music-player-hambuger:hover {
+  cursor: pointer;
+  color: rgb(177, 177, 177);
+}
+
+
+
+/* CURRENT SONG MODULE */
+
+.music-player-current-song-show.minimized {
+  height: 0px;
+  transition: height 1s ease-in-out;
+}
+
+.music-player-current-song-show {
+  background: linear-gradient(to top, rgb(16, 16, 16) 35%, rgb(42, 41, 46) );
+  height: 65vh;
+  transition: height 1s ease-in-out;
+}
+
+.current-song-module {
+  color: rgb(177, 177, 177);
+  height: 100%;
+  width: 100%;
+  padding: 20px 0px;
+  min-width: 375px;
+}
+
+.current-song-photo-container {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.current-song-photo {
+  min-width: 300px;
+  min-height: 300px;
+  width: 100%;
+}
+
+.music-player-modal {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  bottom: 0px;
+  background-color: rgba(0, 0, 0, 0.495);
+  z-index: 3;
+}

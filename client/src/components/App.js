@@ -8,6 +8,7 @@ import AuthRoute from "../util/route_util";
 import Nav from "./Nav";
 import Register from "./auth/Register";
 import SideBar from './SideBar';
+import MusicPlayer from "./player/MusicPlayer";
 
 
 const App = () => {
@@ -24,9 +25,7 @@ const App = () => {
 
       </Switch>
       
-
-      <br />
-      <h6>Footer Here</h6>
+      <AuthRoute path="/" component={MusicPlayer} routeType="protected" />
     </div>
   );
 };
