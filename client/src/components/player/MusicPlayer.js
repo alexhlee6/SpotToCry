@@ -220,7 +220,7 @@ class MusicPlayer extends React.Component {
 
  
     return (
-      <div>
+      <div className="music-player-main-main">
         {this.state.minimized ? ( 
           "" 
         ) : ( 
