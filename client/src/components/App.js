@@ -11,6 +11,7 @@ import SideBar from './SideBar';
 import MusicPlayer from "./player/MusicPlayer";
 import SplashPage from "./Splash";
 import CreatePlaylist from "./playlists/new_playlist";
+import PlaylistIndex from "./playlists/playlist_index";
 
 
 const App = () => {
@@ -24,9 +25,8 @@ const App = () => {
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
         <AuthRoute exact path="/register" component={Register} routeType="auth" />
         <AuthRoute exact path="/new" component={CreatePlaylist} routeType="protected"/>
+        <AuthRoute exact path="/library/playlists/" component={PlaylistIndex} routeType="protected"/>
         <AuthRoute exact path="/" component={GenreIndex} routeType="protected"/>
-        
-
       </Switch>
       
       <AuthRoute path="/" component={MusicPlayer} routeType="protected" />
