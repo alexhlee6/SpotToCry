@@ -44,99 +44,106 @@ class Login extends Component {
   render() {
     return (
       <div className="auth-page-container">
-      <Mutation
-        mutation={LOGIN_USER}
-        onCompleted={data => {
-          const { token } = data.login;
-          localStorage.setItem("auth-token", token);
-          this.props.history.push("/");
-        }}
-        update={(client, data) => this.updateCache(client, data)}
-        onError={error => {
-          console.log("ERROR in SigninBox ", { error });
-        }}
-      >
-        {(loginUser, {error}) => (
-          <div className="login">
-            <div className="signup-header">
-              <Link to="/" className="logo-link">
-                <span>
-                <img
-                  id="signup-logo"
-                  src="https://spottocry.s3-us-west-1.amazonaws.com/SpotToCry2.png"
-                    ></img></span>
-              </Link>
-            </div>
-            <div className="content-login-1">
-              <h2 className="login-h2">To continue, log in to SpotToCry.</h2>
-              <button
-                id="login-demo"
-                onClick={e => {
-                  e.preventDefault();
-                  loginUser({
-                    variables: {
-                      email: "demo@demo.com",
-                      password: "hunter02"
-                    }
-                  });
-                }}
-              >
-                Log in as demo user
-              </button>
-              {/* <button id="login-fb" onClick={this.handleDemoUser}>
+        <Mutation
+          mutation={LOGIN_USER}
+          onCompleted={data => {
+            const { token } = data.login;
+            localStorage.setItem("auth-token", token);
+            this.props.history.push("/");
+          }}
+          update={(client, data) => this.updateCache(client, data)}
+          onError={error => {
+            console.log("ERROR in SigninBox ", { error });
+          }}
+        >
+          {(loginUser, { error }) => (
+            <div className="login">
+              <div className="signup-header">
+                <Link to="/" className="link-logo">
+                  <span>
+                    <img
+                      id="signup-logo"
+                      src="https://spottocry.s3-us-west-1.amazonaws.com/SpotToCry2.png"
+                    ></img>
+                  </span>
+                </Link>
+              </div>
+              <div className="content-login-1">
+                <h2 className="login-h2">To continue, log in to SpotToCry.</h2>
+                <button
+                  id="login-demo"
+                  onClick={e => {
+                    e.preventDefault();
+                    loginUser({
+                      variables: {
+                        email: "demo@demo.com",
+                        password: "hunter02"
+                      }
+                    });
+                  }}
+                >
+                  Log in as demo user
+                </button>
+                {/* <button id="login-fb" onClick={this.handleDemoUser}>
                 Log in as demo user
               </button> */}
-              <form
-                className="form"
-                onSubmit={e => {
-                  e.preventDefault();
-                  loginUser({
-                    variables: {
-                      email: this.state.email,
-                      password: this.state.password
-                    }
-                  });
-                }}
-              >
-                <br />
-                <strong className="line-thru">OR</strong>
-                <br />
-                <label>
-                  <input
-                    value={this.state.email}
-                    onChange={this.update("email")}
-                    className="input-register-2"
-                    placeholder="Email"
-                  />
-                </label>
-                <br />
-                <label>
-                  <input
-                    value={this.state.password}
-                    onChange={this.update("password")}
-                    className="input-register-2" 
-                    type="password"
-                    placeholder="Password"
-                  />
-                  { error ? <div className="input-error">{error.graphQLErrors[0].message}</div> : <div style={{ display: "none" }}>{null}</div>}
-                </label>
-                <br />
-                <button type="submit" className="login-submit">
-                  Log In
+                <form
+                  className="form"
+                  onSubmit={e => {
+                    e.preventDefault();
+                    loginUser({
+                      variables: {
+                        email: this.state.email,
+                        password: this.state.password
+                      }
+                    });
+                  }}
+                >
+                  <br />
+                  <strong className="line-thru">OR</strong>
+                  <br />
+                  <label>
+                    <input
+                      value={this.state.email}
+                      onChange={this.update("email")}
+                      className="input-register-2"
+                      placeholder="Email"
+                    />
+                  </label>
+                  <br />
+                  <label>
+                    <input
+                      value={this.state.password}
+                      onChange={this.update("password")}
+                      className="input-register-2"
+                      type="password"
+                      placeholder="Password"
+                    />
+                    {error ? (
+                      <div className="input-error">
+                        {error.graphQLErrors[0].message}
+                      </div>
+                    ) : (
+                      <div style={{ display: "none" }}>{null}</div>
+                    )}
+                  </label>
+                  <br />
+                  <button type="submit" className="login-submit">
+                    Log In
+                  </button>
+                </form>
+                <span id="no-account-q">Don't have an account?</span>
+                <button
+                  type="submit"
+                  className="signup-button"
+                  onClick={this.signupRedirect}
+                >
+                  Sign Up For SpotToCry
                 </button>
-              </form>
-              <span id="no-account-q">Don't have an account?</span>
-              <button
-                type="submit"
-                className="signup-button"
-                onClick={this.signupRedirect}
-              >
-                Sign Up For SpotToCry
-              </button>
+              </div>
             </div>
-          </div>
-        )}
-      </Mutation>
+          )}
+        </Mutation>
       </div>
     );
   }
