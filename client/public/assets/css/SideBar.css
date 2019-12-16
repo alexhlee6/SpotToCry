@@ -1,11 +1,3 @@
-.full-app {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 100%;
-  /* border: 3px solid green; */
-}
-
 .SideBar {
   /* border: 1px solid red; */
   width: 230px;
@@ -197,5 +189,11 @@
 .playlists {
   /* border: 1px solid red; */
   height: 80%;
+}
+
+.home-link, .search-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
