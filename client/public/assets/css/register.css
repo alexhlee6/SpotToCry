@@ -47,6 +47,7 @@
   background-color: #3B5998;
   transition: background-color .25s ease-in;
   outline: none;
+  margin-top: 40px;
 }
 
 #signup-demo:hover {

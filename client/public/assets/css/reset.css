@@ -26,7 +26,7 @@ footer, header, hgroup, menu, nav, section {
 body {
   line-height: 1;
 	font-family: sans-serif;
-	background-color: rgb(35, 35, 41);
+	background-color: rgb(56, 95, 116);
 	position: relative;
 }
 ol, ul {
@@ -60,4 +60,8 @@ html, body {
 
 button {
 	cursor: pointer;
+}
+
+#root {
+	height: 100%;
 }
