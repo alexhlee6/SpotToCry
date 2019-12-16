@@ -44,6 +44,9 @@ class MusicPlayer extends React.Component {
     window.player = document.getElementById('player');
     
     if (window.player) {
+      window.player.addEventListener("ended", this.playNext);
+      window.player.addEventListener("play", () => this.setState({ playing: true }));
+      window.player.addEventListener("pause", () => this.setState({ playing: false }));
       window.player.volume = this.state.volume;
       document.getElementById('playpause').onclick = function () {
         if (window.player.paused) {
@@ -52,13 +55,6 @@ class MusicPlayer extends React.Component {
           window.player.pause();
         }
       }
-      // window.player.addEventListener("ended", () => {
-      //   window.player.pause();
-      //   window.player.src = this.state.playlist[1] || [];
-      //   window.player.load();
-      //   window.player.play();
-      //   this.setState({ playlist: this.state.playlist.slice(1) });
-      // })
     }
   }
 
@@ -68,6 +64,7 @@ class MusicPlayer extends React.Component {
     if (this.state.playlist[0]) {
       prevSongs.push(this.state.playlist[0]);
     }
+
     if (length === 1) {
       window.player.pause();
       if (prevSongs[0]) {
@@ -75,8 +72,10 @@ class MusicPlayer extends React.Component {
       }
       window.player.load();
       window.player.play();
-      this.setState({ playlist: prevSongs, prevSongs: [] })
+      this.setState({ playlist: prevSongs, prevSongs: [] });
+
     } else {
+
       let newList = this.state.playlist.slice(1);
       window.player.pause();
       if (newList[0]) {
