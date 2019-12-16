@@ -17,17 +17,21 @@ const ArtistSchema = new Schema({
   imageUrl: {
     type: String,
     required: false
+  },
+  description: {
+    type: String,
+    required: false
   }
 });
 
-ArtistSchema.statics.findSongs = (songId) => {
-  return this.findById(songId)
+ArtistSchema.statics.findSongs = (artistId) => {
+  return this.findById(artistId)
     .populate('songs')
     .then(artist => artist.songs);
 }
 
-ArtistSchema.statics.findGenres = (genreId) => {
-  return this.findById(genreId)
+ArtistSchema.statics.findGenres = (artistId) => {
+  return this.findById(artistId)
     .populate('genres')
     .then(artist => artist.genres);
 }

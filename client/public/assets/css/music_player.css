@@ -131,14 +131,14 @@
   min-width: 375px;
 }
 
-.current-song-photo-container {
+.current-song-image-container {
   width: 300px;
   height: 300px;
   object-fit: cover;
   margin: 0 auto;
 }
 
-.current-song-photo {
+.current-song-image {
   min-width: 300px;
   min-height: 300px;
   width: 100%;

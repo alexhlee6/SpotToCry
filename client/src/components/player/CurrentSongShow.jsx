@@ -14,9 +14,9 @@ class CurrentSongShow extends React.Component {
   }
 
   render() {
-    let photo;
-    if (this.state.photoUrl) {
-      photo = <img className="current-song-photo" src={this.state.photoUrl} /> 
+    let image;
+    if (this.state.imageUrl) {
+      image = <img className="current-song-image" src={this.state.imageUrl} /> 
     }
 
     let mainInfo;
@@ -30,8 +30,8 @@ class CurrentSongShow extends React.Component {
     }
 
     return (
-      <div className="current-song-photo-container">
-        { photo }
+      <div className="current-song-image-container">
+        { image }
         { mainInfo }
       </div>
     )
