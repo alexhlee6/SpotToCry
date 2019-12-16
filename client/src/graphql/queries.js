@@ -7,7 +7,7 @@ export default {
     }
   `,
   FETCH_SONGS: gql`
-    {
+    query Fetch_Songs{
       songs{
         _id
         title
