@@ -9,6 +9,7 @@ import Nav from "./Nav";
 import Register from "./auth/Register";
 import SideBar from './SideBar';
 import MusicPlayer from "./player/MusicPlayer";
+import SplashPage from "./Splash";
 
 
 const App = () => {
@@ -18,10 +19,12 @@ const App = () => {
       <Nav />
       <br />
       <Switch>
+        {/* <AuthRoute exact path="/" component={SplashPage} routeType="auth"/> */}
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
         <AuthRoute exact path="/register" component={Register} routeType="auth" />
         
-        <Route exact path="/" component={GenreIndex} />
+        <AuthRoute exact path="/" component={GenreIndex} routeType="protected"/>
+        
 
       </Switch>
       
