@@ -1,1 +1,7 @@
 @import './assets/css/SideBar.css';
+@import url("./assets/css/register.css"); 
+@import url("./assets/css/login.css"); 
+@import url("./assets/css/reset.css");
+@import url("./assets/css/music_player.css");
+@import url("./assets/css/loading_cloud.css");
+
