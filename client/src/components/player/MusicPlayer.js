@@ -1,5 +1,6 @@
 import React from "react";
 import { rainCloud } from "../../util/loading_cloud";
+import CurrentSongShow from "./CurrentSongShow";
 
 class MusicPlayer extends React.Component {
 
@@ -22,8 +23,9 @@ class MusicPlayer extends React.Component {
       playlist: [
         {
           id: "testId",
-          url: "https://www.dl.dropboxusercontent.com/s/hfmwrjo31nt7wl8/Juice%20WRLD%20_Lucid%20Dreams%20%28Forget%20Me%29_%20%28Official%20Audio%29.mp3?dl=0",
+          songUrl: "https://www.dl.dropboxusercontent.com/s/hfmwrjo31nt7wl8/Juice%20WRLD%20_Lucid%20Dreams%20%28Forget%20Me%29_%20%28Official%20Audio%29.mp3?dl=0",
           title: "Lucid Dreams",
+          artist: "Juice WRLD",
           photoUrl: "https://images.genius.com/6803c74ff169fe7b56de0d5da36d1aef.640x640x1.jpg"
         }
       ]
@@ -63,7 +65,7 @@ class MusicPlayer extends React.Component {
     if (this.state.playlist.length > 0) {
       musicPlayer = (
         <audio className="music-player" id="player">
-          <source src={this.state.playlist[0].url} type="audio/mpeg" />
+          <source src={this.state.playlist[0].songUrl} type="audio/mpeg" />
         </audio>
       )
     }
@@ -150,7 +152,7 @@ class MusicPlayer extends React.Component {
     let currentSongTitle = (
       this.state.playlist.length > 0 ? (
         <div className="music-player-current-title">
-          {this.state.playlist[0].title}
+          { currentSong.title }
         </div> 
       ) : (
         <div>
@@ -163,11 +165,13 @@ class MusicPlayer extends React.Component {
 
     let currentSongModule = (
       <div className="current-song-module">
-        <div className="current-song-photo-container">
-          {currentSong ? (
-            <img className="current-song-photo" src={currentSong.photoUrl} /> 
-          ) : "" }
-        </div>
+        {
+          this.state.playlist.length > 0 ? (
+            <CurrentSongShow song={this.state.playlist[0]} />
+          ) : (
+            ""
+          )
+          }
       </div>
     )
 
