@@ -8,7 +8,18 @@
 }
 
 .auth-buttons {
+
     position: absolute;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 10vh;
+}
+
+.logo-link {
+  width: 380px;
+
 }
 
 .signup-header {

@@ -1,3 +1,4 @@
+
 .full-app {
   display: flex;
   flex-direction: row;
@@ -198,5 +199,11 @@
 .playlists {
   /* border: 1px solid red; */
   height: 80%;
+}
+
+.home-link, .search-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
