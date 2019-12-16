@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLString, GraphQLInt, GraphQLID, } = graphql;
+const { 
+  GraphQLObjectType, GraphQLString, 
+  GraphQLInt, GraphQLID, GraphQLNonNull 
+} = graphql;
 
 const UserType = require("./types/user_type");
 const AuthService = require("../services/auth");
@@ -10,6 +13,12 @@ const Artist = mongoose.model("artists");
 
 const PlaylistType = require("./types/playlist_type");
 const Playlist = mongoose.model("playlists");
+
+const SongType = require("./types/song_type");
+const Song = mongoose.model("songs");
+
+const GenreType = require("./types/genre_type");
+const Genre = mongoose.model("genres");
 
 const mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -103,6 +112,49 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parentValue, { name, imageUrl }) {
         return new Artist({ name, imageUrl }).save();
+      }
+    },
+    newSong: {
+      type: SongType,
+      args: {
+        title: { type: GraphQLString },
+        artist: { type: GraphQLID },
+        imageUrl: { type: GraphQLString },
+        songUrl: { type: GraphQLString }
+      },
+      resolve(parentValue, { title, artist, imageUrl, songUrl }) {
+        return new Song({ title, artist, imageUrl, songUrl }).save();
+      }
+    },
+    newGenre: {
+      type: GenreType,
+      args: {
+        name: { type: GraphQLString },
+        imageUrl: { type: GraphQLString } 
+      },
+      resolve(parentValue, { name, imageUrl }) {
+        return new Genre({ name, imageUrl }).save();
+      }
+    },
+
+    addArtistSong: {
+      type: ArtistType,
+      args: {
+        artistId: { type: new GraphQLNonNull(GraphQLID) },
+        songId: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(parentValue, { artistId, songId }) {
+        return Artist.addSong(artistId, songId);
+      }
+    },
+    addArtistGenre: {
+      type: ArtistType,
+      args: {
+        artistId: { type: new GraphQLNonNull(GraphQLID) },
+        genreId: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(parentValue, {artistId, genreId}) {
+        return Artist.addGenre(artistId, genreId);
       }
     }
   }
