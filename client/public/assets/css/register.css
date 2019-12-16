@@ -1,3 +1,7 @@
+.signup {
+  height: 100%;
+  width: 100%;
+}
 .signup-header {
   padding: 1.5em 0;
   display: block;
@@ -9,7 +13,8 @@
 }
 
 .container {
-  width: 970px;
+  /* width: 970px; */
+  width: 100%;
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
@@ -59,15 +64,19 @@
 }
 
 .content {
+  border-radius: 5px;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 430px;
-  background: #fff;
-  padding: 1.9em;
+  /* width: 430px; */
+  max-width: 600px;
+  width: 80%;
+
+  background: rgba(255, 255, 255, 0.81);
+  padding: 1.8em;
   padding-top: 0em;
   margin: auto;
-  margin-bottom: 18px;
+  /* margin-bottom: 18px; */
 }
 
 .input-register-1 {
