@@ -6,7 +6,7 @@ const { IS_LOGGED_IN } = Queries;
 
 const Account = props => {
   return (
-    <div>
+    <div className='account'>
       <ApolloConsumer>
         {client => (
           <Query query={IS_LOGGED_IN}>
@@ -14,6 +14,7 @@ const Account = props => {
               if (data.isLoggedIn) {
                 return (
                   <button
+                    className='logout-button'
                     onClick={e => {
                       e.preventDefault();
                       localStorage.removeItem("auth-token");
@@ -22,7 +23,7 @@ const Account = props => {
                       props.history.push("/");
                     }}
                   >
-                    Logout
+                    LOG OUT
                   </button>
                 );
               }

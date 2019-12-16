@@ -7,7 +7,7 @@ const { IS_LOGGED_IN } = Queries;
 
 const Nav = props => {
   return (
-    <div>
+    <div className='nav'>
     <ApolloConsumer>
       {client => (
         <Query query={IS_LOGGED_IN}>

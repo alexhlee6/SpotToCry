@@ -1,0 +1,6 @@
+.nav{
+  border: 1px solid blue;
+  display: flex;
+  justify-content: flex-end;
+  height: 10vh;
+}
