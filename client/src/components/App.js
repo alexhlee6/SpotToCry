@@ -10,6 +10,7 @@ import Register from "./auth/Register";
 import SideBar from './SideBar';
 import MusicPlayer from "./player/MusicPlayer";
 import Search from './Search';
+import Account from './Account';
 
 
 const App = () => {
@@ -21,6 +22,7 @@ const App = () => {
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
         <AuthRoute exact path="/register" component={Register} routeType="auth" />
         <AuthRoute exact path='/search' component={Search} routeType='protected' />
+        <AuthRoute exact path='/account' component={Account} routeType='protected' />
         <Route exact path="/" component={GenreIndex} />
 
       </Switch>
