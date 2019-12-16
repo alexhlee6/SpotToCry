@@ -42,5 +42,5 @@ export default {
     query IsUserLoggedIn {
       isLoggedIn @client
     }
-  `
+  `,
 };
