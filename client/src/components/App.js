@@ -1,7 +1,7 @@
 import React from 'react';
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
-import { Route, Switch, Link } from "react-router-dom";
+// import gql from "graphql-tag";
+// import { Query } from "react-apollo";
+import { Route, Switch} from "react-router-dom";
 import Login from "./auth/Login";
 import GenreIndex from "./genres/GenreIndex";
 import AuthRoute from "../util/route_util";
@@ -11,7 +11,7 @@ import SideBar from './navigation/SideBar';
 import MusicPlayer from "./player/MusicPlayer";
 import Search from './navigation/Search';
 import Account from './navigation/Account';
-import SplashPage from "./Splash";
+// import SplashPage from "./Splash";
 
 
 
