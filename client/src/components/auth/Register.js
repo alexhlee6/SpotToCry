@@ -3,8 +3,7 @@ import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
 import { Link } from "react-router-dom";
 
-const { REGISTER_USER } = Mutations;
-const { LOGIN_USER } = Mutations;
+const { REGISTER_USER, LOGIN_USER } = Mutations;
 
 class Register extends Component {
   constructor(props) {
@@ -54,6 +53,7 @@ class Register extends Component {
                 <img
                   id="signup-logo"
                   src="https://spottocry.s3-us-west-1.amazonaws.com/SpotToCry2.png"
+                  alt=""
                 ></img>
               </Link>
             </div>

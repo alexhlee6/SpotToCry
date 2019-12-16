@@ -10,6 +10,7 @@ import Register from "./auth/Register";
 import SideBar from './SideBar';
 import MusicPlayer from "./player/MusicPlayer";
 import SplashPage from "./Splash";
+import CreatePlaylist from "./playlists/new_playlist";
 
 
 const App = () => {
@@ -22,7 +23,7 @@ const App = () => {
         {/* <AuthRoute exact path="/" component={SplashPage} routeType="auth"/> */}
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
         <AuthRoute exact path="/register" component={Register} routeType="auth" />
-        
+        <AuthRoute exact path="/new" component={CreatePlaylist} routeType="protected"/>
         <AuthRoute exact path="/" component={GenreIndex} routeType="protected"/>
         
 
