@@ -9,6 +9,14 @@ const SongSchema = new Schema({
   artist: {
     type: Schema.Types.ObjectId,
     ref: 'artists'
+  },
+  imageUrl: {
+    type: String,
+    required: true
+  },
+  songUrl: {
+    type: String,
+    required: true
   }
   // ,
   // album: {
