@@ -197,3 +197,9 @@
   height: 80%;
 }
 
+.home-link, .search-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
