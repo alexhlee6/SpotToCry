@@ -18,15 +18,6 @@ class SearchBar extends React.Component{
     this.updateSearch();
   }
 
-  componentDidMount(){
-    return(<Query query={FETCH_SONGS}>
-      {({ data }) => {
-        console.log(data.songs);
-        return this.setState({ songs: data.songs });
-      }}
-    </Query>)
-  }
-
   update(field){
     return e => this.setState({ [field]: e.currentTarget.value});
   }
