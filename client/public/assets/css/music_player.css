@@ -123,7 +123,7 @@
 }
 
 .music-player-current-song-show {
-  background: linear-gradient(to top, rgb(38, 38, 40) 50%, rgb(45, 45, 45) );
+  background: linear-gradient(to bottom, rgb(23, 23, 23) 50%, rgb(18, 18, 18) );
   height: 65vh;
   transition: height 1s ease-in-out;
 }

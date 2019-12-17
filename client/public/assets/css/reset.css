@@ -26,8 +26,19 @@ footer, header, hgroup, menu, nav, section {
 body {
   line-height: 1;
 	font-family: sans-serif;
-	background-color: rgb(56, 95, 116);
+	/* background-color: rgb(56, 95, 116); */
+	/* background-image: url("https://images.unsplash.com/photo-1542328419-3d23e6e7ad96?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80"); */
+	/* background-image: url("https://images.unsplash.com/photo-1502957291543-d85480254bf8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"); */
+	/* background-image: url("https://images.unsplash.com/photo-1520034475321-cbe63696469a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"); */
+	/* background-image: url("https://images.unsplash.com/photo-1518818419601-72c8673f5852?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"); */
+	background-image: url("https://images.unsplash.com/photo-1463290812909-272c71d723e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+	backdrop-filter: grayscale(50%);
 	position: relative;
+	z-index: 0;
+	background-size: cover;
+  background-repeat: no-repeat;
+	/* background-position: 50% 50%; */
+	overflow: none;
 }
 ol, ul {
 	list-style: none;
@@ -54,12 +65,12 @@ a {
 }
 
 html, body {
-  height: 100%;
+  height: 100vh;
 	width: 100%;
 	min-height: 100vh;
 	min-width: 100vw;
 	overflow: hidden;
-	overflow-y: scroll;
+	/* overflow-y: scroll; */
 }
 
 button {
@@ -67,6 +78,8 @@ button {
 }
 
 #root {
+	position: relative;
+	z-index: 10;
 	min-height: 100%;
 	/* position: relative; */
 	height: 100%;
