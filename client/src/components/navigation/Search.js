@@ -21,9 +21,12 @@ class SearchBar extends React.Component{
   onSongFetch(songs){
     const filtered = [];
     for(let i = 0; i < songs.length; i++){
-      if (songs[i].title.downcase.includes(this.state.search.downcase)){
+      if (songs[i].title.includes(this.state.search)){
         filtered.push(songs[i]);
       }
+    }
+    if (this.state.search === '') {
+      return this.setState( {songs: songs} );
     }
     return this.setState( {songs: filtered});
   }
