@@ -40,8 +40,12 @@ class CurrentSongShow extends React.Component {
                     />
                   </div>
                   <div className="current-song-info">
-                    <p>{data.song.title}</p>
-                    <p>{data.song.artist.name}</p>
+                    <p className="current-song-info-title">
+                      {data.song.title}
+                    </p>
+                    <p className="current-song-info-artist">
+                      {data.song.artist.name}
+                    </p>
                   </div>
                   <div
                     className="current-song-show-more-button"
@@ -63,22 +67,28 @@ class CurrentSongShow extends React.Component {
                     />
                   </div>
                   <div className="current-artist-info">
-                    <p>{data.song.artist.name}</p>
+                    <p className="current-song-info-title">
+                      {data.song.artist.name}
+                    </p>
                     <div className="current-artist-genres">
                       {data.song.artist.genres.map(
                         genre => <p>{genre.name}</p>
                       )}
                     </div>
                     <p className="current-artist-description">
-                      {data.song.artist.description}
+                      <p>
+                        {data.song.artist.description}
+                      </p>
+
+                      <div
+                        className="current-song-show-more-button"
+                        onClick={() => this.setState({ bSide: false })}
+                      >
+                        Back to Song
+                      </div>
                     </p>
                   </div>
-                  <div
-                    className="current-song-show-more-button"
-                    onClick={() => this.setState({ bSide: false})}
-                  >
-                    Back to Song
-                  </div>
+                  
                 </div>
               </div>
             )

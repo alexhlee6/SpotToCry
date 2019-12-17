@@ -134,19 +134,34 @@
   width: 100%;
   padding: 20px 0px;
   min-width: 375px;
+  overflow: scroll;
+}
+
+.current-song-show-A, .current-song-show-B {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.current-song-show-B {
+  width: 80%;
 }
 
 .current-song-image-container {
   width: 300px;
   height: 300px;
-  object-fit: cover;
   margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+.current-song-image-container:hover {
+  opacity: 0.9;
 }
 
 .current-song-image {
   min-width: 300px;
   min-height: 300px;
   width: 100%;
+  object-fit: cover;
   cursor: pointer;
 }
 
@@ -159,5 +174,37 @@
   z-index: 3;
 }
 
+.current-song-info-title {
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  color: white;
+}
 
-/* CURRENT SONG INFO STUFF */
+.current-song-info-artist {
+  margin: 10px 0px;
+  color: rgb(154, 154, 154);
+}
+
+.current-song-show-more-button {
+  cursor: pointer;
+  color: rgb(154, 154, 154);
+  width: max-content;
+  padding-bottom: 2px;
+  margin-top: 5px;
+  font-size: 16px;
+}
+
+.current-song-show-more-button:hover {
+  border-bottom: 1px solid gray;
+}
+
+.current-artist-description {
+  margin: 10px 0px;
+  padding-bottom: 30px;
+  line-height: 20px;
+}
+
+.current-artist-description > p {
+  margin: 10px 0px;
+}
