@@ -11,6 +11,9 @@ import { ApolloLink } from "apollo-link";
 import * as serviceWorker from './serviceWorker';
 import { HashRouter } from "react-router-dom";
 import Mutations from "./graphql/mutations";
+import resolvers from "./resolvers";
+import OpenModalButton from "./OpenModalButton/";
+import Modal from "./components/modal/";
 
 const { VERIFY_USER } = Mutations;
 
@@ -32,11 +35,18 @@ const errorLink = onError(({ graphQLErrors }) => {
 });
 
 const client = new ApolloClient({
+  resolvers,
   link: httpLink,
   cache,
   onError: ({ networkError, graphQLErrors }) => {
     console.log("graphQLErrors", graphQLErrors);
     console.log("networkError", networkError);
+  }
+});
+
+client.cache.writeData({
+  data: {
+    isModalOpen: false
   }
 });
 
@@ -64,7 +74,9 @@ const Root = () => {
   return (
     <ApolloProvider client={client}>
       <HashRouter>
+        <OpenModalButton />
         <App />
+        <Modal />
       </HashRouter>
     </ApolloProvider>
   );
