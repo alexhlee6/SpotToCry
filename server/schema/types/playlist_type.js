@@ -1,6 +1,7 @@
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList } = graphql;
 const SongType = require("./song_type");
+const Playlist = require("../../models/Playlist");
 
 const PlaylistType = new GraphQLObjectType({
   name: "PlaylistType",

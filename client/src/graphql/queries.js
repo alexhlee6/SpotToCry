@@ -13,11 +13,11 @@ export default {
   FETCH_PLAYLIST: gql`
     query FetchPlaylist($id: ID!) {
       playlist(id: $id) {
-        id
+        _id
         title
         description
         songs {
-          id
+          _id
           artist
           title
         }
@@ -27,12 +27,15 @@ export default {
   FETCH_PLAYLISTS: gql`
     query FetchPlaylists {
       playlists {
-        id
+        _id
         title
         description
         songs {
-          id
-          artist
+          _id
+          artist {
+            _id
+            name
+          }
           title
         }
       }
@@ -42,5 +45,5 @@ export default {
     query IsUserLoggedIn {
       isLoggedIn @client
     }
-  `,
+  `
 };
