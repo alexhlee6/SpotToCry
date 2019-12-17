@@ -19,7 +19,6 @@ const Account = props => {
                       e.preventDefault();
                       localStorage.removeItem("auth-token");
                       client.writeData({ data: { isLoggedIn: false } });
-                      // debugger
                       props.history.push("/");
                     }}
                   >
