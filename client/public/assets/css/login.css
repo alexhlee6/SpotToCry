@@ -8,13 +8,14 @@
 }
 
 .auth-buttons {
-
-    position: absolute;
-
+  /* border: 1px solid red; */
+  position: absolute;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   height: 10vh;
+  right: 0;
+  width: 20%;
 }
 
 .logo-link {
