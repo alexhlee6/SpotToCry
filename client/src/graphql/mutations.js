@@ -17,6 +17,22 @@ export default {
       }
     }
   `,
+  ADD_PLAYLIST_SONG: gql`
+    mutation AddPlaylistSong($playlistId: ID, $songId: ID) {
+      addPlaylistSong(playlistId: $playlistId, songId: $songId) {
+        _id
+        title
+        songs {
+          _id
+          title
+          artist {
+            _id
+            name
+          }
+        }
+      }
+    }
+  `,
   LOGIN_USER: gql`
     mutation LoginUser($email: String!, $password: String!) {
       login(email: $email, password: $password) {
