@@ -1,5 +1,4 @@
 import React from 'react';
-import gql from "graphql-tag";
 import { Query, ApolloConsumer } from "react-apollo";
 import queries from '../../graphql/queries';
 const {FETCH_ALL_SONGS} = queries;
@@ -16,7 +15,6 @@ class SearchBar extends React.Component{
   }
 
   update(e){
-    // debugger;
     this.setState({ search: e.currentTarget.value});
   }
 
