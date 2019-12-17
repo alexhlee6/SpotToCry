@@ -1,25 +1,48 @@
 import gql from "graphql-tag";
 
 export default {
-  IS_LOGGED_IN: gql`
-    query IsUserLoggedIn {
-      isLoggedIn @client
-    }
-  `,
   FETCH_SONGS: gql`
-    query Fetch_Songs{
-      songs{
-        _id
+    query FetchSongs {
+      songs {
+        id
+        artist
         title
       }
     }
   `,
-  FETCH_ARTISTS: gql`
-    {
-      artists{
+  FETCH_PLAYLIST: gql`
+    query FetchPlaylist($id: ID!) {
+      playlist(id: $id) {
         _id
-        name
+        title
+        description
+        songs {
+          _id
+          artist
+          title
+        }
       }
     }
   `,
+  FETCH_PLAYLISTS: gql`
+    query FetchPlaylists {
+      playlists {
+        _id
+        title
+        description
+        songs {
+          _id
+          artist {
+            _id
+            name
+          }
+          title
+        }
+      }
+    }
+  `,
+  IS_LOGGED_IN: gql`
+    query IsUserLoggedIn {
+      isLoggedIn @client
+    }
 };

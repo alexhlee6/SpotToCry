@@ -11,6 +11,9 @@ const AuthService = require("../services/auth");
 const ArtistType = require("./types/artist_type");
 const Artist = mongoose.model("artists");
 
+const PlaylistType = require("./types/playlist_type");
+const Playlist = mongoose.model("playlists");
+
 const SongType = require("./types/song_type");
 const Song = mongoose.model("songs");
 
@@ -20,6 +23,47 @@ const Genre = mongoose.model("genres");
 const mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
+    newPlaylist: {
+      type: PlaylistType,
+      args: {
+        title: { type: GraphQLString },
+        description: { type: GraphQLString }
+      },
+      resolve(_, { title, description }) {
+        return new Playlist({ title, description }).save();
+      }
+    },
+    deletePlaylist: {
+      type: PlaylistType,
+      args: { id: { type: GraphQLID } },
+      resolve(_, { id }) {
+        return Playlist.remove({ _id: id });
+      }
+    },
+    updatePlaylist: {
+      type: PlaylistType,
+      args: {
+        id: { type: GraphQLID },
+        title: { type: GraphQLString },
+        description: { type: GraphQLString }
+      },
+      resolve(_, { id, title, description }) {
+        const updateObj = {};
+
+        if (id) updateObj.id = id;
+        if (title) updateObj.title = title;
+        if (description) updateObj.description = description;
+
+        return Playlist.findOneAndUpdate(
+          { _id: id },
+          { $set: updateObj },
+          { new: true },
+          (err, playlist) => {
+            return playlist;
+          }
+        );
+      }
+    },
     register: {
       type: UserType,
       args: {
