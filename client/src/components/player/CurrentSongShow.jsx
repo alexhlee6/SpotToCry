@@ -26,8 +26,8 @@ class CurrentSongShow extends React.Component {
     return (
       <Query query={ Queries.FETCH_SONG } variables={{ id: this.state.songId }}>
         {({ loading, error, data }) => {
-          if (loading) return <p>Loading...</p>;
-          if (error) return <p>Error</p>;
+          if (loading) return <p className="current-song-load-err">Loading...</p>;
+          if (error) return <p className="current-song-load-err">Error</p>;
 
           if (!this.state.bSide) {
             return (
@@ -71,11 +71,13 @@ class CurrentSongShow extends React.Component {
                       {data.song.artist.name}
                     </p>
                     <div className="current-artist-genres">
+                      <ul>
                       {data.song.artist.genres.map(
-                        genre => <p>{genre.name}</p>
+                        genre => <li key={genre._id}>{genre.name}</li>
                       )}
+                      </ul>
                     </div>
-                    <p className="current-artist-description">
+                    <div className="current-artist-description">
                       <p>
                         {data.song.artist.description}
                       </p>
@@ -86,7 +88,7 @@ class CurrentSongShow extends React.Component {
                       >
                         Back to Song
                       </div>
-                    </p>
+                    </div>
                   </div>
                   
                 </div>

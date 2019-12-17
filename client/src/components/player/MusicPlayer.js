@@ -22,22 +22,6 @@ class MusicPlayer extends React.Component {
     this.setState({
       loading: false,
       playlist: this.props.playlist
-      // playlist: [
-      //   {
-      //     id: "testId",
-      //     songUrl: "https://www.dl.dropboxusercontent.com/s/hfmwrjo31nt7wl8/Juice%20WRLD%20_Lucid%20Dreams%20%28Forget%20Me%29_%20%28Official%20Audio%29.mp3?dl=0",
-      //     title: "Lucid Dreams",
-      //     artist: "Juice WRLD",
-      //     imageUrl: "https://images.genius.com/6803c74ff169fe7b56de0d5da36d1aef.640x640x1.jpg"
-      //   },
-      //   {
-      //     id: "testId2",
-      //     songUrl: "https://www.dl.dropboxusercontent.com/s/cxqxjwg7rrhh24u/XXXTENTACION%20-%20Jocelyn%20Flores%20.mp3?dl=0",
-      //     title: "Jocelyn Flores",
-      //     artist: "XXXTentacion",
-      //     imageUrl: "https://images.genius.com/e027e56fdfde41418385f8f51b4a0072.1000x1000x1.jpg"
-      //   }
-      // ]
     });
   }
 
@@ -216,16 +200,6 @@ class MusicPlayer extends React.Component {
           this.state.playlist.length > 0 ? (
             <CurrentSongShow 
               songId={currentSong._id}
-              // song={{
-              //   id: currentSong._id,
-              //   title: currentSong.title,
-              //   imageUrl: currentSong.imageUrl,
-              // }} 
-              // artist={{
-              //   id: currentSong.artist._id,
-              //   name: currentSong.artist.name,
-
-              // }}
             />
           ) : (
             ""
