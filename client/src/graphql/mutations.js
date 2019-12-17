@@ -1,12 +1,28 @@
 import gql from "graphql-tag";
 
 export default {
+  NEW_PLAYLIST: gql`
+    mutation NewPlaylist($title: String, $description: String) {
+      newPlaylist(title: $title, description: $description) {
+        _id
+        title
+        description
+      }
+    }
+  `,
+  DELETE_PLAYLIST: gql`
+    mutation DeletePlaylist($id: ID) {
+      deletePlaylist(id: $id) {
+        _id
+      }
+    }
+  `,
   LOGIN_USER: gql`
-  mutation LoginUser($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      token
-      loggedIn
-     }
+    mutation LoginUser($email: String!, $password: String!) {
+      login(email: $email, password: $password) {
+        token
+        loggedIn
+      }
     }
   `,
   VERIFY_USER: gql`
@@ -25,4 +41,4 @@ export default {
       }
     }
   `
-}
+};
