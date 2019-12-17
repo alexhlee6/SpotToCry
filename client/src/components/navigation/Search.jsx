@@ -1,7 +1,26 @@
 import React from 'react';
+import gql from "graphql-tag";
 import { Query, ApolloConsumer } from "react-apollo";
 import queries from '../../graphql/queries';
 const {FETCH_ALL_SONGS} = queries;
+
+const FETCH_FILTERED_SONGS = gql`
+  query FetchFilteredSongs($filter: String!) {
+    feed(filter: $filter) {
+      songs {
+        _id
+        title
+        imageUrl
+        songUrl
+        artist {
+          _id
+          name
+          imageUrl
+        }
+      }
+    }
+  }
+`
 
 class SearchBar extends React.Component{
   constructor(props){
