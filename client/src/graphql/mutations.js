@@ -3,8 +3,8 @@ import gql from "graphql-tag";
 export default {
   NEW_PLAYLIST: gql`
     mutation NewPlaylist($title: String, $description: String) {
-      newGod(title: $title, description: $description) {
-        id
+      newPlaylist(title: $title, description: $description) {
+        _id
         title
         description
       }
@@ -13,7 +13,7 @@ export default {
   DELETE_PLAYLIST: gql`
     mutation DeletePlaylist($id: ID) {
       deletePlaylist(id: $id) {
-        id
+        _id
       }
     }
   `,

@@ -39,7 +39,7 @@ const RootQueryType = new GraphQLObjectType({
     },
     playlist: {
       type: PlaylistType,
-      args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+      args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(_, { id }) {
         return Playlist.findById(id);
       }

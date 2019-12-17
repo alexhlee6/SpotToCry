@@ -9,23 +9,26 @@ const PlaylistIndex = () => {
   return (
     <div>
       <Link to="/new">Create Playlist</Link>
-      <ul>
-        <Query query={FETCH_PLAYLISTS}>
-          {({ loading, error, data }) => {
-            if (loading) return <p>Loading...</p>;
-            if (error) return <p>{error}</p>;
-            console.log(data);
-            return data.playlists.map(({ id, title, description }) => (
-              <li key={id}>
-                <Link to={`/playlists/${id}`}>
-                  <h4>{title}</h4>
-                </Link>
-                <p>Description: {description}</p>
-              </li>
-            ));
-          }}
-        </Query>
-      </ul>
+      <Query query={FETCH_PLAYLISTS}>
+        {({ loading, error, data }) => {        
+          if (loading) return <p>Loading...</p>;
+          if (error) return <p>{error}</p>;
+          return (
+            <div>
+              <ul>
+                {data.playlists.map(({ _id, title, description }) => (
+                  <li key={_id}>
+                    <Link to={`/playlists/${_id}`}>
+                      <h4>{title}</h4>
+                    </Link>
+                    <p>Description: {description}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        }}
+      </Query>
     </div>
   );
 };
