@@ -9,19 +9,11 @@ import Nav from "./navigation/Nav";
 import Register from "./auth/Register";
 import SideBar from './navigation/SideBar';
 import MusicPlayer from "./player/MusicPlayer";
-<<<<<<< HEAD
-import Search from './navigation/Search';
-import Account from './navigation/Account';
-// import SplashPage from "./Splash";
-=======
 import Search from './Search';
 import Account from './Account';
 import SplashPage from "./Splash";
 import CreatePlaylist from "./playlists/new_playlist";
 import PlaylistIndex from "./playlists/playlist_index";
->>>>>>> origin/master
-
-
 
 const App = () => {
   return (
