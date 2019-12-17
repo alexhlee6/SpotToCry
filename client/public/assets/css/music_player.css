@@ -8,7 +8,7 @@
   position: fixed;
   bottom: 0;
   bottom: 0;
-  background-color: rgb(42, 41, 46);
+  background-color: rgb(38, 38, 40);
   display: flex;
   flex-direction: column;
   padding-bottom: 2px;
@@ -123,7 +123,7 @@
 }
 
 .music-player-current-song-show {
-  background: linear-gradient(to top, rgb(16, 16, 16) 35%, rgb(42, 41, 46) );
+  background: linear-gradient(to bottom, rgb(23, 23, 23) 50%, rgb(18, 18, 18) );
   height: 65vh;
   transition: height 1s ease-in-out;
 }
@@ -134,19 +134,34 @@
   width: 100%;
   padding: 20px 0px;
   min-width: 375px;
+  overflow: scroll;
+}
+
+.current-song-show-A, .current-song-show-B {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.current-song-show-B {
+  width: 80%;
 }
 
 .current-song-image-container {
   width: 300px;
   height: 300px;
-  object-fit: cover;
   margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+.current-song-image-container:hover {
+  opacity: 0.9;
 }
 
 .current-song-image {
   min-width: 300px;
   min-height: 300px;
   width: 100%;
+  object-fit: cover;
   cursor: pointer;
 }
 
@@ -157,4 +172,43 @@
   bottom: 0px;
   background-color: rgba(0, 0, 0, 0.495);
   z-index: 3;
+}
+
+.current-song-info-title {
+  font-size: 20px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.current-song-info-artist {
+  margin: 10px 0px;
+  color: rgb(154, 154, 154);
+}
+
+.current-song-show-more-button {
+  cursor: pointer;
+  color: rgb(154, 154, 154);
+  width: max-content;
+  padding-bottom: 2px;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.current-song-show-more-button:hover {
+  border-bottom: 1px solid gray;
+}
+
+.current-artist-description {
+  margin: 10px 0px;
+  padding-bottom: 30px;
+  line-height: 20px;
+}
+
+.current-artist-description > p {
+  margin: 10px 0px;
+}
+
+.current-song-load-err {
+  padding: 20px 30px;
 }

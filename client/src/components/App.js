@@ -14,6 +14,7 @@ import Account from './Account';
 import SplashPage from "./Splash";
 import CreatePlaylist from "./playlists/new_playlist";
 import PlaylistIndex from "./playlists/playlist_index";
+import PlayerProvider from "./player/PlayerProvider";
 
 const App = () => {
   return (
@@ -32,7 +33,8 @@ const App = () => {
           <AuthRoute exact path="/" component={GenreIndex} routeType="protected"/>
         </Switch>        
       </div>
-        <AuthRoute path="/" component={MusicPlayer} routeType="protected" />
+      <AuthRoute path="/" component={PlayerProvider} routeType="protected" />
+        {/* <AuthRoute path="/" component={MusicPlayer} routeType="protected" /> */}
     </div>
   );
 };
