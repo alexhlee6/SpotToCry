@@ -192,8 +192,6 @@ class MusicPlayer extends React.Component {
     );
 
 
-    // console.log(this.state.playlist);
-
     let currentSongModule = (
       <div className="current-song-module">
         {
