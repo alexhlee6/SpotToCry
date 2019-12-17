@@ -140,5 +140,22 @@ export default {
       }
     }
   `,
+  FETCH_FILTERED_SONGS: gql`
+  query FetchFilteredSongs($filter: String!) {
+    feed{
+      songs {
+        _id
+        title
+        imageUrl
+        songUrl
+        artist {
+          _id
+          name
+          imageUrl
+        }
+      }
+    }
+  }
+`
 };
 
