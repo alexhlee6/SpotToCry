@@ -40,11 +40,5 @@ export default {
         loggedIn
       }
     }
-<<<<<<< HEAD
-  `,
-  
-}
-=======
   `
 };
->>>>>>> origin/master
