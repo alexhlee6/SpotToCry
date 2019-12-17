@@ -15,6 +15,7 @@ import SplashPage from "./Splash";
 import CreatePlaylist from "./playlists/new_playlist";
 import PlaylistIndex from "./playlists/playlist_index";
 import PlayerProvider from "./player/PlayerProvider";
+import GenreShow from "./genres/GenreShow";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
           <AuthRoute exact path="/new" component={CreatePlaylist} routeType="protected"/>
           <AuthRoute exact path="/library/playlists/" component={PlaylistIndex} routeType="protected"/>       
           <AuthRoute exact path="/" component={GenreIndex} routeType="protected"/>
+          <AuthRoute exact path="/genres/:genreId" component={GenreShow} routeType="protected" />
         </Switch>        
       </div>
       <AuthRoute path="/" component={PlayerProvider} routeType="protected" />

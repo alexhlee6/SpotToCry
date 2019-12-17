@@ -1,0 +1,66 @@
+.genre-show-main {
+  width: 100%;
+  height: 100%;
+}
+.genre-artists-list {
+  width: 95%;
+  margin: 10px auto;
+
+}
+
+.genre-artists-item {
+  max-width: 100%;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.603);
+  margin: 10px 0px;
+  padding: 5px 10px;
+  display: flex;
+}
+
+.genre-artists-item-name {
+  /* width: 100%; */
+  color: lightgray;
+  font-size: 20px;
+  padding: 10px;
+  border-bottom: 1px solid rgb(63, 63, 63);
+}
+
+.genre-artist-song-list {
+  color: lightgray;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.genre-artist-song-item {
+  margin: 5px;
+  padding: 0px 10px;
+  display: flex;
+  width: 100%;
+  /* flex: 2 1 auto; */
+  align-items: center;
+  /* justify-content: space-between; */
+}
+
+.genre-artist-song-title {
+  color: white;
+  margin: 0px 10px;
+  flex-grow: 1;
+}
+
+.genre-artist-item-name {
+  color: rgb(147, 147, 147);
+  margin: 10px;
+  flex-grow: 1;
+}
+
+.genre-song-add-button {
+  color: gray;
+  cursor: pointer;
+  flex-grow: 1;
+  margin: 0px 15px;
+  max-width: max-content;
+}
+
+.genre-song-add-button:hover {
+  color: lightgray;
+}
