@@ -8,7 +8,8 @@ class SearchBar extends React.Component{
     super(props);
     this.state = {
       search: '',
-      songs: []
+      songs: [],
+      artists: []
     }
     this.update = this.update.bind(this);
     this.onSongFetch = this.onSongFetch.bind(this);
@@ -19,24 +20,35 @@ class SearchBar extends React.Component{
   }
 
   onSongFetch(songs){
-    const filtered = [];
+    const filteredSongs = [];
+    const filteredArtists = [];
     for(let i = 0; i < songs.length; i++){
       if (songs[i].title.includes(this.state.search)){
-        filtered.push(songs[i]);
+        filteredSongs.push(songs[i]);
+      }
+      if (songs[i].artist.name.includes(this.state.search)){
+        filteredArtists.push(songs[i].artist);
       }
     }
     if (this.state.search === '') {
       return this.setState( {songs: songs} );
     }
-    return this.setState( {songs: filtered});
+    this.setState( {artists: filteredArtists})
+    return this.setState( {songs: filteredSongs});
   }
 
   render(){
-    const searched = this.state.songs.map(({ id, title, }) => (
+    const searchedSongs = this.state.songs.map(({ id, title, }) => (
       <li key={id}>
         <h4>{title}</h4>
       </li>
     ));
+
+    const searchedArtists = this.state.artists.map(({ id, name, }) => (
+      <li key={id}>
+        <h4>{name}</h4>
+      </li>
+    ))
 
     return (
       <ApolloConsumer>
@@ -61,7 +73,10 @@ class SearchBar extends React.Component{
               </div>
             <div className='search-results'>
               <ul>
-                {searched}
+                {searchedSongs}
+              </ul>
+              <ul>
+                {searchedArtists}
               </ul>
             </div>
           </div>
