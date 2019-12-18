@@ -1,6 +1,16 @@
 .account-button{
   color: rgb(203, 203, 203);
   border-radius: 15px;
+  /* border: 1px solid red; */
+  background: black;
+  color: white;
+  height: 50%;
+  border-radius: 20px;
+  width: 50%;
+  margin-right: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   position: relative;
   font-size: 15px;
