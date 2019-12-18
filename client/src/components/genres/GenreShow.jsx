@@ -27,6 +27,7 @@ class GenreShow extends React.Component {
                 <h1 className="genre-index-header">{data.genre.name}</h1>
                 <ul className="genre-artists-list">
                   {
+                    
                     data.genre.artists.map(artist => {
                       return (
                         <li key={artist._id} className="genre-artists-item">
