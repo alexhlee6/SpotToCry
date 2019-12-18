@@ -6,8 +6,8 @@ const SongItem = (song) => {
       <div className='song-image'>
       </div>
       <div className='song-info'>
-        {song.title}
-        {song.artist.name}
+        <p className='info-name'>{song.title}</p>
+        <p className='info-type'>{song.artist.name}</p>
       </div>
     </div>
   );
