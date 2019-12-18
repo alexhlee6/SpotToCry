@@ -22,9 +22,10 @@ class GenreIndex extends React.Component {
             return (
               <ul className="genre-index-list">
                 { 
-                  data.genres.map(genre => {
+                  data.genres.map((genre, i) => {
                     return (
                       <li key={genre._id} className="genre-index-item">
+                        <img src={genre.imageUrl} className="genre-index-item-image"/>
                         <Link to={`/genres/${genre._id}`} className="genre-index-item-link">
                           <p className="genre-index-item-name">{ genre.name }</p>
                         </Link>
@@ -32,6 +33,10 @@ class GenreIndex extends React.Component {
                     )
                   })
                 }
+                <li className="genre-index-item-hidden"></li>
+                <li className="genre-index-item-hidden"></li>
+                <li className="genre-index-item-hidden"></li>
+                <li className="genre-index-item-hidden"></li>
               </ul>
             )
           }}
