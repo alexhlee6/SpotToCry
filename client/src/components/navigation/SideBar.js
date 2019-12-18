@@ -2,13 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 // import { Query, ApolloConsumer } from "react-apollo";
 // import Queries from "../graphql/queries";
-// import NewPlaylistModal from "./OpenModalButton/NewPlaylistModalButton";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 
 const OPEN_MODAL_MUTATION = gql`
   mutation {
-    openModalMutation @client
+    openNewPlaylistModalMutation @client
   }
 `;
 
@@ -44,13 +43,12 @@ class NavBar extends React.Component{
           <div className="create-playlist">
             <div className="create-playlist-image"></div>
             <Mutation mutation={OPEN_MODAL_MUTATION}>
-              {openModal => (                
-                <div className="create-playlist-title" onClick={openModal}>
+              {openNewPlaylistModalMutation => (                
+                <div className="create-playlist-title" onClick={openNewPlaylistModalMutation}>
                   Create Playlist
                 </div>
               )}
             </Mutation>
-            {/* <div className="create-playlist-title">Create Playlist</div> */}
           </div>
           <div className="playlists"></div>
         </div>
