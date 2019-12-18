@@ -19,22 +19,31 @@ class SearchBar extends React.Component{
     this.setState({ search: e.currentTarget.value});
   }
 
+  componentDidMount(){
+    // return this.onSongFetch([])
+  }
+
   onSongFetch(songs){
+    debugger;
     const filteredSongs = [];
     const filteredArtists = [];
-    for(let i = 0; i < songs.length; i++){
-      if (songs[i].title.includes(this.state.search)){
+    const artists = [];
+
+    for (let i = 0; i < songs.length; i++) {
+      if (songs[i].title.includes(this.state.search)) {
         filteredSongs.push(songs[i]);
       }
-      if (songs[i].artist.name.includes(this.state.search)){
+      if (songs[i].artist.name.includes(this.state.search)) {
         filteredArtists.push(songs[i].artist);
       }
+      artists.push(songs[i].artist);
     }
     if (this.state.search === '') {
-      return this.setState( {songs: songs} );
+      this.setState({ artists: artists })
+      return this.setState({ songs: songs });
     }
-    this.setState( {artists: filteredArtists})
-    return this.setState( {songs: filteredSongs});
+    this.setState({ artists: filteredArtists })
+    this.setState({ songs: filteredSongs });
   }
 
   render(){
@@ -52,37 +61,47 @@ class SearchBar extends React.Component{
 
     return (
       <ApolloConsumer>
-        {client => ( 
-          <div className='search'>
-            <div className='search-bar'>
-              <div className='search-image'>  
+        {client => {
+          const { data } = client.query({
+              query: FETCH_ALL_SONGS
+            }).then((data) => {
+              if (this.state.songs.length === 0){
+                this.onSongFetch(data.data.songs)
+              }});
+
+          return (
+            <div className='search'>
+              <div className='search-bar'>
+                <div className='search-image'>
                 </div>
-                  <input
-                    className='search-input'
-                    placeholder='Search for Artists or Songs'
-                    onChange={(e) => {
-                      this.update(e)
-                      const {data} = client.query({
-                        query: FETCH_ALL_SONGS
-                      }).then((data) => {
-                        this.onSongFetch(data.data.songs)
-                      })
-                    }}
-                    value={this.state.search}
-                  />
+                <input
+                  className='search-input'
+                  placeholder='Search for Artists or Songs'
+                  onChange={(e) => {
+                    this.update(e)
+                    const { data } = client.query({
+                      query: FETCH_ALL_SONGS
+                    }).then((data) => {
+                    this.onSongFetch(data.songs)
+                    })
+                  }}
+                  value={this.state.search}
+                />
               </div>
-            <div className='search-results'>
-              <ul>
-                {searchedSongs}
-              </ul>
-              <ul>
-                {searchedArtists}
-              </ul>
+              <div className='search-results'>
+                <ul>
+                  {searchedSongs}
+                </ul>
+                <ul>
+                  {searchedArtists}
+                </ul>
+              </div>
             </div>
-          </div>
-        )}
+          )
+        }}
       </ApolloConsumer>
-    )
+    );
   }
 }
+
 export default SearchBar;
