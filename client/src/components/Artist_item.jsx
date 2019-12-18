@@ -10,7 +10,8 @@ const ArtistItem = (artist) => {
     backgroundPostition: 'center'
   }
   return (
-    <div className='artist-item'>
+    <div className='artist-item'
+      onClick={ () => console.log(`Navigate to ${artist.name} show page`)}>
       <div 
         className='artist-image'
         style={artistStyle}
