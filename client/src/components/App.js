@@ -33,19 +33,11 @@ const App = () => {
           <AuthRoute exact path='/account' component={Account} routeType='protected' />
           <AuthRoute exact path="/library/playlists/" component={PlaylistIndex} routeType="protected"/>       
           <AuthRoute exact path="/" component={GenreIndex} routeType="protected"/>
-
-        {/* <AddPlaylistSongModal />  */}
-
-
-        <NewPlaylistModal />     
-
           <AuthRoute exact path="/genres/:genreId" component={GenreShow} routeType="protected" />
         </Switch>        
-
+        <NewPlaylistModal /> 
       </div>
       <AuthRoute path="/" component={PlayerProvider} routeType="protected" />
-      
-      
         
     </div>
   );
