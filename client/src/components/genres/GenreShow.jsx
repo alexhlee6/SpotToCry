@@ -22,6 +22,7 @@ class GenreShow extends React.Component {
                     data.genre.artists.map(artist => {
                       return (
                         <li key={artist._id} className="genre-artists-item">
+                          <i className="fas fa-play-circle"></i>
                           {/* <p className="genre-artists-item-name">{artist.name}</p> */}
                           <ul className="genre-artist-song-list">
                             {
