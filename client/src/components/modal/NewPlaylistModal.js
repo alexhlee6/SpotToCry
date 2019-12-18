@@ -1,7 +1,7 @@
 import React from "react";
 import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
-import ModalContent from "./ModalContent";
+import NewPlaylistModalContent from "./NewPlaylistModalContent";
 
 const MODAL_QUERY = gql`
   query {
@@ -15,16 +15,16 @@ const CLOSE_MODAL_MUTATION = gql`
   }
 `;
 
-const Modal = () => (
+const NewPlaylistModal = () => (
   <Query query={MODAL_QUERY}>
     {({ data }) =>
       data.isModalOpen && (
         <Mutation mutation={CLOSE_MODAL_MUTATION}>
-          {closeModal => <ModalContent close={closeModal} />}
+          {closeModal => <NewPlaylistModalContent close={closeModal} />}
         </Mutation>
       )
     }
   </Query>
 );
 
-export default Modal;
+export default NewPlaylistModal;

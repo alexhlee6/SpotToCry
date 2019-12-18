@@ -12,8 +12,6 @@ import * as serviceWorker from './serviceWorker';
 import { HashRouter } from "react-router-dom";
 import Mutations from "./graphql/mutations";
 import resolvers from "./resolvers";
-import OpenModalButton from "./OpenModalButton/";
-import Modal from "./components/modal/";
 
 const { VERIFY_USER } = Mutations;
 
@@ -74,9 +72,7 @@ const Root = () => {
   return (
     <ApolloProvider client={client}>
       <HashRouter>
-        <OpenModalButton />
         <App />
-        <Modal />
       </HashRouter>
     </ApolloProvider>
   );
