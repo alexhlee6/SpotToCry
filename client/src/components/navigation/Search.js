@@ -19,17 +19,13 @@ class SearchBar extends React.Component{
     this.setState({ search: e.currentTarget.value});
   }
 
-  componentDidMount(){
-    // return this.onSongFetch([])
-  }
-
   onSongFetch(songs){
-    debugger;
     const filteredSongs = [];
     const filteredArtists = [];
     const artists = [];
 
     for (let i = 0; i < songs.length; i++) {
+      debugger;
       if (songs[i].title.includes(this.state.search)) {
         filteredSongs.push(songs[i]);
       }
@@ -39,11 +35,9 @@ class SearchBar extends React.Component{
       artists.push(songs[i].artist);
     }
     if (this.state.search === '') {
-      this.setState({ artists: artists })
-      return this.setState({ songs: songs });
+      return this.setState({ artists: artists, songs: songs })
     }
-    this.setState({ artists: filteredArtists })
-    this.setState({ songs: filteredSongs });
+    this.setState({ artists: filteredArtists, songs: filteredSongs })
   }
 
   render(){
@@ -62,12 +56,13 @@ class SearchBar extends React.Component{
     return (
       <ApolloConsumer>
         {client => {
+          if (this.state.songs.length === 0){
           const { data } = client.query({
               query: FETCH_ALL_SONGS
             }).then((data) => {
-              if (this.state.songs.length === 0){
+              if (this.state.search.length === 0){
                 this.onSongFetch(data.data.songs)
-              }});
+              }})};
 
           return (
             <div className='search'>
@@ -82,7 +77,7 @@ class SearchBar extends React.Component{
                     const { data } = client.query({
                       query: FETCH_ALL_SONGS
                     }).then((data) => {
-                    this.onSongFetch(data.songs)
+                    this.onSongFetch(data.data.songs)
                     })
                   }}
                   value={this.state.search}
