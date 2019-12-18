@@ -18,6 +18,7 @@ import NewPlaylistModal from "./modal/NewPlaylistModal";
 // import AddPlaylistSongModal from "./modal/AddPlaylistSongModal";
 import GenreShow from "./genres/GenreShow";
 
+
 const App = () => {
   return (
     <div className='full-app'>
@@ -34,6 +35,8 @@ const App = () => {
           <AuthRoute exact path="/" component={GenreIndex} routeType="protected"/>
 
         {/* <AddPlaylistSongModal />  */}
+
+
         <NewPlaylistModal />     
 
           <AuthRoute exact path="/genres/:genreId" component={GenreShow} routeType="protected" />
@@ -43,7 +46,7 @@ const App = () => {
       <AuthRoute path="/" component={PlayerProvider} routeType="protected" />
       
       
-        {/* <AuthRoute path="/" component={MusicPlayer} routeType="protected" /> */}
+        
     </div>
   );
 };
