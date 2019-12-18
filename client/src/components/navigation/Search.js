@@ -1,5 +1,6 @@
 import React from 'react';
 import { Query, ApolloConsumer } from "react-apollo";
+import SongItem from '../Song_Item';
 import queries from '../../graphql/queries';
 const {FETCH_ALL_SONGS} = queries;
 
