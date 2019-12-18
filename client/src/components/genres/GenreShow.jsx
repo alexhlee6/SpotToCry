@@ -1,6 +1,14 @@
 import React from "react";
 import { Query } from "react-apollo";
 import Queries from "../../graphql/queries";
+import { Mutation } from "react-apollo";
+import gql from "graphql-tag";
+
+const OPEN_MODAL_MUTATION = gql`
+  mutation {
+    openNewPlaylistSongModalMutation @client
+  }
+`;
 
 class GenreShow extends React.Component {
 
@@ -28,12 +36,29 @@ class GenreShow extends React.Component {
                             {
                               artist.songs.map(song => {
                                 return (
-                                  <li key={song._id} className="genre-artist-song-item">
-                                    <span className="genre-artist-song-title">{song.title}</span>
-                                    <span className="genre-artist-item-name">{artist.name}</span>
-                                    <span className="genre-song-add-button">Add to Playlist +</span>
+                                  <li
+                                    key={song._id}
+                                    className="genre-artist-song-item"
+                                  >
+                                    <span className="genre-artist-song-title">
+                                      {song.title}
+                                    </span>
+                                    <span className="genre-artist-item-name">
+                                      {artist.name}
+                                    </span>
+                                    <Mutation mutation={OPEN_MODAL_MUTATION}>
+                                      {openNewPlaylistSongModalMutation => {
+                                        return (
+                                        <span
+                                          className="genre-song-add-button"
+                                          onClick={openNewPlaylistSongModalMutation}
+                                        >
+                                          Add to Playlist +
+                                        </span>
+                                      )}}
+                                    </Mutation>
                                   </li>
-                                )
+                                );
                               })
                             }
                           </ul>
