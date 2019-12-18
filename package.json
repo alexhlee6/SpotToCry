@@ -31,6 +31,7 @@
     "is-fullwidth-code-point": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.1",
+    "node-sass": "^4.13.0",
     "nodemon": "^2.0.2",
     "validator": "^12.1.0"
   }
