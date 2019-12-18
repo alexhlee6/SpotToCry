@@ -1,17 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../modal/ModalContent.css";
 
-const ModalContent = () => (
+const AddSongToPlaylist = ({closeModal}) => (
   <div className="Modal">
     <h2>Add song to playlist</h2>
 
+    <button className="CloseButton" onClick={closeModal}>
+      Close
+    </button>
   </div>
 );
 
-ModalContent.propTypes = {
+AddSongToPlaylist.propTypes = {
   close: PropTypes.func.isRequired
 };
 
-export default ModalContent;
+export default AddSongToPlaylist;
 
