@@ -1,6 +1,9 @@
 .searched-songs, .searched-artists{
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: row;
+  padding-left: 80px;
+  padding-bottom: 40px;
   height: fit-content;
   flex-wrap: wrap;
 }
@@ -8,6 +11,7 @@
 .artist-image, .song-image{
   height: 130px;
   width: 130px;
+  margin-top: 20px;
   background: lightblue;
 }
 
@@ -16,6 +20,8 @@
 }
 
 .artist-info, .song-info{
+  height: 40%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -25,11 +31,26 @@
 .artist-item, .song-item{
   height: 250px;
   width: 175px;
-  background: gray;
+  background: #333333ab;
   margin: 20px 20px 0 20px;
   border-radius: 7px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+}
+
+.info-name{
+  color: white;
+  font-size: 16px;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: pre-wrap;
+}
+
+.info-type{
+  color: gray;
+  font-size: 12px;
 }

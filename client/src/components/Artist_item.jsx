@@ -6,8 +6,8 @@ const ArtistItem = (artist) => {
       <div className='artist-image'>
       </div>
       <div className='artist-info'>
-        {artist.name}
-        <p>Artist</p>
+        <p className='info-name'>{artist.name}</p>
+        <p className='info-type'>Artist</p>
       </div>
     </div>
   );
