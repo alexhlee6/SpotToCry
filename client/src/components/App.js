@@ -1,21 +1,22 @@
 import React from 'react';
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
-import { Route, Switch, Link } from "react-router-dom";
+// import gql from "graphql-tag";
+// import { Query } from "react-apollo";
+import { Route, Switch} from "react-router-dom";
 import Login from "./auth/Login";
 import GenreIndex from "./genres/GenreIndex";
 import AuthRoute from "../util/route_util";
-import Nav from "./Nav";
+import Nav from "./navigation/Nav";
 import Register from "./auth/Register";
-import SideBar from './SideBar';
+import SideBar from './navigation/SideBar';
 import MusicPlayer from "./player/MusicPlayer";
-import Search from './Search';
-import Account from './Account';
+import Search from './navigation/Search';
+import Account from './navigation/Account';
 import SplashPage from "./Splash";
 import PlaylistIndex from "./playlists/playlist_index";
 import PlayerProvider from "./player/PlayerProvider";
 import NewPlaylistModal from "./modal/NewPlaylistModal";
 // import AddPlaylistSongModal from "./modal/AddPlaylistSongModal";
+import GenreShow from "./genres/GenreShow";
 
 const App = () => {
   return (
@@ -31,9 +32,13 @@ const App = () => {
           <AuthRoute exact path='/account' component={Account} routeType='protected' />
           <AuthRoute exact path="/library/playlists/" component={PlaylistIndex} routeType="protected"/>       
           <AuthRoute exact path="/" component={GenreIndex} routeType="protected"/>
-        </Switch>  
+
         {/* <AddPlaylistSongModal />  */}
         <NewPlaylistModal />     
+
+          <AuthRoute exact path="/genres/:genreId" component={GenreShow} routeType="protected" />
+        </Switch>        
+
       </div>
       <AuthRoute path="/" component={PlayerProvider} routeType="protected" />
       
