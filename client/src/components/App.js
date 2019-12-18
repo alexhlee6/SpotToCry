@@ -15,7 +15,7 @@ import SplashPage from "./Splash";
 import PlaylistIndex from "./playlists/playlist_index";
 import PlayerProvider from "./player/PlayerProvider";
 import NewPlaylistModal from "./modal/NewPlaylistModal";
-// import AddPlaylistSongModal from "./modal/AddPlaylistSongModal";
+
 
 const App = () => {
   return (
@@ -32,13 +32,13 @@ const App = () => {
           <AuthRoute exact path="/library/playlists/" component={PlaylistIndex} routeType="protected"/>       
           <AuthRoute exact path="/" component={GenreIndex} routeType="protected"/>
         </Switch>  
-        {/* <AddPlaylistSongModal />  */}
+        
         <NewPlaylistModal />     
       </div>
       <AuthRoute path="/" component={PlayerProvider} routeType="protected" />
       
       
-        {/* <AuthRoute path="/" component={MusicPlayer} routeType="protected" /> */}
+        
     </div>
   );
 };
