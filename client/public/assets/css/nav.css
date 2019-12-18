@@ -1,13 +1,32 @@
 .account-button{
+  color: rgb(203, 203, 203);
+  border-radius: 15px;
+  /* border: 1px solid red; */
   background: black;
   color: white;
-  height: 45%;
+  height: 50%;
   border-radius: 20px;
-  width: 10%;
-  margin-right: 3%;
+  width: 50%;
+  margin-right: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  z-index: 5;
+  position: relative;
+  font-size: 15px;
+  right: 12px;
+  font-weight: 400;
+  padding-bottom: 3px;
+  background-color: rgba(0, 0, 0, 0.879);
+  box-shadow: 4px 2px 5px black;
+  padding: 5px 15px;
+  padding-left: 14px;
+  padding-bottom: 7px;
+  z-index: 20;
+  border: 2px solid rgba(182, 182, 182, 0.589);
+}
+
+.account-button:hover {
+  color: rgba(255, 255, 255, 0.988);
+  border: 2px solid rgb(172, 172, 172);
 }
