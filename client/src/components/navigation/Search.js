@@ -1,6 +1,7 @@
 import React from 'react';
 import { Query, ApolloConsumer } from "react-apollo";
 import SongItem from '../Song_Item';
+import ArtistItem from '../Artist_item';
 import queries from '../../graphql/queries';
 const {FETCH_ALL_SONGS} = queries;
 
@@ -43,15 +44,15 @@ class SearchBar extends React.Component{
   }
 
   render(){
-    const searchedSongs = this.state.songs.map(({ id, title, }) => (
-      <li key={id}>
-        <h4>{title}</h4>
+    const searchedSongs = this.state.songs.map(( song ) => (
+      <li key={song.id}>
+        {SongItem(song)}
       </li>
     ));
 
-    const searchedArtists = this.state.artists.map(({ id, name, }) => (
-      <li key={id}>
-        <h4>{name}</h4>
+    const searchedArtists = this.state.artists.map((artist) => (
+      <li key={artist.id}>
+        {ArtistItem(artist)}
       </li>
     ))
 
@@ -86,10 +87,10 @@ class SearchBar extends React.Component{
                 />
               </div>
               <div className='search-results'>
-                <ul>
+                <ul className='searched-songs'>
                   {searchedSongs}
                 </ul>
-                <ul>
+                <ul className='searched-artists'>
                   {searchedArtists}
                 </ul>
               </div>
