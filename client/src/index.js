@@ -11,6 +11,7 @@ import { onError } from "apollo-link-error";
 import * as serviceWorker from './serviceWorker';
 import { HashRouter } from "react-router-dom";
 import Mutations from "./graphql/mutations";
+import resolvers from "./resolvers";
 
 const { VERIFY_USER } = Mutations;
 
@@ -32,11 +33,18 @@ const httpLink = createHttpLink({
 // });
 
 const client = new ApolloClient({
+  resolvers,
   link: httpLink,
   cache,
   onError: ({ networkError, graphQLErrors }) => {
     console.log("graphQLErrors", graphQLErrors);
     console.log("networkError", networkError);
+  }
+});
+
+client.cache.writeData({
+  data: {
+    isModalOpen: false
   }
 });
 

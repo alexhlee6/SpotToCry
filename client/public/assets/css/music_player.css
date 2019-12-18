@@ -8,7 +8,7 @@
   position: fixed;
   bottom: 0;
   bottom: 0;
-  background-color: rgb(38, 38, 40);
+  background-color: rgb(33, 33, 34);
   display: flex;
   flex-direction: column;
   padding-bottom: 2px;
@@ -184,6 +184,13 @@
 .current-song-info-artist {
   margin: 10px 0px;
   color: rgb(154, 154, 154);
+}
+
+.current-artist-info {
+  width: 85%;
+  margin: 15px auto;
+  margin-top: 35px;
+  min-width: 300px;
 }
 
 .current-song-show-more-button {
