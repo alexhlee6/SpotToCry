@@ -25,7 +25,6 @@ class SearchBar extends React.Component{
     const artists = [];
 
     for (let i = 0; i < songs.length; i++) {
-      // debugger;
       const title = songs[i].title.toLowerCase();
       const name = songs[i].artist.name.toLowerCase();
       if (title.includes(this.state.search.toLowerCase())) {
