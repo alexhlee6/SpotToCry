@@ -14,8 +14,7 @@ import Account from './navigation/Account';
 import SplashPage from "./Splash";
 import PlaylistIndex from "./playlists/playlist_index";
 import PlayerProvider from "./player/PlayerProvider";
-import NewPlaylistModal from "./modal/NewPlaylistModal";
-// import AddPlaylistSongModal from "./modal/AddPlaylistSongModal";
+import Modal from "./modal/Modal";
 import GenreShow from "./genres/GenreShow";
 
 
@@ -35,7 +34,7 @@ const App = () => {
           <AuthRoute exact path="/" component={GenreIndex} routeType="protected"/>
           <AuthRoute exact path="/genres/:genreId" component={GenreShow} routeType="protected" />
         </Switch>        
-        <NewPlaylistModal /> 
+        <Modal/>
       </div>
       <AuthRoute path="/" component={PlayerProvider} routeType="protected" />
         

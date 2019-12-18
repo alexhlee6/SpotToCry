@@ -1,11 +1,20 @@
 const resolvers = {
   Mutation: {
-    openModalMutation: (_, args, { cache }) => {
-      cache.writeData({ data: { isModalOpen: true } });
+    openNewPlaylistModalMutation: (_, args, { cache }) => {
+      cache.writeData({
+        data: { isModalOpen: true, modalType: "newPlaylist" }
+      });
       return null;
     },
+    openNewPlaylistSongModalMutation: (_, args, { cache }) => {
+      cache.writeData({
+        data: { isModalOpen: true, modalType: "newPlaylistSong" }
+      });
+      return null;
+    },
+
     closeModalMutation: (_, args, { cache }) => {
-      cache.writeData({ data: { isModalOpen: false } });
+      cache.writeData({ data: { isModalOpen: false, modalType: null } });
       return null;
     }
   }
