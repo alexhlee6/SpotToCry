@@ -7,7 +7,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { createHttpLink } from "apollo-link-http";
 import { ApolloProvider } from "react-apollo";
 import { onError } from "apollo-link-error";
-import { ApolloLink } from "apollo-link";
+// import { ApolloLink } from "apollo-link";
 import * as serviceWorker from './serviceWorker';
 import { HashRouter } from "react-router-dom";
 import Mutations from "./graphql/mutations";
@@ -28,9 +28,9 @@ const httpLink = createHttpLink({
 });
 
 // make sure we log any additional errors we receive
-const errorLink = onError(({ graphQLErrors }) => {
-  if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message));
-});
+// const errorLink = onError(({ graphQLErrors }) => {
+//   if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message));
+// });
 
 const client = new ApolloClient({
   resolvers,
