@@ -1,3 +1,14 @@
+.Mike {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: opacity 0.2s linear;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
 .Mike:hover {
   background-color: #00000066; // opacity: .5;
 }
@@ -34,241 +45,222 @@
 }
 
 .modal-background {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 10;
-    overflow-y: scroll;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+  overflow-y: scroll;
 }
 
 .modal-child-np {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
 }
 
 .modal-child-asp {
-    position: absolute;
-    top: 10%;
-    left: 6%;
-    overflow-y: scroll;
+  position: absolute;
+  top: 10%;
+  left: 6%;
+  overflow-y: scroll;
 }
 
-// New Playlist
-
 .modal-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  height: 100%;
 }
 
 .btn-transparent {
-    background-color: transparent;
-    font-size: 11px;
-    line-height: 16px;
-    letter-spacing: .015em;
-    color: #b3b3b3;
-    text-transform: uppercase;
-    letter-spacing: .16em;
-    // -webkit-transition: none 33ms cubic-bezier(.3, 0, .7, 1);
-    // transition: none 33ms cubic-bezier(.3, 0, .7, 1);
-    // -webkit-transition-property: all;
-    // transition-property: all;
-    color: #fff;
-    margin-top: 16px;
-    display: inline-block;
-    margin-bottom: 0;
-    text-align: center;
-    // -ms-touch-action: manipulation;
-    // touch-action: manipulation;
-    border: 0;
-    border-radius: 500px;
-    padding: 13px;
-    min-width: 130px;
-    white-space: normal;
-    // will-change: transform;
-    // line-height: 1.6;
-    vertical-align: middle;
-    // -webkit-user-select: none;
-    // -moz-user-select: none;
-    // -ms-user-select: none;
-    user-select: none;
-    outline: none;
+  background-color: transparent;
+  font-size: 11px;
+  line-height: 16px;
+  letter-spacing: .015em;
+  color: #b3b3b3;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  color: #fff;
+  margin-top: 16px;
+  display: inline-block;
+  margin-bottom: 0;
+  text-align: center;
+  border: 0;
+  border-radius: 500px;
+  padding: 13px;
+  min-width: 130px;
+  white-space: normal;
+  // will-change: transform;
+  // line-height: 1.6;
+  vertical-align: middle;
+  // -webkit-user-select: none;
+  // -moz-user-select: none;
+  // -ms-user-select: none;
+  user-select: none;
+  outline: none;
 }
 
 #new-playlist-header {
-    text-align: center;
-    font-size: 48px;
-    line-height: 56px;
-    letter-spacing: -.005em;
-    color: #fff;
-    font-family: sans-serif;
+  text-align: center;
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: -.005em;
+  color: #fff;
+  font-family: sans-serif;
 }
 
 .new-playlist-input-container {
-    width: 100%;
-    padding: 0 20%;
-    background-color: #282828;
+  width: 100%;
+  padding: 0 20%;
+  background-color: #282828;
 }
 
 .new-playlist-input-box {
-    position: relative;
-    background-color: #282828;
-    padding: 32px 0;
+  position: relative;
+  background-color: #282828;
+  padding: 32px 0;
 }
 
 .new-playlist-content-spacing {
-    padding: 0 32px;
-    margin: 0 auto;
-    max-width: 1480px;
+  padding: 0 32px;
+  margin: 0 auto;
+  max-width: 1480px;
 }
 
 .new-playlist-inputBox-label {
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: .015em;
-    color: #fff;
-    margin-bottom: .5em;
-    font-family: Arial;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: .015em;
+  color: #fff;
+  margin-bottom: .5em;
+  font-family: Arial;
 }
 
 .new-playlist-inputBox-input {
-    // font-family: 'Arial Bold';
-    font-size: 48px;
-    line-height: 56px;
-    letter-spacing: -.005em;
-    color: #fff;
-    text-transform: none;
-    caret-color: #1db954;
-    box-sizing: border-box;
-    width: 100%;
-    background-color: transparent;
-    border: none;
-    outline: none;
+  // font-family: 'Arial Bold';
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: -.005em;
+  color: #fff;
+  text-transform: none;
+  caret-color: #1db954;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
 }
 
 .modal-buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 28px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 28px 0px;
 }
 
 .modal-button-create {
-    margin-bottom: 14px;
-    width: 100%;
-    margin-left: 20px;
-    margin-right: 20px;
-    color: #FFF;
-    background-color: #1DB954;
-    font-size: 14px;
-    line-height: 1;
-    border-radius: 500px;
-    padding: 16px 48px 16px;
-    border-width: 0;
-    letter-spacing: 2px;
-    min-width: 160px;
-    text-transform: uppercase;
-    white-space: normal;
-    display: block;
-    width: 100%;
-    font-weight: 700;
-    text-align: center;
-    cursor: pointer;
-    border: 1px solid transparent;
-    transition: background-color .1s ease-in;
-    outline: none;
+  margin-bottom: 14px;
+  width: 100%;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #FFF;
+  background-color: #1DB954;
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 500px;
+  padding: 16px 48px 16px;
+  border-width: 0;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  white-space: normal;
+  display: block;
+  width: 100%;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color .1s ease-in;
+  outline: none;
 }
 
 .modal-button-create:active {
-    /* border: none; */
+  /* border: none; */
 }
 
 .modal-button-create:hover {
-    background-color: rgb(37, 224, 102);
+  background-color: rgb(37, 224, 102);
 }
 
 .modal-button-create:active {
-    background-color: rgb(20, 121, 55);
+  background-color: rgb(20, 121, 55);
 }
 
 .modal-button-cancel {
-    margin-bottom: 14px;
-    width: 100%;
-    margin-left: 20px;
-    margin-right: 20px;
-    color: #FFF;
-    background-color: rgb(29, 29, 29);
-    font-size: 14px;
-    line-height: 1;
-    border-radius: 500px;
-    padding: 16px 48px 16px;
-    border-width: 0;
-    letter-spacing: 2px;
-    min-width: 160px;
-    text-transform: uppercase;
-    white-space: normal;
-    display: block;
-    width: 100%;
-    font-weight: 700;
-    text-align: center;
-    cursor: pointer;
-    border: .5px solid rgb(184, 184, 184);
-    transition: background-color .1s ease-in;
-    outline: none;
+  margin-bottom: 14px;
+  width: 100%;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #FFF;
+  background-color: rgb(29, 29, 29);
+  font-size: 14px;
+  line-height: 1;
+  border-radius: 500px;
+  padding: 16px 48px 16px;
+  border-width: 0;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  white-space: normal;
+  display: block;
+  width: 100%;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  border: .5px solid rgb(184, 184, 184);
+  transition: background-color .1s ease-in;
+  outline: none;
 }
 
 .modal-button-cancel:hover {
-    background-color: rgb(34, 34, 34);
+  background-color: rgb(34, 34, 34);
 }
 
 .modal-button-cancel:active {
-    background-color: rgb(29, 29, 29);
+  background-color: rgb(29, 29, 29);
 }
 
-// Add Track to Playlist Modal
-
 .asp-playlistIndexContainer {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .asp-artist {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin: 10px 0px;
-    color: white;
-    font-family: 'Arial';
-    opacity: 1;
-    max-height: 16px;
-    white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 10px 0px;
+  color: white;
+  font-family: 'Arial';
+  opacity: 1;
+  max-height: 16px;
+  white-space: nowrap;
 }
 
 .asp-trackCount {
-    color: white;
-    font-family: 'Arial';
-    opacity: .6;
+  color: white;
+  font-family: 'Arial';
+  opacity: .6;
 }
 
-.Mike {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  transition: opacity 0.2s linear;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
+
 
 .results {
   display: flex;
@@ -305,6 +297,7 @@
   @extend .image-hover-container;
   display: flex;
   flex-wrap: wrap;
+  position: relative;
 }
 
 .atp-image-hover-container img {

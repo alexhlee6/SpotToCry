@@ -18,7 +18,7 @@ class GenreIndex extends React.Component {
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
             if (error) return <p>Error</p>;
-            console.log(data.genres);
+            
             return (
               <ul className="genre-index-list">
                 { 
