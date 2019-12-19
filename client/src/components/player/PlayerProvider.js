@@ -18,44 +18,49 @@ const CURRENT_MUSIC_QUERY = gql`
 `;
 
 
-const PlayerProvider = () => {
+// const PlayerProvider = () => {
+class PlayerProvider extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      playlist: [],
+      currentId: null
+    }
+    this.setNewPlaylist = this.setNewPlaylist.bind(this);
+  }
 
-  return (
-    // <Query query={Queries.FETCH_ALL_SONGS}>
+  setNewPlaylist(playlist) {
+    this.setState({ playlist: playlist });
+  }
 
-    <Query query={CURRENT_MUSIC_QUERY}>
-      {({ loading, error, data }) => {
-        if (loading) return <MusicPlayer playlist={[]} />;
-        if (error) return <MusicPlayer playlist={[]} />;
-        console.log(data.currentMusic);
+  render() {
+    return (
+      // <Query query={Queries.FETCH_ALL_SONGS}>
+      <Query query={CURRENT_MUSIC_QUERY}>
+        {({ loading, error, data }) => {
+          if (loading) return <MusicPlayer playlist={[]} />;
+          if (error) return <MusicPlayer playlist={[]} />;
 
-        if (data.currentMusic.musicType === "song") {
-          return (
-            <Query query={Queries.FETCH_SONG} variables={ { id: data.currentMusic.id } }>
-              {({ loading, error, data }) => {
-                if (loading) return <p>Loading...</p>;
-                if (error) return <p>Error</p>;
+          if (data.currentMusic.musicType === "song") {
+            return (
+              <Query query={Queries.FETCH_SONG} variables={ { id: data.currentMusic.id} }>
+                {({ loading, error, data }) => {
+                  if (loading) return <p>Loading...</p>;
+                  if (error) return <p>Error</p>;
+                  
+                  return <MusicPlayer playlist={[data.song]} playing={true} />
+                }}
+              </Query>
+            )
+          } else if (data.currentMusic.musicType === "playlist") {
 
-                return <MusicPlayer playlist={[data.song]} playing={true} />
-              }}
-            </Query>
-          )
-
-
-        } else if (data.currentMusic.musicType === "playlist") {
-
-        } else {
-          return <MusicPlayer playlist={[]} />
-        }
-
-
-
-
-
-        // return <MusicPlayer playlist={data.songs} />
-      }}
-    </Query>
-  )
+          } else {
+            return <MusicPlayer playlist={[]} />
+          }
+        }}
+      </Query>
+    )
+  }
 }
 
 export default PlayerProvider;

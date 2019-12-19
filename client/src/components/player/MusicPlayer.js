@@ -29,7 +29,7 @@ class MusicPlayer extends React.Component {
     }
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     window.player = document.getElementById('player');
     
     if (window.player) {
@@ -43,6 +43,20 @@ class MusicPlayer extends React.Component {
         } else {
           window.player.pause();
         }
+      }
+    }
+    if (prevProps.playlist !== this.props.playlist || this.state.playlist !== this.props.playlist) {
+      this.setState({ 
+        playlist: this.props.playlist,
+        prevSongs: [],
+        playing: true 
+      });
+      if (this.props.playing) {
+        window.player = document.getElementById('player');
+        window.player.pause();
+        window.player.src = this.props.playlist[0].songUrl;
+        window.player.load();
+        window.player.play();
       }
     }
   }
