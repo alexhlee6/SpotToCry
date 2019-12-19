@@ -42,18 +42,16 @@ const client = new ApolloClient({
   }
 });
 
-client.cache.writeData({
-  data: {
-    isModalOpen: false
-  }
-});
-
 const token = localStorage.getItem("auth-token");
 cache.writeData({
   data: {
-    isLoggedIn: Boolean(token)
+    isLoggedIn: Boolean(token),
+    isModalOpen: false,
+    songId: null,
+    playlistId: null
   }
 });
+
 if (token) {
   client
     // use the VERIFY_USER mutation directly use the returned data to know if the returned

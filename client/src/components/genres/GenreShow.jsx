@@ -6,7 +6,7 @@ import gql from "graphql-tag";
 
 const OPEN_MODAL_MUTATION = gql`
   mutation {
-    openNewPlaylistSongModalMutation @client
+    openNewPlaylistSongModalMutation(id: $id) @client
   }
 `;
 
@@ -74,7 +74,11 @@ class GenreShow extends React.Component {
                                         return (
                                         <span
                                           className="genre-song-add-button"
-                                          onClick={openNewPlaylistSongModalMutation}
+                                          onClick={() => {
+                                            openNewPlaylistSongModalMutation(
+                                              { variables: { id: song._id } }
+                                            )
+                                          }}
                                         >
                                           Add to Playlist +
                                         </span>

@@ -8,7 +8,7 @@ const resolvers = {
     },
     openNewPlaylistSongModalMutation: (_, args, { cache }) => {
       cache.writeData({
-        data: { isModalOpen: true, modalType: "newPlaylistSong" }
+        data: { songId: args.id, isModalOpen: true, modalType: "newPlaylistSong" }
       });
       return null;
     },
