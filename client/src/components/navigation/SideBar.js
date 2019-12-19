@@ -19,7 +19,9 @@ class NavBar extends React.Component{
   render(){
     return (
       <div className="SideBar">
-        <div className="SideBar-Logo">SpotToCry</div>
+        <div className="SideBar-Logo">
+          <p className='logo-text'>SpotToCry</p>
+        </div>
         <div className="User-Nav">
           <div className="nav-home">
             <Link to="/" className="home-link">
