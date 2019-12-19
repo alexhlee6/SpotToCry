@@ -35,6 +35,7 @@ class ArtistShow extends React.Component{
               <div className='artist-show'>
                 <div className='artist-banner'>
                   <div className='artist-banner-info'>
+                    <p className='artist-banner-name'>{this.artist.name}</p>
                   </div>
                   <div className='artist-pic' style={banner}>
                   </div>
