@@ -64,6 +64,16 @@ const mutation = new GraphQLObjectType({
         );
       }
     },
+    addPlaylistSong: {
+      type: PlaylistType,
+      args: {
+        playlistId: { type: GraphQLID },
+        songId: { type: GraphQLID }
+      },
+      resolve(_, { playlistId, songId }) {
+        return Playlist.addSong(playlistId, songId);
+      }
+    },
     register: {
       type: UserType,
       args: {
@@ -130,7 +140,7 @@ const mutation = new GraphQLObjectType({
       type: GenreType,
       args: {
         name: { type: GraphQLString },
-        imageUrl: { type: GraphQLString } 
+        imageUrl: { type: GraphQLString }
       },
       resolve(parentValue, { name, imageUrl }) {
         return new Genre({ name, imageUrl }).save();
@@ -153,7 +163,7 @@ const mutation = new GraphQLObjectType({
         artistId: { type: new GraphQLNonNull(GraphQLID) },
         genreId: { type: new GraphQLNonNull(GraphQLID) }
       },
-      resolve(parentValue, {artistId, genreId}) {
+      resolve(parentValue, { artistId, genreId }) {
         return Artist.addGenre(artistId, genreId);
       }
     }

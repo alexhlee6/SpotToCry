@@ -14,7 +14,8 @@ const MODAL_OPEN_QUERY = gql`
 
 const MODAL_TYPE_QUERY = gql`
   query {
-    modalType @client
+    modalType @client,
+    songId @client
   }
 `;
 
@@ -54,10 +55,10 @@ const Modal = () => (
                     return (
                       <div className="modal-background">
                         <div
-                          className="modal-child-np"
+                          className="modal-child-asp"
                           onClick={e => e.stopPropagation()}
                         >
-                          <NewPlaylistSong closeModal={closeModal} />
+                          <NewPlaylistSong closeModal={closeModal} songId={data.songId}/>
                         </div>
                       </div>
                     );
