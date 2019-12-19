@@ -8,8 +8,9 @@
 
 .search-bar{
   /* border: 1px solid red; */
-  width: 25%;
-  height: 5vh;
+  width: 360px;
+  min-width: 195px;
+  height: 40px;
   max-height: 60px;
   display: flex;
   align-items: center;
