@@ -1,6 +1,19 @@
 import React from "react";
 import { rainCloud } from "../../util/loading_cloud";
 import CurrentSongShow from "./CurrentSongShow";
+import gql from "graphql-tag";
+import { Query } from "react-apollo";
+import Queries from "../../graphql/queries";
+
+const CURRENT_MUSIC_QUERY = gql`
+  query {
+    currentMusic {
+      id
+      musicType
+    }
+  }
+`;
+
 
 class MusicPlayer extends React.Component {
 
@@ -16,20 +29,16 @@ class MusicPlayer extends React.Component {
     };
     this.playNext = this.playNext.bind(this);
     this.changeVolume = this.changeVolume.bind(this);
-    console.log("CONSTRUCTING");
+    this.receiveNewPlaylist = this.receiveNewPlaylist.bind(this);
   }
+
 
   componentDidMount() {
     this.setState({
       loading: false,
-      playlist: this.props.playlist || [],
-      playing: this.props.playing,
+      playlist: [],
       volume: this.state.volume
     });
-    // if (this.props.playing) {
-    //   window.player = document.getElementById('player');
-    //   window.player.play();
-    // }
     if (!window.player) {
       window.player = document.getElementById('player');
       window.player.volume = this.state.volume;
@@ -45,43 +54,20 @@ class MusicPlayer extends React.Component {
         }
       }
     }
-    if(this.props.playing) {
-      window.player.volume = this.state.volume;
-      window.player.play();
-    }
   }
 
-  componentDidUpdate(prevProps) {
-    // window.player = document.getElementById('player');
-    
-    // if (window.player) {
-    //   window.player.addEventListener("ended", this.playNext);
-    //   window.player.addEventListener("play", () => this.setState({ playing: true }));
-    //   window.player.addEventListener("pause", () => this.setState({ playing: false }));
-    //   window.player.volume = this.state.volume;
-    //   document.getElementById('playpause').onclick = function () {
-    //     if (window.player.paused) {
-    //       window.player.play();
-    //     } else {
-    //       window.player.pause();
-    //     }
-    //   }
-    // }
-    if (prevProps.playlist !== this.props.playlist || this.state.playlist !== this.props.playlist) {
-      this.setState({ 
-        playlist: this.props.playlist,
-        prevSongs: [],
-        playing: true 
-      });
-      if (this.props.playing && window.player) {
-      //   window.player = document.getElementById('player');
-        // window.player.pause();
-        // window.player.src = this.props.playlist[0].songUrl;
-        // window.player.load();
-        // window.player.play();
-      }
-    }
+  // componentDidUpdate(prevProps) {
+
+  // }
+
+  receiveNewPlaylist(playlist) {
+    window.player.pause();
+    window.player.src = playlist[0].songUrl;
+    window.player.volume = this.state.volume;
+    window.player.play();
+    this.setState({ playlist: playlist, playing: true });
   }
+
 
   playNext() {
     let length = this.state.playlist.length;
@@ -89,7 +75,6 @@ class MusicPlayer extends React.Component {
     if (this.state.playlist[0]) {
       prevSongs.push(this.state.playlist[0]);
     }
-
     if (length === 1) {
       window.player.pause();
       if (prevSongs[0]) {
@@ -98,9 +83,7 @@ class MusicPlayer extends React.Component {
       window.player.load();
       window.player.play();
       this.setState({ playlist: prevSongs, prevSongs: [] });
-
     } else {
-
       let newList = this.state.playlist.slice(1);
       window.player.pause();
       if (newList[0]) {
@@ -112,6 +95,7 @@ class MusicPlayer extends React.Component {
     }
   }
 
+
   changeVolume(e) {
     if (window.player) {
       window.player.volume = ( e.currentTarget.value / 100 );
@@ -121,42 +105,34 @@ class MusicPlayer extends React.Component {
 
 
   render() {
-    let musicPlayer;
-    if (this.state.playlist.length > 0) {
-      musicPlayer = (
-        <audio className="music-player" id="player">
-          <source src={this.state.playlist[0].songUrl} type="audio/mpeg" />
-        </audio>
-      )
-    } else {
-      musicPlayer = (
-        <audio className="music-player" id="player">
-        </audio>
-      )
-    }
 
-    let playOrPause = (
-      (window.player && !window.player.paused)  ? (
-        <i className="fas fa-pause"
-          id="playpause"
-          onClick={() => {
-            window.player.pause();
-            this.setState(Object.assign(this.state, { playing: false }));
-          }}
-        ></i>
-      ) : (
-        <i className="fas fa-play"
-          id="playpause"
-            onClick={() => {
-              window.player.play();
-              this.setState(Object.assign(this.state, { playing: true }));
-            }}
-        ></i>
-      )
+    let musicPlayer = (
+      <audio className="music-player" id="player">
+        <source 
+          src={this.state.playlist && this.state.playlist[0] ? this.state.playlist[0].songUrl : null} 
+          type="audio/mpeg" 
+        />
+      </audio>
     );
 
+    let playOrPause = (
+      <i 
+        className={ window.player && !window.player.paused ? "fas fa-pause" : "fas fa-play"}
+        id="playpause"
+        onClick={() => {
+          if (window.player.paused) {
+            window.player.play();
+            this.setState(Object.assign(this.state, { playing: true }));
+          } else {
+            window.player.pause();
+            this.setState(Object.assign(this.state, { playing: false }));
+          }
+        }}
+      ></i>
+    )
+
     let fastForward = (
-      this.state.playlist.length > 0 ? (
+      this.state.playlist && this.state.playlist.length > 0 ? (
         <div>
           <i className="fas fa-forward"
             id="forward"
@@ -168,55 +144,50 @@ class MusicPlayer extends React.Component {
       )
     );
 
-    let volume;
-    if (this.state.playlist.length > 0) {
-      if (this.state.volume === 0) {
-        volume = (
-          <div className="volume-container">
-            <i 
-              className="fas fa-volume-off"
-              onClick={ () => this.setState({ volume: 0.5 }) }
-            ></i>
-            <input
-              type="range"
-              id="volume"
-              onChange={this.changeVolume}
-              value={this.state.volume * 100}
-            />
-          </div>
-        )
-      } else if (this.state.volume < 0.6) {
-        volume = (
-          <div className="volume-container">
-            <i
-              className="fas fa-volume-down"
-              onClick={() => this.setState({ volume: 0 })}
-            ></i>
-            <input
-              type="range"
-              id="volume"
-              onChange={this.changeVolume}
-              value={this.state.volume * 100}
-            />
-          </div>
-        )
-      } else {
-        volume = (
-          <div className="volume-container">
-            <i
-              className="fas fa-volume-up"
-              onClick={() => this.setState({ volume: 0 })}
-            ></i>
-            <input
-              type="range"
-              id="volume"
-              onChange={this.changeVolume}
-              value={this.state.volume * 100}
-            />
-          </div>
-        )
-      }
+    
+    let volumeInput = (
+      <input type="range" id="volume" 
+        onChange={this.changeVolume} value={this.state.volume * 100}
+      />
+    );
+    let volumeIcon;
+    if (this.state.volume === 0) {
+      volumeIcon = (
+        <i className="fas fa-volume-off"
+        onClick={() => {
+          this.setState({ volume: 0.5 });
+          window.player.volume = 0.5;
+        }}
+        ></i>
+      )
+    } else if (this.state.volume < 0.6) {
+      volumeIcon = (
+        <i className="fas fa-volume-down"
+          onClick={() => {
+            this.setState({ volume: 0 });
+            window.player.volume = 0;
+          }}
+        ></i>
+      )
+    } else {
+      volumeIcon = (
+        <i
+          className="fas fa-volume-up"
+          onClick={() => {
+            this.setState({ volume: 0 });
+            window.player.volume = 0;
+          }}
+        ></i>
+      )
     }
+
+    let volume = (
+      <div className="volume-container">
+        { volumeIcon }
+        { volumeInput }
+      </div>
+    )
+
 
     let currentSong;
     if (this.state.playlist.length > 0) {
@@ -240,15 +211,13 @@ class MusicPlayer extends React.Component {
 
     let currentSongModule = (
       <div className="current-song-module">
-        {
-          this.state.playlist.length > 0 ? (
+        { this.state.playlist && this.state.playlist.length > 0 ? (
             <CurrentSongShow 
               songId={currentSong._id}
             />
           ) : (
             <div className="current-song-nothing-selected">No song selected</div>
-          )
-        }
+          ) }
       </div>
     )
 
@@ -265,6 +234,31 @@ class MusicPlayer extends React.Component {
           </div>
         )}
 
+        <Query query={CURRENT_MUSIC_QUERY}>
+          {({ loading, error, data }) => {
+            if (loading) return null;
+            if (error) return null;
+
+            if (data.currentMusic.musicType === "song") {
+              return (
+                <Query query={Queries.FETCH_SONG} variables={{ id: data.currentMusic.id }}>
+                  {({ loading, error, data }) => {
+                    if (loading) return <p>Loading...</p>;
+                    if (error) return <p>Error</p>;
+
+                    if (this.state.playlist[0] !== data.song) {
+                      this.receiveNewPlaylist([data.song]);
+                    }
+                    return null;
+                  }}
+                </Query>
+              )
+            } else {
+              //playlist musictype here later
+              return null;
+            }
+          }}
+        </Query>
         <div className="music-player-main">
           <div className="music-player-minimized">
             <div className="music-player-left">
