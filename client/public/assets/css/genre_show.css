@@ -18,14 +18,14 @@
   align-items: center;
 }
 
-.genre-artists-item > i {
+.genre-artist-song-item .fa-play-circle {
   color: gray;
   cursor: pointer;
   font-size: 20px;
-  margin: 0px 15px;
+  /* margin: 0px 15px; */
 }
 
-.genre-artists-item > i:hover {
+.genre-artist-song-item .fa-play-circle:hover {
   color: lightgray;
 }
 

@@ -156,6 +156,23 @@ export default {
       }
     }
   }
-`
+`,
+  FETCH_GENRE_SONGS: gql`
+    query FetchGenreSongs($id: ID!) {
+      genre(_id: $id) {
+        _id
+        name
+        artists {
+          _id
+          songs {
+            _id
+            title
+            songUrl
+            imageUrl
+          }
+        }
+      }
+    }
+  `
 };
 
