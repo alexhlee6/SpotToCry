@@ -1,0 +1,25 @@
+.artist-show{
+  /* border: 1px solid red; */
+  height: 95vh;
+}
+
+.artist-banner{
+  /* border: 1px solid blue; */
+  height: 38%;
+  display: flex;
+  flex-direction: row;
+}
+
+.artist-pic{
+  height: 100%;
+  width: 33%;
+  /* border: 1px solid green; */
+  
+}
+
+.artist-banner-info{
+  height: 100%;
+  width: 67%;
+  background: black;
+  opacity: 0.5
+}

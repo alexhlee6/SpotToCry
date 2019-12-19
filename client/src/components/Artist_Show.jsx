@@ -14,11 +14,11 @@ class ArtistShow extends React.Component{
   render(){
     const artistId = window.location.href.split('/').slice(-1)[0];
     
+    
     return(
       <div>
         <Query query={FETCH_ALL_ARTISTS}>
           {({ loading, error, data }) => {
-            // debugger;
             if (loading) return null;
             if (error) return `Error! ${error}`;
             for(let i = 0; i < data.artists.length; i++){
@@ -26,10 +26,18 @@ class ArtistShow extends React.Component{
                 this.artist = data.artists[i];
               }
             }
+            const banner = {
+              background: `url(${this.artist.imageUrl}) no-repeat`,
+              backgroundSize: 'cover',
+              backgroundPosition: '50% 50%'   
+            }
             return (
               <div className='artist-show'>
                 <div className='artist-banner'>
-                  
+                  <div className='artist-banner-info'>
+                  </div>
+                  <div className='artist-pic' style={banner}>
+                  </div>
                 </div>
                 <div className='artist-songs'>
 
@@ -37,7 +45,7 @@ class ArtistShow extends React.Component{
               </div>
              );
           }}
-        </Query>}
+        </Query>
       </div>
       
     );
