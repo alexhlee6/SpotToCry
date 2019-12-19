@@ -23,6 +23,10 @@ class MusicPlayer extends React.Component {
       loading: false,
       playlist: this.props.playlist
     });
+    if (this.props.playing) {
+      window.player = document.getElementById('player');
+      window.player.play();
+    }
   }
 
   componentDidUpdate() {
@@ -200,7 +204,7 @@ class MusicPlayer extends React.Component {
               songId={currentSong._id}
             />
           ) : (
-            ""
+            <div className="current-song-nothing-selected">No song selected</div>
           )
         }
       </div>
