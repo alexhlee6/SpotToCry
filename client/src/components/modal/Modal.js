@@ -54,7 +54,7 @@ const Modal = () => (
                     return (
                       <div className="modal-background">
                         <div
-                          className="modal-child-np"
+                          className="modal-child-asp"
                           onClick={e => e.stopPropagation()}
                         >
                           <NewPlaylistSong closeModal={closeModal} />
