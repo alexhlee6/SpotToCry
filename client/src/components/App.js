@@ -16,6 +16,7 @@ import PlaylistIndex from "./playlists/playlist_index";
 import PlayerProvider from "./player/PlayerProvider";
 import Modal from "./modal/Modal";
 import GenreShow from "./genres/GenreShow";
+import ArtistShow from './Artist_Show';
 
 
 const App = () => {
@@ -33,6 +34,7 @@ const App = () => {
           <AuthRoute exact path="/library/playlists/" component={PlaylistIndex} routeType="protected"/>       
           <AuthRoute exact path="/" component={GenreIndex} routeType="protected"/>
           <AuthRoute exact path="/genres/:genreId" component={GenreShow} routeType="protected" />
+          <AuthRoute exact path='/artists/:artistId' component={ArtistShow} routeType='protected' />
         </Switch>        
         <Modal/>
       </div>
