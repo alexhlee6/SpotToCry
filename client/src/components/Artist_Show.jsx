@@ -6,8 +6,12 @@ class ArtistShow extends React.Component{
   }
 
   render(){
+    const artistId = window.location.href.split('/')[5];
+    
     return(
-      console.log(`Welcome to the ${window.location.pathname} show page!`)
+      <div>
+        {`Welcome to the ${artistId} show page!`}
+      </div>
     );
   }
 }
