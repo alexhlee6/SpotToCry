@@ -16,27 +16,27 @@ class MusicPlayer extends React.Component {
     };
     this.playNext = this.playNext.bind(this);
     this.changeVolume = this.changeVolume.bind(this);
+    console.log("CONSTRUCTING");
   }
 
   componentDidMount() {
     this.setState({
       loading: false,
-      playlist: this.props.playlist
+      playlist: this.props.playlist || [],
+      playing: this.props.playing,
+      volume: this.state.volume
     });
-    if (this.props.playing) {
+    // if (this.props.playing) {
+    //   window.player = document.getElementById('player');
+    //   window.player.play();
+    // }
+    if (!window.player) {
       window.player = document.getElementById('player');
-      window.player.play();
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    window.player = document.getElementById('player');
-    
-    if (window.player) {
+      window.player.volume = this.state.volume;
       window.player.addEventListener("ended", this.playNext);
       window.player.addEventListener("play", () => this.setState({ playing: true }));
       window.player.addEventListener("pause", () => this.setState({ playing: false }));
-      window.player.volume = this.state.volume;
+      
       document.getElementById('playpause').onclick = function () {
         if (window.player.paused) {
           window.player.play();
@@ -45,18 +45,40 @@ class MusicPlayer extends React.Component {
         }
       }
     }
+    if(this.props.playing) {
+      window.player.volume = this.state.volume;
+      window.player.play();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    // window.player = document.getElementById('player');
+    
+    // if (window.player) {
+    //   window.player.addEventListener("ended", this.playNext);
+    //   window.player.addEventListener("play", () => this.setState({ playing: true }));
+    //   window.player.addEventListener("pause", () => this.setState({ playing: false }));
+    //   window.player.volume = this.state.volume;
+    //   document.getElementById('playpause').onclick = function () {
+    //     if (window.player.paused) {
+    //       window.player.play();
+    //     } else {
+    //       window.player.pause();
+    //     }
+    //   }
+    // }
     if (prevProps.playlist !== this.props.playlist || this.state.playlist !== this.props.playlist) {
       this.setState({ 
         playlist: this.props.playlist,
         prevSongs: [],
         playing: true 
       });
-      if (this.props.playing) {
-        window.player = document.getElementById('player');
-        window.player.pause();
-        window.player.src = this.props.playlist[0].songUrl;
-        window.player.load();
-        window.player.play();
+      if (this.props.playing && window.player) {
+      //   window.player = document.getElementById('player');
+        // window.player.pause();
+        // window.player.src = this.props.playlist[0].songUrl;
+        // window.player.load();
+        // window.player.play();
       }
     }
   }
@@ -114,15 +136,21 @@ class MusicPlayer extends React.Component {
     }
 
     let playOrPause = (
-      this.state.playing ? (
+      (window.player && !window.player.paused)  ? (
         <i className="fas fa-pause"
           id="playpause"
-          onClick={() => this.setState({ playing: false })}
+          onClick={() => {
+            window.player.pause();
+            this.setState(Object.assign(this.state, { playing: false }));
+          }}
         ></i>
       ) : (
         <i className="fas fa-play"
           id="playpause"
-          onClick={() => this.setState({ playing: true })}
+            onClick={() => {
+              window.player.play();
+              this.setState(Object.assign(this.state, { playing: true }));
+            }}
         ></i>
       )
     );
