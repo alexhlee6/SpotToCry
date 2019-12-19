@@ -6,9 +6,15 @@ import gql from "graphql-tag";
 
 const OPEN_MODAL_MUTATION = gql`
   mutation {
-    openNewPlaylistSongModalMutation @client
+    openNewPlaylistSongModalMutation(id: $id) @client
   }
 `;
+
+const PLAY_SONG_MUTATION = gql`
+  mutation {
+    playSongMutation(id: $id) @client
+  }
+`
 
 class GenreShow extends React.Component {
 
@@ -21,12 +27,13 @@ class GenreShow extends React.Component {
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
             if (error) return <p>Error</p>;
-            console.log(data.genre);
+            
             return (
               <div className="genre-show-main">
                 <h1 className="genre-index-header">{data.genre.name}</h1>
                 <ul className="genre-artists-list">
                   {
+                    
                     data.genre.artists.map(artist => {
                       return (
                         <li key={artist._id} className="genre-artists-item">
@@ -39,6 +46,23 @@ class GenreShow extends React.Component {
                                     key={song._id}
                                     className="genre-artist-song-item"
                                   >
+                                    <Mutation mutation={PLAY_SONG_MUTATION}>
+                                      {
+                                        playSongMutation => {
+                                          return (
+                                            <i
+                                              className="fas fa-play-circle"
+                                              onClick={() => {
+                                                playSongMutation(
+                                                  { variables: { id: song._id } }
+                                                )
+                                              }}
+                                            ></i>
+                                          )
+                                        }
+                                      }
+                                    </Mutation>
+
                                     <span className="genre-artist-song-title">
                                       {song.title}
                                     </span>
@@ -50,7 +74,11 @@ class GenreShow extends React.Component {
                                         return (
                                         <span
                                           className="genre-song-add-button"
-                                          onClick={openNewPlaylistSongModalMutation}
+                                          onClick={() => {
+                                            openNewPlaylistSongModalMutation(
+                                              { variables: { id: song._id } }
+                                            )
+                                          }}
                                         >
                                           Add to Playlist +
                                         </span>
