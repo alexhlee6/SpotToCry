@@ -55,10 +55,10 @@ class GenreShow extends React.Component {
                                               onClick={() => {
                                                 playSongMutation(
                                                   { variables: { id: song._id } }
-                                                )
+                                                );
                                               }}
                                             ></i>
-                                          )
+                                          );
                                         }
                                       }
                                     </Mutation>
