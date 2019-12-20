@@ -8,6 +8,12 @@
 
 }
 
+.genre-show-main .genre-index-header .fa-play-circle {
+  margin: 20px;
+  font-size: 30px;
+  color: lightgray;
+}
+
 .genre-artists-item {
   max-width: 100%;
   height: 60px;

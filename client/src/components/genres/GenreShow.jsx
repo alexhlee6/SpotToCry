@@ -26,7 +26,10 @@ class GenreShow extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      playingGenre: false,
+      playingSongId: null
+    };
   }
 
   render() {
@@ -44,13 +47,17 @@ class GenreShow extends React.Component {
                   <Mutation mutation={PLAY_GENRE_MUTATION}>
                     {
                       playGenreMutation => {
+                        if (this.state.playingGenre) {
+                        return null;
+                      }
                         return (
-                          <i 
+                            <i 
                             className="fas fa-play-circle"
                             onClick={() => {
                               playGenreMutation(
                                 { variables: { id: data.genre._id } }
                               );
+                              this.setState({playingGenre: true, playingSongId: null});
                             }}
                           ></i>
                         )
@@ -65,7 +72,6 @@ class GenreShow extends React.Component {
                     data.genre.artists.map(artist => {
                       return (
                         <li key={artist._id} className="genre-artists-item">
-                          {/* <p className="genre-artists-item-name">{artist.name}</p> */}
                           <ul className="genre-artist-song-list">
                             {
                               artist.songs.map(song => {
@@ -77,6 +83,9 @@ class GenreShow extends React.Component {
                                     <Mutation mutation={PLAY_SONG_MUTATION}>
                                       {
                                         playSongMutation => {
+                                          if (this.state.playingSongId === song._id) {
+                                            return null;
+                                          }
                                           return (
                                             <i
                                               className="fas fa-play-circle"
@@ -84,6 +93,7 @@ class GenreShow extends React.Component {
                                                 playSongMutation(
                                                   { variables: { id: song._id } }
                                                 );
+                                                this.setState({ playingSongId: song._id, playingGenre: false });
                                               }}
                                             ></i>
                                           );
