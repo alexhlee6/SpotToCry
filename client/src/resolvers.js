@@ -8,7 +8,7 @@ const resolvers = {
     },
     openNewPlaylistSongModalMutation: (_, args, { cache }) => {
       cache.writeData({
-        data: { isModalOpen: true, modalType: "newPlaylistSong" }
+        data: { songId: args.id, isModalOpen: true, modalType: "newPlaylistSong" }
       });
       return null;
     },
@@ -20,10 +20,12 @@ const resolvers = {
 
 
     playSongMutation: (_, args, { cache }) => {
+      Object.keys(cache.data.data).forEach(key =>
+        key.match(/^currentMusic/) && cache.data.delete(key)
+      ) //not sure if this one is doing anything
       cache.writeData({ 
         data: { currentMusic: { id: args.id, musicType: "song", __typename: "SongType" } } 
       });
-      // console.log(cache);
       return null;
     },
 
