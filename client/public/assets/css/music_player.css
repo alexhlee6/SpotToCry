@@ -83,9 +83,30 @@
   overflow: hidden;
 }
 
+#tracktime {
+  color: rgb(133, 133, 133);
+  margin-left: 22px;
+  font-size: 15px;
+  width: 70px;
+  /* position: relative;
+  bottom: 0px; */
+  padding-top: 2px;
+}
+
 .volume-container {
   display: flex;
   flex-wrap: nowrap;
+}
+
+.progress_slide{
+  width:100%;
+  background:white;
+  height:25px;
+}
+.progress_range{
+  width:0;
+  background:black;
+  height:25px;
 }
 
 .music-player-current-title-none {
