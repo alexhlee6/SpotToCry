@@ -1,0 +1,274 @@
+.artist-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.playlist-index-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  color: white;
+  font-family: "Circular";
+  margin: auto;
+  width: 85%;
+  margin-bottom: 200px;
+  margin-top: 50px;
+}
+
+.playlist-art-container {
+  height: 100%;
+}
+
+.playlist-show-c1 {
+  /* height: 100%; */
+  overflow-y: scroll;
+}
+
+.playlist-show-c2 {
+  padding: 0 32px;
+  margin: 0 auto;
+  max-width: 1480px;
+  /* height: 100%; */
+}
+
+.context-menu-ellipses {
+  cursor: pointer;
+  font-size: 26px;
+  font-family: "Circular";
+  transition: all 0.02s ease-in;
+  height: 40px;
+}
+
+/* .context-menu-ellipses:hover {
+  transform: scale(1.1);
+} */
+
+.context-menu-show {
+  /* display: none;
+  position: absolute;
+  left: 50%;
+  top: 90%;
+  width: 50%; */
+  /* min-width: 160px; */
+  padding: 5px 0;
+  margin: auto;
+  background-color: #282828;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  outline: none;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.context-menu-item {
+  font-family: "Circular";
+  font-size: 14px;
+  color: white;
+  width: 100%;
+  clear: both;
+  /* line-height: 32px; */
+  white-space: nowrap;
+  background: 0 0;
+  border: 0;
+  user-select: none;
+  cursor: pointer;
+}
+
+.context-menu-hidden {
+  display: none;
+}
+
+.playlist-cover-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.playlist-idx-cover-container {
+  display: flex;
+  justify-content: flex-start;
+  /* align-items: center; */
+  flex-wrap: wrap;
+  max-height: 242px;
+}
+
+.playlist-coverArt-item {
+  width: 50%;
+  height: 50%;
+}
+
+.playlist-idx-coverArt-item {
+  width: 50%;
+  height: 50%;
+  max-height: 121px;
+}
+
+.playlist-coverArt-item img {
+  width: 100%;
+  height: 100%;
+}
+
+.playlist-coverArt-single img {
+  width: 100%;
+  height: 100%;
+}
+
+.playlist-coverArt-placeholder {
+  background-color: #282828;
+  width: 100%;
+  height: 100%;
+}
+
+#playlist-grid-title {
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.015em;
+  max-height: 20px;
+  color: white;
+  opacity: 0.6;
+  transition: opacity 0.05s linear;
+  border-bottom: 1px solid transparent;
+  margin-top: 20px;
+}
+
+#playlist-grid-artist:hover {
+  opacity: 1;
+  border-bottom: 1px solid white;
+}
+
+.album-artist-container {
+  color: white;
+  font-family: "Circular";
+  font-size: 16px;
+  max-width: 220px;
+  max-height: 515px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  padding: 0 8px 35px;
+}
+
+.album-artist-container-backdrop {
+  margin: 0;
+  display: block;
+  border: 0;
+  outline: 0;
+  position: relative;
+  background-color: #282828;
+}
+
+.Mike {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: opacity 0.2s linear;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  /* opacity: 0.7 */
+}
+
+.Mike:hover {
+  background-color: #00000066; 
+}
+
+#Mike {
+  box-shadow: none;
+}
+
+#Mike-button {
+  visibility: hidden;
+  width: 50%;
+  height: 50%;
+  background-color: transparent;
+  top: 25%;
+  left: 25%;
+  box-shadow: 0px 0px;
+  position: absolute;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: opacity 0.2s linear;
+}
+
+#Mike-button:hover {
+  z-index: 4;
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.Mike:hover #Mike-button {
+  visibility: visible;
+  z-index: 3;
+}
+
+.image-hover-container {
+  width: 100%;
+  height: 100%;
+  max-height: 220px;
+  opacity: 1;
+  position: relative;
+}
+
+
+.image-hover-container img {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  margin-bottom: 18px;
+  transition: opacity 0.2s linear;
+  object-fit: cover;
+}
+
+.atp-image-hover-container img {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  margin-bottom: 18px;
+  transition: opacity 0.2s linear;
+  object-fit: cover;
+}
+
+.artist-image-hover-container img {
+  border-radius: 125px;
+  width: 100%;
+  height: 100%;
+  max-height: 242px;
+  opacity: 1;
+  margin-bottom: 18px;
+  transition: opacity 0.2s linear;
+  object-fit: cover;
+}
+
+#artist-placeholder {
+  border-radius: 100px;
+  width: 100%;
+  height: 100%;
+  max-height: 220px;
+  opacity: 1;
+  margin-bottom: 18px;
+  transition: opacity 0.2s linear;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 1600px) {
+  .album-artist-container {
+    max-width: 242px;
+  }
+
+  .image-hover-container {
+    max-height: 242px;
+  }
+}
+
