@@ -84,7 +84,7 @@ class GenreShow extends React.Component {
                                       {
                                         playSongMutation => {
                                           if (this.state.playingSongId === song._id) {
-                                            return null;
+                                            return <div className="fa-play-circle-hidden"></div>;
                                           }
                                           return (
                                             <i
@@ -101,7 +101,7 @@ class GenreShow extends React.Component {
                                       }
                                     </Mutation>
 
-                                    <span className="genre-artist-song-title">
+                                    <span className={this.state.playingSongId !== song._id ? "genre-artist-song-title" :"genre-artist-song-title-playing"}>
                                       {song.title}
                                     </span>
                                     <span className="genre-artist-item-name">
