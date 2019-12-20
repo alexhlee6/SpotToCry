@@ -3,13 +3,16 @@ import gql from "graphql-tag";
 export default {
   FETCH_PLAYLIST: gql`
     query FetchPlaylist($id: ID!) {
-      playlist(id: $id) {
+      playlist(_id: $id) {
         _id
         title
         description
         songs {
           _id
-          artist
+          artist {
+            _id
+            name
+          }
           title
         }
       }
