@@ -8,12 +8,13 @@ import AuthRoute from "../util/route_util";
 import Nav from "./navigation/Nav";
 import Register from "./auth/Register";
 import SideBar from './navigation/SideBar';
-import MusicPlayer from "./player/MusicPlayer";
+// import MusicPlayer from "./player/MusicPlayer";
 import Search from './navigation/Search';
 import Account from './navigation/Account';
 import SplashPage from "./Splash";
 import PlaylistIndex from "./playlists/playlist_index";
-import PlayerProvider from "./player/PlayerProvider";
+// import PlayerProvider from "./player/PlayerProvider";
+import MusicPlayer from "./player/MusicPlayer";
 import Modal from "./modal/Modal";
 import GenreShow from "./genres/GenreShow";
 import ArtistShow from './Artist_Show';
@@ -38,8 +39,8 @@ const App = () => {
         </Switch>        
         <Modal/>
       </div>
-      <AuthRoute path="/" component={PlayerProvider} routeType="protected" />
-        
+      {/* <AuthRoute path="/" component={PlayerProvider} routeType="protected" /> */}
+      <AuthRoute path="/" component={MusicPlayer} routeType="protected" />
     </div>
   );
 };
