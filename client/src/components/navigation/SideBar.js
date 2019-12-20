@@ -65,7 +65,7 @@ class NavBar extends React.Component{
                   data.playlists.map(({ _id, title }) => (
                     <Link
                       key={_id}
-                      to={`/library/playlists/${_id}`}
+                      to={`/playlists/${_id}`}
                     >
                       <div key={title} className="playlist-item">
                         {title}

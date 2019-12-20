@@ -53,8 +53,8 @@ class AddSongToPlaylist extends React.Component {
                               playlistId: playlist._id,
                               songId: this.props.songId
                             }
-                          }).then(() => this.props.closeModal())
-                            .then(() => this.props.history.push("/"));                            
+                          }).then(() => this.props.closeModal());
+                            // .then(() => this.props.history.push("/"));                            
                         }}
                         >
                           <div className="playlist-art-container">

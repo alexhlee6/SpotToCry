@@ -40,8 +40,8 @@ const RootQueryType = new GraphQLObjectType({
     playlist: {
       type: PlaylistType,
       args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
-      resolve(_, { id }) {
-        return Playlist.findById(id);
+      resolve(_, args) {
+        return Playlist.findById(args._id);
       }
     },
     artists: {

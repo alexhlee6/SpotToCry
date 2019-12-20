@@ -26,13 +26,13 @@ const PlaylistIndex = () => {
                     id="Mike-button"
                     // onClick={() => this.handlePlay(playlist)}
                   >
-                    <img id="Mike" src="https://spottocry.s3-us-west-1.amazonaws.com/play_white.png" />
+                    <img id="Mike" src="https://spottocry.s3-us-west-1.amazonaws.com/No-album-art-itunes.jpg" />
                   </button>
                 </div>
               </div>
               <Link
                 id="playlist-grid-title"
-                to={`/library/playlists/${_id}`}
+                to={`/playlists/${_id}`}
               >
                 <div className="title-container">{title}</div>
               </Link>
