@@ -22,7 +22,7 @@ const SongItem = (song) => {
         <Mutation mutation={PLAY_SONG_MUTATION}>
           {
             playSongMutation => {
-              debugger;
+              // debugger;
               return (
                 <div className='song-click' onClick={() => {
                   playSongMutation(

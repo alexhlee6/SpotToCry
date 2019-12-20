@@ -25,7 +25,8 @@ class MusicPlayer extends React.Component {
       prevSongs: [],
       playing: false,
       minimized: true,
-      volume: 0.5
+      volume: 0.5,
+      nextEventAttached: false
     };
     this.playNext = this.playNext.bind(this);
     this.changeVolume = this.changeVolume.bind(this);
@@ -34,38 +35,31 @@ class MusicPlayer extends React.Component {
 
 
   componentDidMount() {
-    this.setState({
-      loading: false,
-      playlist: [],
-      volume: this.state.volume
-    });
     if (!window.player) {
       window.player = document.getElementById('player');
       window.player.volume = this.state.volume;
-      window.player.addEventListener("ended", this.playNext);
-      window.player.addEventListener("play", () => this.setState({ playing: true }));
-      window.player.addEventListener("pause", () => this.setState({ playing: false }));
-      
-      document.getElementById('playpause').onclick = function () {
-        if (window.player.paused) {
-          window.player.play();
-        } else {
-          window.player.pause();
-        }
-      }
+    }
+    // this.setState({
+    //   playlist: [],
+    //   volume: this.state.volume
+    // });
+  }
+
+  componentDidUpdate() {
+    if (window.player && this.state.loading === true) {
+      window.player.addEventListener("ended", () => {
+        this.playNext();
+      });
+      this.setState({loading: false})
     }
   }
 
-  // componentDidUpdate(prevProps) {
-
-  // }
-
-  receiveNewPlaylist(playlist) {
+  receiveNewPlaylist({playlist, musicType, id}) {
     window.player.pause();
     window.player.src = playlist[0].songUrl;
     window.player.volume = this.state.volume;
     window.player.play();
-    this.setState({ playlist: playlist, playing: true });
+    this.setState({ playlist: playlist, musicType, id, playing: true });
   }
 
 
@@ -105,7 +99,6 @@ class MusicPlayer extends React.Component {
 
 
   render() {
-
     let musicPlayer = (
       <audio className="music-player" id="player">
         <source 
@@ -247,15 +240,44 @@ class MusicPlayer extends React.Component {
                     if (error) return <p>Error</p>;
 
                     if (this.state.playlist[0] !== data.song) {
-                      this.receiveNewPlaylist([data.song]);
+                      this.receiveNewPlaylist(
+                        {
+                          playlist: [data.song],
+                          musicType: "song",
+                          id: data.song._id
+                        }
+                      );
                     }
                     return null;
                   }}
                 </Query>
               )
-            } else {
-              //playlist musictype here later
-              return null;
+            } else if (data.currentMusic.musicType === "genre" ) {
+              return (
+                <Query query={Queries.FETCH_GENRE_SONGS} variables={{ id: data.currentMusic.id }} >
+                  {({ loading, error, data }) => {
+                    if (loading) return <p>Loading...</p>;
+                    if (error) return <p>Error</p>;
+
+                    if (this.state.id !== data.genre._id) {
+                      let newList = [];
+                      let artists = data.genre.artists;
+                      for (let i = 0; i < artists.length; i++) {
+                        let songs = artists[i].songs
+                        for (let j = 0; j < songs.length; j++) {
+                          newList.push(songs[j]);
+                        }
+                      }
+                      this.receiveNewPlaylist({
+                        playlist: newList,
+                        musicType: "genre", 
+                        id: data.genre._id
+                      });
+                    }
+                    return null;
+                  }}
+                </Query>
+              )
             }
           }}
         </Query>
