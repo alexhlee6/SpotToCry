@@ -16,9 +16,18 @@ const PLAY_SONG_MUTATION = gql`
   }
 `
 
+const PLAY_GENRE_MUTATION = gql`
+  mutation {
+    playGenreMutation(id: $id) @client
+  }
+`
+
 class GenreShow extends React.Component {
 
-
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
   render() {
     return (
@@ -30,7 +39,26 @@ class GenreShow extends React.Component {
             
             return (
               <div className="genre-show-main">
-                <h1 className="genre-index-header">{data.genre.name}</h1>
+                <h1 className="genre-index-header">
+                  {data.genre.name}
+                  <Mutation mutation={PLAY_GENRE_MUTATION}>
+                    {
+                      playGenreMutation => {
+                        return (
+                          <i 
+                            className="fas fa-play-circle"
+                            onClick={() => {
+                              playGenreMutation(
+                                { variables: { id: data.genre._id } }
+                              );
+                            }}
+                          ></i>
+                        )
+                      }
+                    }
+                  </Mutation>
+                </h1>
+
                 <ul className="genre-artists-list">
                   {
                     
