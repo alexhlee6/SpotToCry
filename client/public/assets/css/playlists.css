@@ -1,4 +1,4 @@
-.artist-container {
+.artist-title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,6 +15,7 @@
   margin: auto;
   width: 85%;
   margin-bottom: 200px;
+  margin-top: 50px;
 }
 
 .playlist-art-container {
@@ -22,7 +23,7 @@
 }
 
 .playlist-show-c1 {
-  // height: 100%;
+  /* height: 100%; */
   overflow-y: scroll;
 }
 
@@ -30,7 +31,7 @@
   padding: 0 32px;
   margin: 0 auto;
   max-width: 1480px;
-  // height: 100%;
+  /* height: 100%; */
 }
 
 .context-menu-ellipses {
@@ -41,17 +42,17 @@
   height: 40px;
 }
 
-// .context-menu-ellipses:hover {
-//     transform: scale(1.1);
-// }
+/* .context-menu-ellipses:hover {
+  transform: scale(1.1);
+} */
 
 .context-menu-show {
-  // display: none;
-  // position: absolute;
-  // left: 50%;
-  // top: 90%;
-  width: 50%;
-  // min-width: 160px;
+  /* display: none;
+  position: absolute;
+  left: 50%;
+  top: 90%;
+  width: 50%; */
+  /* min-width: 160px; */
   padding: 5px 0;
   margin: auto;
   background-color: #282828;
@@ -70,7 +71,7 @@
   color: white;
   width: 100%;
   clear: both;
-  // line-height: 32px;
+  /* line-height: 32px; */
   white-space: nowrap;
   background: 0 0;
   border: 0;
@@ -82,8 +83,6 @@
   display: none;
 }
 
-// playlist artwork
-
 .playlist-cover-container {
   display: flex;
   justify-content: flex-start;
@@ -94,7 +93,7 @@
 .playlist-idx-cover-container {
   display: flex;
   justify-content: flex-start;
-  // align-items: center;
+  /* align-items: center; */
   flex-wrap: wrap;
   max-height: 242px;
 }
@@ -126,9 +125,9 @@
   height: 100%;
 }
 
-#playlist-grid-artist {
+#playlist-grid-title {
   text-decoration: none;
-  font-family: "Circular";
+  font-family: sans-serif;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.015em;
