@@ -19,26 +19,6 @@ class NavBar extends React.Component{
   }
 
   render(){
-    // <Query query={FETCH_PLAYLISTS}> 
-    //   {({ loading, error, data }) => {
-    //     if (loading) return <p>Loading...</p>;
-    //     if (error) return <p>{error}</p>;
-    //     return (
-    //       data.playlists.map(({ _id, title }) => (
-    //         <Link
-    //           key={_id}
-    //           activeClassName="nav-link-container-active"
-    //           to={`/library/playlists/${_id}`}
-    //         >
-    //           <div key={playlist.title} className="playlist-item">
-    //             {title}
-    //           </div>
-    //         </Link>
-    //       ))
-    //     );
-    //   }}
-    // </Query>
-
     return (
       <div className="SideBar">
         <div className="SideBar-Logo">

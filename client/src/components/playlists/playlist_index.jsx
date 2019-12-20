@@ -11,8 +11,9 @@ const PlaylistIndex = () => {
       {({ loading, error, data }) => {        
         if (loading) return <p>Loading...</p>;
         if (error) return <p>{error}</p>;
-        return (
-          data.playlists.map(({ _id, title }) => (
+        
+        let userPlaylists = data.playlists.map(({ _id, title }) => {
+          return (
             <div key={title} className="album-artist-container">
               <div className="image-hover-container">
                 <div className="playlist-idx-cover-container">
@@ -30,14 +31,16 @@ const PlaylistIndex = () => {
                 </div>
               </div>
               <Link
-                id="playlist-grid-artist"
+                id="playlist-grid-title"
                 to={`/library/playlists/${_id}`}
               >
-                <div className="artist-container">{title}</div>
+                <div className="title-container">{title}</div>
               </Link>
             </div>
-          ))
-        );
+          );
+        });
+
+        return <div className="playlist-index-container">{userPlaylists}</div>;
       }}
     </Query>
   );
