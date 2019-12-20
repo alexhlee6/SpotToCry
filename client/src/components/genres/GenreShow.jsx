@@ -3,6 +3,7 @@ import { Query } from "react-apollo";
 import Queries from "../../graphql/queries";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
+import { Link } from "react-router-dom";
 
 const OPEN_MODAL_MUTATION = gql`
   mutation {
@@ -105,7 +106,9 @@ class GenreShow extends React.Component {
                                       {song.title}
                                     </span>
                                     <span className="genre-artist-item-name">
-                                      {artist.name}
+                                      <Link to={`/artists/${artist._id}`}>
+                                        {artist.name}
+                                      </Link>
                                     </span>
                                     <Mutation mutation={OPEN_MODAL_MUTATION}>
                                       {openNewPlaylistSongModalMutation => {

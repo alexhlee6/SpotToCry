@@ -94,6 +94,11 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  cursor: pointer;
+}
+
+.genre-artist-item-name:hover {
+  color: lightgray;
 }
 
 .genre-song-add-button {
