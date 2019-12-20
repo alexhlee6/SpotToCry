@@ -60,7 +60,7 @@ class NavBar extends React.Component{
             <Query query={FETCH_PLAYLISTS}>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
-                if (error) return <p>{error}</p>;
+                if (error) return <p>Error</p>;
                 return (
                   data.playlists.map(({ _id, title }) => (
                     <Link
