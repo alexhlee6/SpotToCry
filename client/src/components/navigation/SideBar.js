@@ -19,20 +19,25 @@ class NavBar extends React.Component{
   }
 
   render(){
-    // <Query> </Query>
-    // let playlistNames = playlists.map(playlist => {
-    //   return (
-    //     <Link
-    //       key={playlist.id}
-    //       activeClassName="nav-link-container-active"
-    //       to={`/collection/playlists/${playlist.id}`}
-    //     >
-    //       <div key={playlist.title} className="playlist-item">
-    //         {playlist.title}
-    //       </div>
-    //     </Link>
-    //   );
-    // });
+    // <Query query={FETCH_PLAYLISTS}> 
+    //   {({ loading, error, data }) => {
+    //     if (loading) return <p>Loading...</p>;
+    //     if (error) return <p>{error}</p>;
+    //     return (
+    //       data.playlists.map(({ _id, title }) => (
+    //         <Link
+    //           key={_id}
+    //           activeClassName="nav-link-container-active"
+    //           to={`/library/playlists/${_id}`}
+    //         >
+    //           <div key={playlist.title} className="playlist-item">
+    //             {title}
+    //           </div>
+    //         </Link>
+    //       ))
+    //     );
+    //   }}
+    // </Query>
 
     return (
       <div className="SideBar">
@@ -71,7 +76,26 @@ class NavBar extends React.Component{
               )}
             </Mutation>
           </div>
-          <div className="playlists"></div>
+          <div className="playlists">
+            <Query query={FETCH_PLAYLISTS}>
+              {({ loading, error, data }) => {
+                if (loading) return <p>Loading...</p>;
+                if (error) return <p>{error}</p>;
+                return (
+                  data.playlists.map(({ _id, title }) => (
+                    <Link
+                      key={_id}
+                      to={`/library/playlists/${_id}`}
+                    >
+                      <div key={title} className="playlist-item">
+                        {title}
+                      </div>
+                    </Link>
+                  ))
+                );
+              }}
+            </Query>
+          </div>
         </div>
       </div>
     );
