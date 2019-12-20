@@ -24,14 +24,15 @@ const SongItem = (song) => {
             playSongMutation => {
               debugger;
               return (
-                <i
-                  className="fas fa-play-circle"
-                  onClick={() => {
-                    playSongMutation(
-                      { variables: { id: song._id } }
-                    )
-                  }}
-                ></i>
+                <div className='song-click' onClick={() => {
+                  playSongMutation(
+                    { variables: { id: song._id } }
+                  )
+                }}>
+                  <i
+                    className="fas fa-play-circle"
+                  ></i>
+                </div>
               )
             }
           }
