@@ -203,7 +203,7 @@
   height: 80%;
 }
 
-.home-link, .search-link {
+.home-link, .search-link, .library-link {
   display: flex;
   flex-direction: row;
   align-items: center;

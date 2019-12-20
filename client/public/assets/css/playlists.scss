@@ -1,0 +1,146 @@
+.artist-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.playlist-index-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  color: white;
+  font-family: "Circular";
+  margin: auto;
+  width: 85%;
+  margin-bottom: 200px;
+}
+
+.playlist-art-container {
+  height: 100%;
+}
+
+.playlist-show-c1 {
+  // height: 100%;
+  overflow-y: scroll;
+}
+
+.playlist-show-c2 {
+  padding: 0 32px;
+  margin: 0 auto;
+  max-width: 1480px;
+  // height: 100%;
+}
+
+.context-menu-ellipses {
+  cursor: pointer;
+  font-size: 26px;
+  font-family: "Circular";
+  transition: all 0.02s ease-in;
+  height: 40px;
+}
+
+// .context-menu-ellipses:hover {
+//     transform: scale(1.1);
+// }
+
+.context-menu-show {
+  // display: none;
+  // position: absolute;
+  // left: 50%;
+  // top: 90%;
+  width: 50%;
+  // min-width: 160px;
+  padding: 5px 0;
+  margin: auto;
+  background-color: #282828;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  outline: none;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.context-menu-item {
+  font-family: "Circular";
+  font-size: 14px;
+  color: white;
+  width: 100%;
+  clear: both;
+  // line-height: 32px;
+  white-space: nowrap;
+  background: 0 0;
+  border: 0;
+  user-select: none;
+  cursor: pointer;
+}
+
+.context-menu-hidden {
+  display: none;
+}
+
+// playlist artwork
+
+.playlist-cover-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.playlist-idx-cover-container {
+  display: flex;
+  justify-content: flex-start;
+  // align-items: center;
+  flex-wrap: wrap;
+  max-height: 242px;
+}
+
+.playlist-coverArt-item {
+  width: 50%;
+  height: 50%;
+}
+
+.playlist-idx-coverArt-item {
+  width: 50%;
+  height: 50%;
+  max-height: 121px;
+}
+
+.playlist-coverArt-item img {
+  width: 100%;
+  height: 100%;
+}
+
+.playlist-coverArt-single img {
+  width: 100%;
+  height: 100%;
+}
+
+.playlist-coverArt-placeholder {
+  background-color: #282828;
+  width: 100%;
+  height: 100%;
+}
+
+#playlist-grid-artist {
+  text-decoration: none;
+  font-family: "Circular";
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.015em;
+  max-height: 20px;
+  color: white;
+  opacity: 0.6;
+  transition: opacity 0.05s linear;
+  border-bottom: 1px solid transparent;
+  margin-top: 20px;
+}
+
+#playlist-grid-artist:hover {
+  opacity: 1;
+  border-bottom: 1px solid white;
+}

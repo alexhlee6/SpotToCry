@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { Query, ApolloConsumer } from "react-apollo";
-// import Queries from "../graphql/queries";
+import { Query } from "react-apollo";
+import Queries from "../graphql/queries";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
+
+const { FETCH_PLAYLISTS } = Queries;
 
 const OPEN_MODAL_MUTATION = gql`
   mutation {
@@ -17,6 +19,21 @@ class NavBar extends React.Component{
   }
 
   render(){
+    <Query> </Query>
+    let playlistNames = playlists.map(playlist => {
+      return (
+        <Link
+          key={playlist.id}
+          activeClassName="nav-link-container-active"
+          to={`/collection/playlists/${playlist.id}`}
+        >
+          <div key={playlist.title} className="playlist-item">
+            {playlist.title}
+          </div>
+        </Link>
+      );
+    });
+
     return (
       <div className="SideBar">
         <div className="SideBar-Logo">
@@ -36,8 +53,10 @@ class NavBar extends React.Component{
             </Link>
           </div>
           <div className="nav-library">
-            <div className="nav-library-image"></div>
-            Your Library
+            <Link to="/library/playlists" className="library-link">  
+              <div className="nav-library-image"></div>
+              Your Library
+            </Link>
           </div>
         </div>
         <div className="User-Playlists">

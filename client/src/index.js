@@ -46,9 +46,7 @@ const token = localStorage.getItem("auth-token");
 cache.writeData({
   data: {
     isLoggedIn: Boolean(token),
-    isModalOpen: false,
-    songId: null,
-    playlistId: null
+    isModalOpen: false
   }
 });
 
