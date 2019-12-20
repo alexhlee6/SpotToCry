@@ -1,0 +1,84 @@
+.artist-show{
+  /* border: 1px solid red; */
+  height: 95vh;
+}
+
+.artist-banner{
+  /* border: 1px solid blue; */
+  height: 38%;
+  display: flex;
+  flex-direction: row;
+}
+
+.artist-pic{
+  height: 100%;
+  width: 33%;
+  /* border: 1px solid green; */
+  
+}
+
+.artist-banner-info{
+  height: 100%;
+  width: 67%;
+  background: rgb(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+}
+
+.artist-banner-name{
+  color: white;
+  font-size: 64px;
+  font-weight: bold;
+  margin-left: 2vw;
+  cursor: default;
+}
+
+
+.artist-song-list{
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.artist-song {
+  height: 60px;
+  background: rgb(0, 0, 0, 0.7);
+}
+
+.artist-song-info{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: #939393;
+  height: 100%;
+  margin: 0 60px 0 60px;
+  cursor: default;
+}
+
+.artist-song-play{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-size: 18px;
+  width: 33%;
+}
+
+.artist-play-btn:hover{
+  color: white;
+  cursor: pointer;
+}
+
+.artist-song-title{
+  color: white;
+  cursor: default;
+  margin-left: 60px;
+}
+
+.artist-song-name{
+  width: 33%;
+}
+
+.artist-song-add{
+  width: 33%;
+}
