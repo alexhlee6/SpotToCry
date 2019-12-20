@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Query } from "react-apollo";
-import Queries from "../graphql/queries";
+import Queries from "../../graphql/queries";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -19,20 +19,20 @@ class NavBar extends React.Component{
   }
 
   render(){
-    <Query> </Query>
-    let playlistNames = playlists.map(playlist => {
-      return (
-        <Link
-          key={playlist.id}
-          activeClassName="nav-link-container-active"
-          to={`/collection/playlists/${playlist.id}`}
-        >
-          <div key={playlist.title} className="playlist-item">
-            {playlist.title}
-          </div>
-        </Link>
-      );
-    });
+    // <Query> </Query>
+    // let playlistNames = playlists.map(playlist => {
+    //   return (
+    //     <Link
+    //       key={playlist.id}
+    //       activeClassName="nav-link-container-active"
+    //       to={`/collection/playlists/${playlist.id}`}
+    //     >
+    //       <div key={playlist.title} className="playlist-item">
+    //         {playlist.title}
+    //       </div>
+    //     </Link>
+    //   );
+    // });
 
     return (
       <div className="SideBar">

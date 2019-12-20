@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ArtistItem = (artist) => {
   const artistStyle = {
@@ -10,18 +11,20 @@ const ArtistItem = (artist) => {
     backgroundPostition: 'center'
   }
   return (
-    <div className='artist-item'
-      onClick={ () => console.log(`Navigate to ${artist.name} show page`)}>
-      <div 
-        className='artist-image'
-        style={artistStyle}
-        >
+    <Link to={`artists/${artist._id}`}>
+      <div className='artist-item'
+        onClick={ () => console.log(`Navigate to ${artist.name} show page`)}>
+        <div 
+          className='artist-image'
+          style={artistStyle}
+          >
+        </div>
+        <div className='artist-info'>
+          <p className='info-name'>{artist.name}</p>
+          <p className='info-type'>Artist</p>
+        </div>
       </div>
-      <div className='artist-info'>
-        <p className='info-name'>{artist.name}</p>
-        <p className='info-type'>Artist</p>
-      </div>
-    </div>
+    </Link>
   );
 }
 
