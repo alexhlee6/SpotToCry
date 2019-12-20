@@ -203,7 +203,24 @@
   height: 80%;
 }
 
-.home-link, .search-link {
+.playlist-item {
+  align-items: center;
+  padding: 0 0 0 20px;
+  min-height: 32px;
+  opacity: 0.75;
+  font-family: sans-serif;
+  font-size: 14px;
+  color: white;
+  white-space: nowrap;
+  cursor: pointer;
+  max-width: 170px;
+}
+
+.playlist-item:hover {
+  opacity: 1;
+}
+
+.home-link, .search-link, .library-link {
   display: flex;
   flex-direction: row;
   align-items: center;
