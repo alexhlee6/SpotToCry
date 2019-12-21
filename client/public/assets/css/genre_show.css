@@ -8,6 +8,19 @@
 
 }
 
+.genre-show-main .genre-index-header .fa-play-circle {
+  font-size: 30px;
+  margin-left: 15px;
+  position: relative;
+  bottom: 0px;
+  color: rgb(147, 147, 147);
+  cursor: pointer;
+}
+
+.genre-show-main .genre-index-header .fa-play-circle:hover {
+  color: lightgray;
+}
+
 .genre-artists-item {
   max-width: 100%;
   height: 60px;
@@ -22,7 +35,14 @@
   color: gray;
   cursor: pointer;
   font-size: 20px;
+  width: 16px;
+  margin-right: 15px
   /* margin: 0px 15px; */
+}
+
+.fa-play-circle-hidden {
+  width: 16px;
+  margin-right: 15px
 }
 
 .genre-artist-song-item .fa-play-circle:hover {
@@ -59,12 +79,26 @@
   font-size: 17px;
 }
 
+.genre-artist-song-title-playing {
+  color: rgb(152, 152, 152);
+  width: 30%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 17px;
+}
+
 .genre-artist-item-name {
   color: rgb(147, 147, 147);
   width: 25%;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  cursor: pointer;
+}
+
+.genre-artist-item-name:hover {
+  color: lightgray;
 }
 
 .genre-song-add-button {
