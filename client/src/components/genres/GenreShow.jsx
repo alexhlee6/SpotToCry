@@ -53,7 +53,8 @@ class GenreShow extends React.Component {
                       }
                         return (
                             <i 
-                            className="fas fa-play-circle"
+                            // className="fas fa-play-circle"
+                            className="fas fa-random"
                             onClick={() => {
                               playGenreMutation(
                                 { variables: { id: data.genre._id } }
