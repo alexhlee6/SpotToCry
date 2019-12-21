@@ -6,10 +6,10 @@ import Queries from "../../graphql/queries";
 const { NEW_PLAYLIST } = Mutations;
 const { FETCH_PLAYLISTS } = Queries;
 
+
 class PlaylistCreate extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       message: "",
       title: "",
@@ -43,19 +43,19 @@ class PlaylistCreate extends Component {
   handleSubmit(e, newPlaylist) {
     e.preventDefault();
     let title = this.state.title;
-
     newPlaylist({
       variables: {
         title: title,
         description: this.state.description
       }
-    }).then(data => {
-      this.setState({
-        message: `New playlist "${title}" created successfully`,
-        title: "",
-        description: ""
-      });
     });
+    // .then(data => {
+    //   this.setState({
+    //     message: `New playlist "${title}" created successfully`,
+    //     title: "",
+    //     description: ""
+    //   });
+    // });
   }
 
   render() {

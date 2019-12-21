@@ -14,6 +14,8 @@ export default {
             name
           }
           title
+          imageUrl
+          songUrl
         }
       }
     }
@@ -31,6 +33,8 @@ export default {
             name
           }
           title
+          imageUrl
+          songUrl
         }
       }
     }

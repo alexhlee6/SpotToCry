@@ -26,7 +26,7 @@ const PlaylistIndex = () => {
                     id="Mike-button"
                     // onClick={() => this.handlePlay(playlist)}
                   >
-                    <img id="Mike" src="https://spottocry.s3-us-west-1.amazonaws.com/No-album-art-itunes.jpg" />
+                    <img id="Mike" src="https://spottocry.s3-us-west-1.amazonaws.com/play_white.png" />
                   </button>
                 </div>
               </div>
