@@ -213,7 +213,6 @@ class MusicPlayer extends React.Component {
       (window.player && window.player.src.length > 0) ? (
         <input type="range" id="timeskip"
           onChange={this.changeCurrentTime} 
-          value={0}
         />
       ) : (
         ""
