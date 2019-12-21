@@ -1,6 +1,6 @@
-const app = require('./server/server');
-const path = require('path');
 
+const path = require('path');
+const app = require('./server/server');
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
