@@ -26,11 +26,13 @@ class MusicPlayer extends React.Component {
       playing: false,
       minimized: true,
       volume: 0.5,
-      nextEventAttached: false
+      nextEventAttached: false,
+      timeInputVal: 0
     };
     this.playNext = this.playNext.bind(this);
     this.changeVolume = this.changeVolume.bind(this);
     this.receiveNewPlaylist = this.receiveNewPlaylist.bind(this);
+    this.changeCurrentTime = this.changeCurrentTime.bind(this);
   }
 
 
@@ -39,10 +41,6 @@ class MusicPlayer extends React.Component {
       window.player = document.getElementById('player');
       window.player.volume = this.state.volume;
     }
-    // this.setState({
-    //   playlist: [],
-    //   volume: this.state.volume
-    // });
   }
 
   componentDidUpdate() {
@@ -50,7 +48,66 @@ class MusicPlayer extends React.Component {
       window.player.addEventListener("ended", () => {
         this.playNext();
       });
-      this.setState({loading: false})
+      window.player.addEventListener("timeupdate", function () {
+        let currentTime;
+        let duration;
+        if (window.player.currentTime) {
+          if (Math.floor(window.player.currentTime % 60) < 10) {
+            currentTime = (
+              `${Math.floor(window.player.currentTime / 60)}` + (
+                `:0${Math.floor(window.player.currentTime % 60)}`
+              )
+            )
+          } else {
+            currentTime = (
+              `${Math.floor(window.player.currentTime / 60)}` + (
+                `:${Math.floor(window.player.currentTime % 60)}`
+              )
+            )
+          }
+        } else {
+          currentTime = "0:00";
+        }
+        if (window.player.duration) {
+          if (Math.floor(window.player.duration % 60) < 10) {
+            duration = (
+              `${Math.floor(window.player.duration / 60)}` + (
+                `:0${Math.floor(window.player.duration % 60)}`
+              )
+            )
+          } else {
+            duration = (
+              `${Math.floor(window.player.duration / 60)}` + (
+                `:${Math.floor(window.player.duration % 60)}`
+              )
+            )
+          }
+        } else {
+          duration = "0:00";
+        }
+        document.getElementById('tracktime-1').innerHTML = (
+          currentTime 
+        );
+        document.getElementById('tracktime-2').innerHTML = (
+          duration
+        );
+      });
+
+      window.player.addEventListener("timeupdate", function () {
+        if (document.getElementById("timeskip")) {
+          document.getElementById("timeskip").value = (
+            Math.floor(
+              (window.player.currentTime / window.player.duration) * 100
+            )
+          )
+        }
+      });
+      
+      this.setState({
+        loading: false, 
+        currentTime: window.player.currentTime, 
+        duration: window.player.duration
+      });
     }
   }
 
@@ -97,6 +154,21 @@ class MusicPlayer extends React.Component {
     }
   }
 
+  changeCurrentTime(e) {
+    if (window.player) {
+      let duration = window.player.duration;
+      let inputVal = parseInt(e.currentTarget.value) / 100;
+      let newTime = duration * inputVal;
+      if (newTime >= 0 && newTime <= duration) {
+        window.player.currentTime = newTime;
+        this.setState({ timeInputVal: parseInt(e.currentTarget.value) });
+      } else {
+        window.player.currentTime = 0;
+        this.setState({ timeInputVal: 0 });
+      }
+    }
+  }
+
 
   render() {
     let musicPlayer = (
@@ -136,6 +208,17 @@ class MusicPlayer extends React.Component {
         ""
       )
     );
+
+    let timeInput = (
+      (window.player && window.player.src.length > 0) ? (
+        <input type="range" id="timeskip"
+          onChange={this.changeCurrentTime} 
+          value={0}
+        />
+      ) : (
+        ""
+      )
+    )
 
     
     let volumeInput = (
@@ -179,7 +262,8 @@ class MusicPlayer extends React.Component {
         { volumeIcon }
         { volumeInput }
       </div>
-    )
+    );
+
 
 
     let currentSong;
@@ -288,11 +372,21 @@ class MusicPlayer extends React.Component {
               <div className="music-play-button-container">
                 { playOrPause }
                 { fastForward }
-                { volume } 
+                <div className="time-track-and-skip">
+                  <span id="tracktime-1"></span> 
+                  { timeInput }
+                  { timeInput === "" ? (
+                    ""
+                  ) : (
+                    <span id="tracktime-divider-hidden">/</span>
+                  )}
+                  <span id="tracktime-2"></span>
+                </div>
               </div>
-              {currentSongTitle}
+              { currentSongTitle }
             </div>
             <div className="music-player-right">
+              {window.player && window.player.src ? volume : <span></span>} 
               <i 
                 className="fas fa-bars music-player-hambuger"
                 onClick={() => {
