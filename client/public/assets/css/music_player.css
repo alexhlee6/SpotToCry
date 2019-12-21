@@ -38,12 +38,14 @@
 
 #playpause {
   margin-left: 20px;
+  margin-right: 10px;
   font-size: 18px;
   color: rgb(135, 135, 135);
 }
 
 #forward {
-  margin-left: 15px;
+  margin-left: 5px;
+  margin-right: 15px;
   font-size: 19px;
   color: rgb(135, 135, 135);
 }
@@ -91,12 +93,45 @@
 
 #tracktime-1, #tracktime-2 {
   color: rgb(133, 133, 133);
-  margin-left: 22px;
   font-size: 15px;
   padding-top: 2px;
 }
-#tracktime-2 {
-  margin-left: 0;
+
+.time-track-and-skip {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 250px;
+  /* padding: 15px; */
+  justify-content: space-evenly;
+}
+
+#timeskip {
+  opacity: 50%;
+  width: 150px;
+}
+
+#tracktime-divider-hidden {
+  display: none;
+}
+
+@media only screen and (max-width: 650px) {
+  #timeskip {
+    display: none;
+  }
+  .time-track-and-skip {
+    width: unset;
+  }
+  #tracktime-1 {
+    padding-right: 3px;
+  } 
+  #tracktime-2 {
+    padding-left: 3px;
+  }
+  #tracktime-divider-hidden {
+    display: inline;
+    color: rgb(101, 101, 101);
+  }
+
 }
 
 .volume-container {

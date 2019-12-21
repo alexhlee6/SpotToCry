@@ -83,7 +83,7 @@ class MusicPlayer extends React.Component {
             )
           }
         } else {
-          duration = "/0:00";
+          duration = "0:00";
         }
         document.getElementById('tracktime-1').innerHTML = (
           currentTime 
@@ -213,6 +213,7 @@ class MusicPlayer extends React.Component {
       (window.player && window.player.src.length > 0) ? (
         <input type="range" id="timeskip"
           onChange={this.changeCurrentTime} 
+          value={0}
         />
       ) : (
         ""
@@ -371,10 +372,16 @@ class MusicPlayer extends React.Component {
               <div className="music-play-button-container">
                 { playOrPause }
                 { fastForward }
-
-                <span id="tracktime-1"></span> 
-                { timeInput }
-                <span id="tracktime-2"></span>
+                <div className="time-track-and-skip">
+                  <span id="tracktime-1"></span> 
+                  { timeInput }
+                  { timeInput === "" ? (
+                    ""
+                  ) : (
+                    <span id="tracktime-divider-hidden">/</span>
+                  )}
+                  <span id="tracktime-2"></span>
+                </div>
               </div>
               { currentSongTitle }
             </div>
