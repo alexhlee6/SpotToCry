@@ -9,7 +9,6 @@ import gql from "graphql-tag";
 
 const { DELETE_PLAYLIST } = Mutations;
 const { FETCH_PLAYLIST } = Queries;
-const { FETCH_PLAYLISTS } = Queries;
 
 const PLAY_PLAYLIST_MUTATION = gql`
   mutation {
@@ -31,24 +30,6 @@ class PlaylistShow extends React.Component {
     this.setState(prevState => ({
       menuVisible: !prevState.menuVisible
     }));
-  }
-
-  updateCache(cache, { data }) {
-    let playlists;
-    try {
-      playlists = cache.readQuery({ query: FETCH_PLAYLISTS });
-    } catch (err) {
-      return;
-    }
-
-    if (playlists) {
-      let playlistArray = playlists.playlists;
-      let newPlaylist = data.newPlaylist;
-      cache.writeQuery({
-        query: FETCH_PLAYLISTS,
-        data: { playlists: playlistArray.concat(newPlaylist) }
-      });
-    }
   }
 
   render() {
@@ -144,12 +125,7 @@ class PlaylistShow extends React.Component {
                               >
                                 ...
                               </div>
-                              <Mutation
-                                mutation={DELETE_PLAYLIST}
-                                update={(cache, data) =>
-                                  this.updateCache(cache, data)
-                                }
-                              >
+                              <Mutation mutation={DELETE_PLAYLIST}>
                                 {deletePlaylist => (
                                   <div
                                     id="context-menu"
