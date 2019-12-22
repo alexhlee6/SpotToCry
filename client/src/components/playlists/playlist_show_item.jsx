@@ -2,8 +2,15 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
+import gql from "graphql-tag";
 
 const { REMOVE_PLAYLIST_SONG } = Mutations;
+
+const PLAY_SONG_MUTATION = gql`
+  mutation {
+    playSongMutation(id: $id) @client
+  }
+`;
 
 class PlaylistShowItem extends React.Component {
   constructor(props) {
@@ -52,11 +59,19 @@ class PlaylistShowItem extends React.Component {
       >
         <div className="tc-outer">
           <div className={noteContainerClass}>
-            <img
-              id="tc-note"
-              src={this.state.noteIcon}
-              // onClick={this.handlePlay}
-            />
+            <Mutation mutation={PLAY_SONG_MUTATION}>
+              {playSongMutation => (
+                <img
+                  id="tc-note"
+                  src={this.state.noteIcon}
+                  onClick={() => {
+                    playSongMutation({
+                      variables: { id: song._id }
+                    });
+                  }}
+                />
+              )}
+            </Mutation>
           </div>
         </div>
         <div className="tc-title-artist">
@@ -70,16 +85,16 @@ class PlaylistShowItem extends React.Component {
           <div className={menuVisible ? "cm-show" : "cm-hidden"}>
             <div className="cm-item">
               <Mutation mutation={REMOVE_PLAYLIST_SONG}>
-                {removeSong => ( 
+                {removeSong => (
                   <div
-                  onClick={() => {
-                    removeSong({
-                      variables: {
-                        playlistId: this.props.playlistId,
-                        songId: song._id
-                      }
-                    });
-                  }}
+                    onClick={() => {
+                      removeSong({
+                        variables: {
+                          playlistId: this.props.playlistId,
+                          songId: song._id
+                        }
+                      });
+                    }}
                   >
                     Remove Song from Playlist
                   </div>
