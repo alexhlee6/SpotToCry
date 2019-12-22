@@ -57,7 +57,7 @@ class NavBar extends React.Component{
             </Mutation>
           </div>
           <div className="playlists">
-            <Query query={FETCH_PLAYLISTS}>
+            <Query query={FETCH_PLAYLISTS} pollInterval={200}>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <p>Error</p>;
