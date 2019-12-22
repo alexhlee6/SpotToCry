@@ -74,6 +74,16 @@ const mutation = new GraphQLObjectType({
         return Playlist.addSong(playlistId, songId);
       }
     },
+    removePlaylistSong: {
+      type: PlaylistType,
+      args: {
+        playlistId: { type: GraphQLID },
+        songId: { type: GraphQLID }
+      },
+      resolve(_, { playlistId, songId }) {
+        return Playlist.removeSong(playlistId, songId);
+      }
+    },
     register: {
       type: UserType,
       args: {

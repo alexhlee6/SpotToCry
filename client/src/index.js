@@ -12,7 +12,7 @@ import * as serviceWorker from './serviceWorker';
 import { HashRouter } from "react-router-dom";
 import Mutations from "./graphql/mutations";
 import resolvers from "./resolvers";
-
+import { ApolloLink} from "apollo-link"
 const { VERIFY_USER } = Mutations;
 
 const cache = new InMemoryCache({
@@ -28,13 +28,22 @@ const httpLink = createHttpLink({
 });
 
 // make sure we log any additional errors we receive
-// const errorLink = onError(({ graphQLErrors }) => {
-//   if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message));
-// });
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message));
+  if (networkError) {
+    // debugger;
+    console.log(networkError);
+  }
+});
+
+const link = ApolloLink.from([
+  errorLink, 
+  httpLink
+])
 
 const client = new ApolloClient({
   resolvers,
-  link: httpLink,
+  link,
   cache,
   onError: ({ networkError, graphQLErrors }) => {
     console.log("graphQLErrors", graphQLErrors);

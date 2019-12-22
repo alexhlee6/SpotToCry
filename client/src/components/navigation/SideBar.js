@@ -57,7 +57,7 @@ class NavBar extends React.Component{
             </Mutation>
           </div>
           <div className="playlists">
-            <Query query={FETCH_PLAYLISTS}>
+            <Query query={FETCH_PLAYLISTS} pollInterval={200}>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <p>Error</p>;
@@ -65,7 +65,7 @@ class NavBar extends React.Component{
                   data.playlists.map(({ _id, title }) => (
                     <Link
                       key={_id}
-                      to={`/library/playlists/${_id}`}
+                      to={`/playlists/${_id}`}
                     >
                       <div key={title} className="playlist-item">
                         {title}
