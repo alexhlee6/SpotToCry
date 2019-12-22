@@ -52,6 +52,7 @@ class MusicPlayer extends React.Component {
       window.player.addEventListener("timeupdate", function () {
         let currentTime;
         let duration;
+        if (!window.player) return null;
         if (window.player.currentTime) {
           if (Math.floor(window.player.currentTime % 60) < 10) {
             currentTime = (
@@ -110,6 +111,14 @@ class MusicPlayer extends React.Component {
         duration: window.player.duration
       });
     }
+  }
+
+  componentWillUnmount() {
+    window.player = null;
+    let clone = document.getElementById("player").cloneNode(true);
+    let player = document.getElementById("player");
+    let parent = player.parentNode;
+    parent.replaceChild(clone, player);
   }
 
   receiveNewPlaylist({playlist, musicType, id}) {
