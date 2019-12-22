@@ -12,7 +12,7 @@ class GenreIndex extends React.Component {
   render() {
     return (
       <div className="genre-index-main">
-        <h1 className="genre-index-header">Genres</h1>
+        <h1 className="genre-index-header"><span className="artist-banner-name">Explore</span></h1>
 
         <Query query={Queries.FETCH_ALL_GENRES}>
           {({ loading, error, data }) => {
