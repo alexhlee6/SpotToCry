@@ -2,7 +2,7 @@ const resolvers = {
   Mutation: {
     openNewPlaylistModalMutation: (_, args, { cache }) => {
       cache.writeData({
-        data: { isModalOpen: true, modalType: "newPlaylist" }
+        data: { songId: null, isModalOpen: true, modalType: "newPlaylist" }
       });
       return null;
     },

@@ -11,7 +11,7 @@ export default {
     }
   `,
   DELETE_PLAYLIST: gql`
-    mutation DeletePlaylist($id: ID) {
+    mutation DeletePlaylist($id: ID!) {
       deletePlaylist(id: $id) {
         _id
       }
@@ -20,6 +20,22 @@ export default {
   ADD_PLAYLIST_SONG: gql`
     mutation AddPlaylistSong($playlistId: ID, $songId: ID) {
       addPlaylistSong(playlistId: $playlistId, songId: $songId) {
+        _id
+        title
+        songs {
+          _id
+          title
+          artist {
+            _id
+            name
+          }
+        }
+      }
+    }
+  `,
+  REMOVE_PLAYLIST_SONG: gql`
+    mutation RemovePlaylistSong($playlistId: ID, $songId: ID) {
+      removePlaylistSong(playlistId: $playlistId, songId: $songId) {
         _id
         title
         songs {
