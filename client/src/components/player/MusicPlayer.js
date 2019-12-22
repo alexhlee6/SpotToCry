@@ -234,27 +234,31 @@ class MusicPlayer extends React.Component {
 
             if (data.currentMusic.musicType === "song") {
               return (
-                <Query query={Queries.FETCH_SONG} variables={{ id: data.currentMusic.id }}>
+                <Query
+                  query={Queries.FETCH_SONG}
+                  variables={{ id: data.currentMusic.id }}
+                >
                   {({ loading, error, data }) => {
                     if (loading) return <p>Loading...</p>;
                     if (error) return <p>Error</p>;
 
                     if (this.state.playlist[0] !== data.song) {
-                      this.receiveNewPlaylist(
-                        {
-                          playlist: [data.song],
-                          musicType: "song",
-                          id: data.song._id
-                        }
-                      );
+                      this.receiveNewPlaylist({
+                        playlist: [data.song],
+                        musicType: "song",
+                        id: data.song._id
+                      });
                     }
                     return null;
                   }}
                 </Query>
-              )
-            } else if (data.currentMusic.musicType === "genre" ) {
+              );
+            } else if (data.currentMusic.musicType === "genre") {
               return (
-                <Query query={Queries.FETCH_GENRE_SONGS} variables={{ id: data.currentMusic.id }} >
+                <Query
+                  query={Queries.FETCH_GENRE_SONGS}
+                  variables={{ id: data.currentMusic.id }}
+                >
                   {({ loading, error, data }) => {
                     if (loading) return <p>Loading...</p>;
                     if (error) return <p>Error</p>;
@@ -263,22 +267,49 @@ class MusicPlayer extends React.Component {
                       let newList = [];
                       let artists = data.genre.artists;
                       for (let i = 0; i < artists.length; i++) {
-                        let songs = artists[i].songs
+                        let songs = artists[i].songs;
                         for (let j = 0; j < songs.length; j++) {
                           newList.push(songs[j]);
                         }
                       }
                       this.receiveNewPlaylist({
                         playlist: newList,
-                        musicType: "genre", 
+                        musicType: "genre",
                         id: data.genre._id
                       });
                     }
                     return null;
                   }}
                 </Query>
-              )
-            }
+              );
+            } else if (data.currentMusic.musicType === "playlist") {
+              return (
+                <Query
+                  query={Queries.FETCH_PLAYLIST}
+                  variables={{ id: data.currentMusic.id }}
+                >
+                  {({ loading, error, data }) => {
+                    if (loading) return <p>Loading...</p>;
+                    if (error) return <p>Error</p>;
+
+                    if (this.state.id !== data.playlist._id) {
+                      let newList = [];
+                      let songs = data.playlist.songs;
+                      for (let i = 0; i < songs.length; i++) {
+                        newList.push(songs[i]);
+                      }
+                      this.receiveNewPlaylist({
+                        playlist: newList,
+                        musicType: "playlist",
+                        id: data.playlist._id
+                      });
+                    }
+                    return null;
+                  }}
+                </Query>
+              );
+            } 
+              
           }}
         </Query>
         <div className="music-player-main">

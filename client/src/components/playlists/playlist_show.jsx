@@ -3,12 +3,18 @@ import { withRouter } from 'react-router-dom';
 import PlaylistShowItem from "./playlist_show_item";
 import { Query } from "react-apollo";
 import { Mutation } from "react-apollo";
-import { Link } from "react-router-dom";
 import Mutations from "../../graphql/mutations";
 import Queries from "../../graphql/queries";
+import gql from "graphql-tag";
 
 const { DELETE_PLAYLIST } = Mutations;
 const { FETCH_PLAYLIST } = Queries;
+
+const PLAY_PLAYLIST_MUTATION = gql`
+  mutation {
+    playPlaylistMutation(id: $id) @client
+  }
+`;
 
 class PlaylistShow extends React.Component {
   constructor(props) {
@@ -83,13 +89,22 @@ class PlaylistShow extends React.Component {
                                 {/* <div className="album-artist">Demo User</div>  */}
                               </div>
                             </div>
-                            <div
-                              className="album-show-left-play"
-                              // todo: allow playlist to play music
-                              // onClick={}
-                            >
-                              Play
-                            </div>
+                            {songCount > 0 &&
+                              <Mutation mutation={PLAY_PLAYLIST_MUTATION}>
+                                {playPlaylistMutation => (
+                                  <div className="album-show-left-play"
+                                    onClick={() => {
+                                      playPlaylistMutation({
+                                        variables: {
+                                          id: this.props.match.params.playlistId
+                                        }
+                                      });
+                                    }}
+                                  >Play
+                                  </div>
+                                )}
+                              </Mutation>
+                            }
                             <div>
                               <div className="album-show-c3a-bottom">
                                 <p>
@@ -116,7 +131,6 @@ class PlaylistShow extends React.Component {
                                         })
                                           .then(() => this.props.history.push("/library/playlists"))
                                           .catch(err => {
-                                            // debugger
                                             console.log(err)
                                           });
                                       }}
