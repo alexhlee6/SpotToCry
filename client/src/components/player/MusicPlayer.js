@@ -33,6 +33,7 @@ class MusicPlayer extends React.Component {
     this.changeVolume = this.changeVolume.bind(this);
     this.receiveNewPlaylist = this.receiveNewPlaylist.bind(this);
     this.changeCurrentTime = this.changeCurrentTime.bind(this);
+    this.shuffleGenreSongs = this.shuffleGenreSongs.bind(this);
   }
 
 
@@ -51,6 +52,7 @@ class MusicPlayer extends React.Component {
       window.player.addEventListener("timeupdate", function () {
         let currentTime;
         let duration;
+        if (!window.player) return null;
         if (window.player.currentTime) {
           if (Math.floor(window.player.currentTime % 60) < 10) {
             currentTime = (
@@ -111,6 +113,14 @@ class MusicPlayer extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    window.player = null;
+    let clone = document.getElementById("player").cloneNode(true);
+    let player = document.getElementById("player");
+    let parent = player.parentNode;
+    parent.replaceChild(clone, player);
+  }
+
   receiveNewPlaylist({playlist, musicType, id}) {
     window.player.pause();
     window.player.src = playlist[0].songUrl;
@@ -169,6 +179,20 @@ class MusicPlayer extends React.Component {
     }
   }
 
+  shuffleGenreSongs(playlist) {
+    let length = playlist.length;
+    let temp;
+    let randomIdx;
+    while (length > 0) {
+      randomIdx = Math.floor(Math.random() * length);
+      length -= 1;
+      temp = playlist[length];
+      playlist[length] = playlist[randomIdx];
+      playlist[randomIdx] = temp;
+    }
+    return playlist;
+  }
+
 
   render() {
     let musicPlayer = (
@@ -213,7 +237,6 @@ class MusicPlayer extends React.Component {
       (window.player && window.player.src.length > 0) ? (
         <input type="range" id="timeskip"
           onChange={this.changeCurrentTime} 
-          value={0}
         />
       ) : (
         ""
@@ -352,6 +375,7 @@ class MusicPlayer extends React.Component {
                           newList.push(songs[j]);
                         }
                       }
+                      newList = this.shuffleGenreSongs(newList);
                       this.receiveNewPlaylist({
                         playlist: newList,
                         musicType: "genre", 

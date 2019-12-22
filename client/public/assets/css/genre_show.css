@@ -8,7 +8,7 @@
 
 }
 
-.genre-show-main .genre-index-header .fa-play-circle {
+.genre-show-main .genre-index-header .fa-random {
   font-size: 30px;
   margin-left: 15px;
   position: relative;
@@ -17,7 +17,7 @@
   cursor: pointer;
 }
 
-.genre-show-main .genre-index-header .fa-play-circle:hover {
+.genre-show-main .genre-index-header .fa-random:hover {
   color: lightgray;
 }
 
