@@ -22,24 +22,6 @@ class PlaylistCreate extends Component {
     return e => this.setState({ [field]: e.target.value });
   }
 
-  updateCache(cache, { data }) {
-    let playlists;
-    try {
-      playlists = cache.readQuery({ query: FETCH_PLAYLISTS });
-    } catch (err) {
-      return;
-    }
-
-    if (playlists) {
-      let playlistArray = playlists.playlists;
-      let newPlaylist = data.newPlaylist;
-      cache.writeQuery({
-        query: FETCH_PLAYLISTS,
-        data: { playlists: playlistArray.concat(newPlaylist) }
-      });
-    }
-  }
-
   handleSubmit(e, newPlaylist) {
     e.preventDefault();
     let title = this.state.title;
@@ -49,23 +31,13 @@ class PlaylistCreate extends Component {
         description: this.state.description
       }
     });
-    // .then(data => {
-    //   this.setState({
-    //     message: `New playlist "${title}" created successfully`,
-    //     title: "",
-    //     description: ""
-    //   });
-    // });
   }
 
   render() {
     let { closeModal } = this.props;
 
     return (
-      <Mutation
-        mutation={NEW_PLAYLIST}
-        update={(cache, data) => this.updateCache(cache, data)}
-      >
+      <Mutation mutation={NEW_PLAYLIST}>
         {(newPlaylist, { data }) => (
           <div>
             <form onSubmit={e => this.handleSubmit(e, newPlaylist)}>
