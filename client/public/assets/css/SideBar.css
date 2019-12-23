@@ -26,6 +26,7 @@
   align-items: center;
   font-size: 25px;
   color: white;
+  font-weight: 600;
 }
 
 .logo-text {
@@ -37,10 +38,7 @@
   background-size: cover;
   width: 37px;
   height: 33px;
-  /* margin-right: 10px; */
-  /* margin: 0 15px 14px 0; */
   transition: background-image 0.2s ease-in-out;
-  /* border: 1px solid red; */
 }
 
 .User-Nav {
