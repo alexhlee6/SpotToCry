@@ -24,12 +24,48 @@ class PlaylistShow extends React.Component {
     };
 
     this.toggleMenu = this.toggleMenu.bind(this);
+    this.setImages = this.setImages.bind(this);
+    this.createImages = this.createImages.bind(this);
   }
 
   toggleMenu() {
     this.setState(prevState => ({
       menuVisible: !prevState.menuVisible
     }));
+  }
+
+  setImages(playlistSongs) {
+    let songImages = [];
+    if (playlistSongs !== undefined) {
+      songImages = playlistSongs.map(song => {
+        return song.imageUrl;
+      });
+    }
+    return this.createImages(songImages);
+  }
+
+  createImages(songImages) {
+    if (songImages.length >= 1 && songImages.length < 4) {
+      return (
+        <div className="playlist-coverArt-single">
+          <img src={songImages[0]} />
+        </div>
+      );
+    } else if (songImages.length >= 4) {
+      return songImages.slice(0, 4).map(img => {
+        return (
+          <div key={img} className="playlist-coverArt-item">
+            <img src={img} />
+          </div>
+        );
+      });
+    } else {
+      return (
+        <div className="playlist-coverArt-single">
+          <img src="https://www.andrewwkmusic.com/wp-content/uploads/2014/05/No-album-art-itunes.jpg" />
+        </div>
+      );
+    }
   }
 
   render() {
@@ -42,16 +78,17 @@ class PlaylistShow extends React.Component {
           if (loading) return <p>Loading...</p>;
           if (error) return <p>{error}</p>;
           let playlistSongs;
+          let songs = data.playlist.songs;
           let songCount = data.playlist.songs.length;
           let { menuVisible } = this.state;
-          let playlistArt;
-          if (data.playlist.songs.length > 0) {
-            playlistArt = <img src={data.playlist.songs[0].imageUrl}></img>;
-          } else {
-            playlistArt = (
-              <img src="https://www.andrewwkmusic.com/wp-content/uploads/2014/05/No-album-art-itunes.jpg"></img>
-            );
-          }
+          // let playlistArt;
+          // if (data.playlist.songs.length > 0) {
+          //   playlistArt = <img src={data.playlist.songs[0].imageUrl}></img>;
+          // } else {
+          //   playlistArt = (
+          //     <img src="https://www.andrewwkmusic.com/wp-content/uploads/2014/05/No-album-art-itunes.jpg"></img>
+          //   );
+          // }
 
           if (data.playlist.songs.length > 0) {
             playlistSongs = data.playlist.songs.map(song => {
@@ -80,9 +117,9 @@ class PlaylistShow extends React.Component {
                               <div className="cover-art-shadow">
                                 <div>
                                   <div className="playlist-cover-container">
-                                    <div className="playlist-coverArt-single">
-                                      {playlistArt}
-                                    </div>
+           
+                                      {this.setImages(songs)}
+                
                                   </div>
                                 </div>
                                 <button id="cover-art-play" />
