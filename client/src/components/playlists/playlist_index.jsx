@@ -13,68 +13,114 @@ const PLAY_PLAYLIST_MUTATION = gql`
   }
 `;
 
-const PlaylistIndex = () => {
-  return (
-    <Query query={FETCH_PLAYLISTS}>
-      {({ loading, error, data }) => {        
-        if (loading) return <p>Loading...</p>;
-        if (error) return <p>{error}</p>;
-        
-        let userPlaylists = data.playlists.map(({ _id, title, songs }) => {
-        let songCount = songs.length;
-        let playlistArt;
-          if (songCount > 0) {
-            playlistArt = (
-              <img src={songs[0].imageUrl}></img>
-            );
-          } else {
-            playlistArt = (
-              <img src="https://www.andrewwkmusic.com/wp-content/uploads/2014/05/No-album-art-itunes.jpg"></img>
-            );
-          }
-          return (
-            <div key={title} className="album-artist-container">
-              <div className="image-hover-container">
-                <div className="playlist-idx-cover-container">
-                  <div className="playlist-art-container">
-                    {playlistArt}
-                  </div>
-                </div>
-                <div className="Mike">
-                  {songCount > 0 &&
-                    <Mutation mutation={PLAY_PLAYLIST_MUTATION}>
-                      {playPlaylistMutation => (
-                      <button
-                        id="Mike-button"
-                        onClick={() => {
-                          playPlaylistMutation({
-                            variables: {
-                              id: _id
-                            }
-                          });
-                        }}
-                      >
-                        <img id="Mike" src="https://spottocry.s3-us-west-1.amazonaws.com/play_white.png" />
-                      </button>
-                      )}
-                    </Mutation>
-                  }
-                </div>
-              </div>
-              <Link
-                id="playlist-grid-title"
-                to={`/playlists/${_id}`}
-              >
-                <div className="title-container">{title}</div>
-              </Link>
-            </div>
-          );
-        });
+class PlaylistIndex extends React.Component {
+  constructor(props) {
+    super(props);
 
-        return <div className="playlist-index-container">{userPlaylists}</div>;
-      }}
-    </Query>
-  );
-};
+    this.setImages = this.setImages.bind(this);
+    this.createImages = this.createImages.bind(this);
+  }
+
+  setImages(playlistSongs) {
+    let songImages = [];
+    if (playlistSongs !== undefined) {
+      songImages = playlistSongs.map(song => {
+        return song.imageUrl;
+      });
+    }
+    return this.createImages(songImages);
+  }
+
+  createImages(songImages) {
+    if (songImages.length >= 1 && songImages.length < 4) {
+      return (
+        <div className="playlist-art-container">
+          <img src={songImages[0]} />
+        </div>
+      );
+    } else if (songImages.length >= 4) {
+      return songImages.slice(0, 4).map(img => {
+        return (
+          <div key={img} className="playlist-idx-coverArt-item">
+            <img src={img} />
+          </div>
+        );
+      });
+    } else {
+      return (
+        <div className="playlist-art-container">
+          <img src="https://www.andrewwkmusic.com/wp-content/uploads/2014/05/No-album-art-itunes.jpg" />
+        </div>
+      );
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <h1 className="genre-index-header">
+          <span className="artist-banner-name">Playlists</span>
+        </h1>
+        <Query query={FETCH_PLAYLISTS}>
+          {({ loading, error, data }) => {
+            if (loading) return <p>Loading...</p>;
+            if (error) return <p>{error}</p>;
+
+            let userPlaylists = data.playlists.map(({ _id, title, songs }) => {
+              let songCount = songs.length;
+              // let playlistArt;
+              // if (songCount > 0) {
+              //   playlistArt = <img src={songs[0].imageUrl}></img>;
+              // } else {
+              //   playlistArt = (
+              //     <img src="https://www.andrewwkmusic.com/wp-content/uploads/2014/05/No-album-art-itunes.jpg"></img>
+              //   );
+              // }
+              return (
+                <div key={title} className="album-artist-container">
+                  <div className="image-hover-container">
+                    <div className="playlist-idx-cover-container">
+                      {this.setImages(songs)}
+                    </div>
+                    <div className="Mike">
+                      {songCount > 0 && (
+                        <Mutation mutation={PLAY_PLAYLIST_MUTATION}>
+                          {playPlaylistMutation => (
+                            <button
+                              id="Mike-button"
+                              onClick={() => {
+                                playPlaylistMutation({
+                                  variables: {
+                                    id: _id
+                                  }
+                                });
+                              }}
+                            >
+                              <img
+                                id="Mike"
+                                src="https://spottocry.s3-us-west-1.amazonaws.com/play_white.png"
+                              />
+                            </button>
+                          )}
+                        </Mutation>
+                      )}
+                    </div>
+                  </div>
+                  <Link id="playlist-grid-title" to={`/playlists/${_id}`}>
+                    <div className="title-container">{title}</div>
+                  </Link>
+                </div>
+              );
+            });
+
+            return (
+              <div className="playlist-index-container">{userPlaylists}</div>
+            );
+          }}
+        </Query>
+      </div>
+    );
+  }
+}
 
 export default PlaylistIndex;

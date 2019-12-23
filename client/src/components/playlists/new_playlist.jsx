@@ -30,7 +30,7 @@ class PlaylistCreate extends Component {
         title: title,
         description: this.state.description
       }
-    });
+    }).then(() => this.props.closeModal());
   }
 
   render() {
