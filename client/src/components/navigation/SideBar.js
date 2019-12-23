@@ -22,7 +22,8 @@ class NavBar extends React.Component{
     return (
       <div className="SideBar">
         <div className="SideBar-Logo">
-          <p className='logo-text'>SpotToCry</p>
+          <div className="logo-image"></div>
+          <p className="logo-text">SpotToCry</p>
         </div>
         <div className="User-Nav">
           <div className="nav-home">
@@ -38,7 +39,7 @@ class NavBar extends React.Component{
             </Link>
           </div>
           <div className="nav-library">
-            <Link to="/library/playlists" className="library-link">  
+            <Link to="/library/playlists" className="library-link">
               <div className="nav-library-image"></div>
               Your Library
             </Link>
@@ -49,30 +50,28 @@ class NavBar extends React.Component{
           <div className="create-playlist">
             <div className="create-playlist-image"></div>
             <Mutation mutation={OPEN_MODAL_MUTATION}>
-              {openNewPlaylistModalMutation => (                
-                <div className="create-playlist-title" onClick={openNewPlaylistModalMutation}>
+              {openNewPlaylistModalMutation => (
+                <div
+                  className="create-playlist-title"
+                  onClick={openNewPlaylistModalMutation}
+                >
                   Create Playlist
                 </div>
               )}
             </Mutation>
           </div>
           <div className="playlists">
-            <Query query={FETCH_PLAYLISTS} pollInterval={200}>
+            <Query query={FETCH_PLAYLISTS} pollInterval={200} x>
               {({ loading, error, data }) => {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <p>Error</p>;
-                return (
-                  data.playlists.map(({ _id, title }) => (
-                    <Link
-                      key={_id}
-                      to={`/playlists/${_id}`}
-                    >
-                      <div key={title} className="playlist-item">
-                        {title}
-                      </div>
-                    </Link>
-                  ))
-                );
+                return data.playlists.map(({ _id, title }) => (
+                  <Link key={_id} to={`/playlists/${_id}`}>
+                    <div key={title} className="playlist-item">
+                      {title}
+                    </div>
+                  </Link>
+                ));
               }}
             </Query>
           </div>
