@@ -21,14 +21,24 @@
 .SideBar-Logo {
   /* border: 1px solid blue; */
   height: 80px;
+  margin: 10px 0px 15px 10px;
   display: flex;
   align-items: center;
-  font-size: 28px;
+  font-size: 25px;
   color: white;
+  font-weight: 600;
 }
 
 .logo-text {
-  margin-left: 20px;
+  margin-left: 3px;
+}
+
+.logo-image {
+  background: url('../images/SideBar/logo.png');
+  background-size: cover;
+  width: 37px;
+  height: 33px;
+  transition: background-image 0.2s ease-in-out;
 }
 
 .User-Nav {
