@@ -45,6 +45,16 @@ const client = new ApolloClient({
   resolvers,
   link,
   cache,
+  // context: ({ req }) => {
+  //   // get the user token from the headers
+  //   const token = req.headers.authorization || '';
+
+  //   // try to retrieve a user with the token
+  //   const user = getUser(token);
+
+  //   // add the user to the context
+  //   return { user };
+  // },
   onError: ({ networkError, graphQLErrors }) => {
     console.log("graphQLErrors", graphQLErrors);
     console.log("networkError", networkError);

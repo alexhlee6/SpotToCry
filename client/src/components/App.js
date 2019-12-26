@@ -1,7 +1,7 @@
 import React from 'react';
 // import gql from "graphql-tag";
 // import { Query } from "react-apollo";
-import { Route, Switch} from "react-router-dom";
+import { Switch} from "react-router-dom";
 import Login from "./auth/Login";
 import GenreIndex from "./genres/GenreIndex";
 import AuthRoute from "../util/route_util";
