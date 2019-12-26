@@ -11,7 +11,6 @@ class PlaylistCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: "",
       title: "",
       description: ""
     };
