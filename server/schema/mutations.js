@@ -138,7 +138,7 @@ const mutation = new GraphQLObjectType({
       type: SongType,
       args: {
         title: { type: GraphQLString },
-        artist: { type: GraphQLID },
+        artistId: { type: GraphQLID },
         imageUrl: { type: GraphQLString },
         songUrl: { type: GraphQLString }
       },
