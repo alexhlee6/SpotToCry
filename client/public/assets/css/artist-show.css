@@ -1,6 +1,7 @@
 .artist-show{
   /* border: 1px solid red; */
   height: 95vh;
+  width: 100%;
 }
 
 .artist-banner{
@@ -73,10 +74,16 @@
   color: white;
   cursor: default;
   margin-left: 60px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .artist-song-name{
   width: 33%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .artist-song-add{
