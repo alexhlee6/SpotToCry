@@ -1,7 +1,9 @@
 const graphql = require("graphql");
 const { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLList } = graphql;
 const SongType = require("./song_type");
+const UserType = require("./user_type");
 const Playlist = require("../../models/Playlist");
+const User = require("../../models/User");
 
 const PlaylistType = new GraphQLObjectType({
   name: "PlaylistType",
@@ -15,6 +17,14 @@ const PlaylistType = new GraphQLObjectType({
         return Playlist.findById(parentValue.id)
           .populate("songs")
           .then(playlist => playlist.songs);
+      }
+    },
+    user: {
+      type: UserType,
+      resolve(parentValue) {
+        return User.findById(parentValue.user)
+          .then(user => user)
+          .catch(err => console.log(err))
       }
     }
   })
