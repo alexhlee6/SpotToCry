@@ -16,6 +16,10 @@ const UserSchema = new Schema({
     min: 8,
     max: 32
   },
+  playlists: [{
+    type: Schema.Types.ObjectId,
+    ref: 'playlists'
+  }],
   date: {
     type: Date,
     default: Date.now
@@ -31,6 +35,11 @@ UserSchema.statics.findLikelist = (userId) => {
   return User.findById(userId)
     .populate('likelists')
     .then(user => user.likelist);
+}
+UserSchema.statics.findPlaylists = (userId) => {
+  return mongoose.model("users").findById(userId)
+    .populate('playlists')
+    .then(user => user.playlists);
 }
 
 module.exports = mongoose.model("users", UserSchema);
