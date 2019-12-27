@@ -5,7 +5,7 @@ const User = mongoose.model("users");
 
 const UserType = new GraphQLObjectType({
   name: "UserType",
-  fields: {
+  fields: () => ({
     _id: { type: GraphQLID },
     name: { type: GraphQLString },
     email: { type: GraphQLString },
@@ -17,7 +17,7 @@ const UserType = new GraphQLObjectType({
         return User.findPlaylists(parentValue.id);
       }
     },
-  }
+  })
 });
 
 module.exports = UserType;
