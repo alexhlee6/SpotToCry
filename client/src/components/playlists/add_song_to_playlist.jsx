@@ -8,9 +8,6 @@ const { ADD_PLAYLIST_SONG } = Mutations;
 const { FETCH_PLAYLISTS } = Queries;
 
 class AddSongToPlaylist extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (
