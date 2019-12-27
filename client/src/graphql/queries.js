@@ -1,6 +1,11 @@
 import gql from "graphql-tag";
 
 export default {
+  CURRENT_USER: gql `
+    query CurrentUser {
+      currentUser @client
+    }
+  `,
   FETCH_PLAYLIST: gql`
     query FetchPlaylist($id: ID!) {
       playlist(_id: $id) {

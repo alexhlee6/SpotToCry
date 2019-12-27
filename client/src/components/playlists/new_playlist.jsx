@@ -1,17 +1,16 @@
 import React, { Component } from "react";
-import { Mutation } from "react-apollo";
+import { Mutation, Query } from "react-apollo";
 import Mutations from "../../graphql/mutations";
 import Queries from "../../graphql/queries";
 
 const { NEW_PLAYLIST } = Mutations;
-const { FETCH_PLAYLISTS } = Queries;
+const { CURRENT_USER } = Queries;
 
 
 class PlaylistCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: "",
       title: "",
       description: ""
     };
@@ -22,11 +21,13 @@ class PlaylistCreate extends Component {
     return e => this.setState({ [field]: e.target.value });
   }
 
-  handleSubmit(e, newPlaylist) {
+  handleSubmit(e, newPlaylist, currentUser) {
+    debugger;
     e.preventDefault();
     let title = this.state.title;
     newPlaylist({
       variables: {
+        user: currentUser,
         title: title,
         description: this.state.description
       }
@@ -35,12 +36,22 @@ class PlaylistCreate extends Component {
 
   render() {
     let { closeModal } = this.props;
-
     return (
       <Mutation mutation={NEW_PLAYLIST}>
         {(newPlaylist, { data }) => (
           <div>
-            <form onSubmit={e => this.handleSubmit(e, newPlaylist)}>
+            <form onSubmit={e => this.handleSubmit(
+              <Query query={CURRENT_USER}>
+                {({ loading, error, data }) => {
+                  if (loading) return <option>Loading...</option>;
+                  if (error) return <option>{error}</option>;
+                  debugger;
+                  return (data.currentUser);
+                }}
+              </Query>,
+              e, newPlaylist)}
+            
+            >
               <div className="modal-container">
                 <button className="btn-transparent" onClick={closeModal}>
                   <svg
