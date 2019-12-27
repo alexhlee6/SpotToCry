@@ -79,7 +79,12 @@ class CurrentSongShow extends React.Component {
                     </div>
                     <div className="current-artist-description">
                       <p>
-                        {data.song.artist.description}
+                        {/* {data.song.artist.description} */}
+                        {data.song.artist._id === "5e0534bd2ba87036631c6603" ? (
+                          "22-year-old Eli Raybon has quickly established himself as a sci-fi weirdo auteur. The staunch non-conformist is now priming his most alluring release yet: a fully-fledged, sci-fi concept album called Supertoys. The record is pure retro-futurism, combining cyberpunk storytelling and disco beats with a myriad of analog synth work."
+                        ) : (
+                          data.song.artist.description
+                        )}
                       </p>
 
                       <div
