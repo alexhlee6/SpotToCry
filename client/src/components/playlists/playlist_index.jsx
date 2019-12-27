@@ -35,14 +35,14 @@ class PlaylistIndex extends React.Component {
     if (songImages.length >= 1 && songImages.length < 4) {
       return (
         <div className="playlist-art-container">
-          <img src={songImages[0]} />
+          <img src={songImages[0]} alt="" />
         </div>
       );
     } else if (songImages.length >= 4) {
       return songImages.slice(0, 4).map(img => {
         return (
           <div key={img} className="playlist-idx-coverArt-item">
-            <img src={img} />
+            <img src={img} alt=""/>
           </div>
         );
       });
@@ -56,6 +56,7 @@ class PlaylistIndex extends React.Component {
   }
 
   render() {
+    // debugger;
     return (
       <div className="playlist-index-main">
         <h1 className="genre-index-header">
@@ -99,6 +100,7 @@ class PlaylistIndex extends React.Component {
                               <img
                                 id="Mike"
                                 src="https://spottocry.s3-us-west-1.amazonaws.com/play_white.png"
+                                alt=""
                               />
                             </button>
                           )}
