@@ -28,7 +28,7 @@ const mutation = new GraphQLObjectType({
       args: {
         title: { type: GraphQLString },
         description: { type: GraphQLString },
-        userId: { type: GraphQLID },
+        user: { type: GraphQLID },
       },
       resolve(_, { title, description, user }) {
         return new Playlist({ title, description, user }).save();

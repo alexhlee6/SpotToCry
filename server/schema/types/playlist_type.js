@@ -19,14 +19,14 @@ const PlaylistType = new GraphQLObjectType({
           .then(playlist => playlist.songs);
       }
     },
-    // user: {
-    //   type: UserType,
-    //   resolve(parentValue) {
-    //     return User.findById(parentValue.user)
-    //       .then(user => user)
-    //       .catch(err => console.log(err))
-    //   }
-    // }
+    user: {
+      type: UserType,
+      resolve(parentValue) {
+        return User.findById(parentValue.user)
+          .then(user => user)
+          .catch(err => console.log(err))
+      }
+    }
   })
 });
 
