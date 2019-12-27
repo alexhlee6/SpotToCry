@@ -35,7 +35,7 @@ class GenreShow extends React.Component {
 
   render() {
     return (
-      <div>
+      // <div>
         <Query query={Queries.FETCH_GENRE} variables={{id: this.props.match.params.genreId}}>
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
@@ -141,7 +141,7 @@ class GenreShow extends React.Component {
             )
           }}
         </Query>
-      </div>
+      // </div>
     )
   }
 }
