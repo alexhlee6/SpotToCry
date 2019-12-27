@@ -19,7 +19,18 @@ const UserSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  likelist: {
+    type: Schema.Types.ObjectId,
+    ref: "likelists"
   }
 });
+
+UserSchema.statics.findLikelist = (userId) => {
+  const User = mongoose.model("users");
+  return User.findById(userId)
+    .populate('likelists')
+    .then(user => user.likelist);
+}
 
 module.exports = mongoose.model("users", UserSchema);
