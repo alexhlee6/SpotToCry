@@ -57,7 +57,7 @@ class PlaylistIndex extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="playlist-index-main">
         <h1 className="genre-index-header">
           <span className="artist-banner-name">Playlists</span>
         </h1>
