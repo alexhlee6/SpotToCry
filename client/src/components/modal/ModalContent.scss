@@ -77,6 +77,10 @@
   align-items: center;
   color: white;
   height: 100%;
+  width: 50%;
+  margin: 0 auto;
+  background-color: #1a1a1a;
+  border-radius: 10px;
 }
 
 .btn-transparent {
@@ -109,22 +113,25 @@
 
 #new-playlist-header {
   text-align: center;
-  font-size: 48px;
+  font-size: 35px;
+  margin-bottom: 20px;
   line-height: 56px;
   letter-spacing: -.005em;
-  color: #fff;
+  color: rgb(208, 208, 208);
   font-family: sans-serif;
 }
 
 .new-playlist-input-container {
-  width: 100%;
-  padding: 0 20%;
-  background-color: #282828;
+  width: 80%;
+  margin: 0 auto;
+  // padding: 0 20%;
+  border-radius: 10px;
 }
 
 .new-playlist-input-box {
   position: relative;
   background-color: #282828;
+  border-radius: 10px;
   padding: 32px 0;
 }
 
@@ -145,7 +152,7 @@
 
 .new-playlist-inputBox-input {
   // font-family: 'Arial Bold';
-  font-size: 48px;
+  font-size: 40px;
   line-height: 56px;
   letter-spacing: -.005em;
   color: #fff;
