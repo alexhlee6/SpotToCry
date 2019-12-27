@@ -20,6 +20,9 @@ const Song = mongoose.model("songs");
 const GenreType = require("./types/genre_type");
 const Genre = mongoose.model("genres");
 
+const LikelistType = require("./types/likelist_type");
+const Likelist = mongoose.model("likelists");
+
 const mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {

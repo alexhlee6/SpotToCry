@@ -8,12 +8,15 @@ const ArtistType = require("./artist_type");
 const GenreType = require("./genre_type");
 const SongType = require("./song_type");
 const PlaylistType = require("./playlist_type");
+const LikelistType = require("./likelist_type");
 
 const User = mongoose.model("users");
 const Artist = mongoose.model("artists");
 const Genre = mongoose.model("genres");
 const Song = mongoose.model("songs");
 const Playlist = mongoose.model("playlists");
+const Likelist = mongoose.model("likelists");
+
 
 const RootQueryType = new GraphQLObjectType({
   name: "RootQueryType",
@@ -81,6 +84,19 @@ const RootQueryType = new GraphQLObjectType({
       args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(_, args) {
         return Song.findById(args._id);
+      }
+    },
+    likelists: {
+      type: new GraphQLList(LikelistType),
+      resolve() {
+        return Likelist.find({});
+      }
+    },
+    likelist: {
+      type: LikelistType,
+      args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(_, args) {
+        return Likelist.findById(args._id)
       }
     }
   })
