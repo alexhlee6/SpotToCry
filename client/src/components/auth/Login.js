@@ -23,7 +23,7 @@ class Login extends Component {
 
   updateCache(client, { data }) {
     client.writeData({
-      data: { isLoggedIn: data.login.loggedIn }
+      data: { isLoggedIn: data.login.loggedIn, currentUser: data.login._id }
     });
   }
 
