@@ -1,12 +1,16 @@
 .full-app {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   position: relative;
+  height: 100%;
 }
 
 .app-content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
   position: relative;
+  max-height: 100%;
+  flex-grow: 1;
+  overflow: hidden;
 }

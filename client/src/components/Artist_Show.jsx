@@ -7,7 +7,7 @@ const { FETCH_ALL_ARTISTS } = queries;
 
 const OPEN_MODAL_MUTATION = gql`
   mutation {
-    openNewPlaylistSongModalMutation @client
+    openNewPlaylistSongModalMutation(id: $id) @client
   }
 `;
 
@@ -30,7 +30,6 @@ class ArtistShow extends React.Component{
     
     
     return(
-      <div>
         <Query query={FETCH_ALL_ARTISTS}>
           {({ loading, error, data }) => {
             if (loading) return null;
@@ -76,7 +75,9 @@ class ArtistShow extends React.Component{
                       return (
                         <span
                           className="genre-song-add-button"
-                          onClick={openNewPlaylistSongModalMutation}
+                          onClick={() => openNewPlaylistSongModalMutation(
+                            { variables: { id: song._id } }
+                          )}
                         >
                           Add to Playlist +
                                         </span>
@@ -108,7 +109,6 @@ class ArtistShow extends React.Component{
              );
           }}
         </Query>
-      </div>
       
     );
   }

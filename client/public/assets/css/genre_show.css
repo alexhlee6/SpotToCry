@@ -1,11 +1,13 @@
 .genre-show-main {
   width: 100%;
-  height: 100%;
+  max-height: 100vh;
+  position: relative;
+  overflow-y: scroll;
 }
 .genre-artists-list {
   width: 95%;
   margin: 10px auto;
-
+  overflow-y: scroll;
 }
 
 .genre-show-main .genre-index-header .fa-random {
@@ -23,12 +25,17 @@
 
 .genre-artists-item {
   max-width: 100%;
-  height: 60px;
+  min-height: 60px;
   color: white;
   background-color: rgba(0, 0, 0, 0.714);
   margin: 10px 0px;
   display: flex;
   align-items: center;
+}
+
+.genre-artist-song-item {
+  /* margin: 10px 0px; */
+  padding: 20px 0px;
 }
 
 .genre-artist-song-item .fa-play-circle {

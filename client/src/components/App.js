@@ -23,9 +23,8 @@ import PlaylistShow from "./playlists/playlist_show";
 const App = () => {
   return (
     <div className='full-app'>
-      <AuthRoute path='/' component={SideBar} routeType='protected' />
-      <br />
       <div className='app-content'>
+        <AuthRoute path='/' component={SideBar} routeType='protected' />
         <AuthRoute path='/' component={Nav} routeType='protected' />
         <Switch>
           <AuthRoute exact path="/login" component={Login} routeType="auth" />

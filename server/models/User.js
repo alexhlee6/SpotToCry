@@ -23,9 +23,23 @@ const UserSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  likedSongs: [{
+    type: Schema.Types.ObjectId,
+    ref: "songs"
+  }],
+  // likedArtists: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "likedArtists"
+  // }
 });
 
+// UserSchema.statics.findLikedSongs = (userId) => {
+//   const User = mongoose.model("users");
+//   return User.findById(userId)
+//     .populate('songs')
+//     .then(user => user.likedSongs);
+// }
 UserSchema.statics.findPlaylists = (userId) => {
   return mongoose.model("users").findById(userId)
     .populate('playlists')

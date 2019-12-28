@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
 import gql from "graphql-tag";
@@ -76,7 +76,7 @@ class PlaylistShowItem extends React.Component {
         </div>
         <div className="tc-title-artist">
           <div className="tc-title">{song.title}</div>
-          <div className="tc-artist">{song.artist.name}</div>
+          <div className="tc-artist"><Link to={`/artists/${song.artist._id}`}>{song.artist.name}</Link></div>
         </div>
         <div className="tc-context-menu" title="More">
           <div className="ellipsis" onClick={this.toggleMenu}>

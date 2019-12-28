@@ -35,7 +35,7 @@ class GenreShow extends React.Component {
 
   render() {
     return (
-      <div>
+      // <div>
         <Query query={Queries.FETCH_GENRE} variables={{id: this.props.match.params.genreId}}>
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
@@ -45,6 +45,23 @@ class GenreShow extends React.Component {
               <div className="genre-show-main">
                 <h1 className="genre-index-header">
                   {data.genre.name}
+
+                  <Query query={Queries.CURRENT_USER}>
+                    {({ loading, error, data}) => {
+                      if (loading) return null;
+                      if (error) return <p>Error</p>;
+                      const {currentUser} = data;
+                      console.log(currentUser);
+                      return (
+                        <div></div>
+                      )
+                    }}
+
+                  </Query>
+
+
+
+
                   <Mutation mutation={PLAY_GENRE_MUTATION}>
                     {
                       playGenreMutation => {
@@ -141,7 +158,7 @@ class GenreShow extends React.Component {
             )
           }}
         </Query>
-      </div>
+      // </div>
     )
   }
 }

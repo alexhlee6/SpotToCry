@@ -25,6 +25,7 @@ class SearchBar extends React.Component{
     const filteredSongs = [];
     const filteredArtists = [];
     const artists = [];
+    const artistIds = [];
 
     for (let i = 0; i < songs.length; i++) {
       const title = songs[i].title.toLowerCase();
@@ -33,9 +34,12 @@ class SearchBar extends React.Component{
         filteredSongs.push(songs[i]);
       }
       if (name.includes(this.state.search.toLowerCase())) {
-        filteredArtists.push(songs[i].artist);
+        if (!artistIds.includes(songs[i].artist._id)) {
+          artistIds.push(songs[i].artist._id);
+          filteredArtists.push(songs[i].artist);
+          artists.push(songs[i].artist);
+        }
       }
-      artists.push(songs[i].artist);
     }
     if (this.state.search === '') {
       return this.setState({ artists: artists, songs: songs })

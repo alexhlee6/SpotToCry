@@ -41,6 +41,10 @@ class MusicPlayer extends React.Component {
     if (!window.player) {
       window.player = document.getElementById('player');
       window.player.volume = this.state.volume;
+      this.setState({playlist: [], playing: false});
+    }
+    if(window.player) {
+      window.player.pause();
     }
   }
 
@@ -114,6 +118,7 @@ class MusicPlayer extends React.Component {
   }
 
   componentWillUnmount() {
+    window.localStorage.setItem("currentMusic", "none");
     window.player = null;
     let clone = document.getElementById("player").cloneNode(true);
     let player = document.getElementById("player");
@@ -122,10 +127,17 @@ class MusicPlayer extends React.Component {
   }
 
   receiveNewPlaylist({playlist, musicType, id}) {
+    if (!window.player) {
+      this.setState({ playlist: [], musicType: null, id: null, playing: false });
+      return null;
+    }
     window.player.pause();
     window.player.src = playlist[0].songUrl;
     window.player.volume = this.state.volume;
-    window.player.play();
+    if (window.localStorage.getItem("currentMusic") !== "none") {
+      window.player.play();
+    }
+    
     this.setState({ playlist: playlist, musicType, id, playing: true });
   }
 
