@@ -2,8 +2,8 @@ import gql from "graphql-tag";
 
 export default {
   NEW_PLAYLIST: gql`
-    mutation NewPlaylist($title: String, $description: String) {
-      newPlaylist(title: $title, description: $description) {
+    mutation NewPlaylist($title: String, $description: String, $user: ID) {
+      newPlaylist(title: $title, description: $description, user: $user) {
         _id
         title
         description
