@@ -5,7 +5,7 @@ import Queries from "../../graphql/queries";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 
-const { FETCH_PLAYLISTS } = Queries;
+const { FETCH_PLAYLISTS, CURRENT_USER } = Queries;
 
 const OPEN_MODAL_MUTATION = gql`
   mutation {
@@ -67,17 +67,30 @@ class NavBar extends React.Component{
             </Mutation>
           </div>
           <div className="playlists">
-            <Query query={FETCH_PLAYLISTS} pollInterval={200} x>
+            <Query query={CURRENT_USER}>
               {({ loading, error, data }) => {
-                if (loading) return <p>Loading...</p>;
-                if (error) return <p>Error</p>;
-                return data.playlists.map(({ _id, title }) => (
-                  <Link key={_id} to={`/playlists/${_id}`}>
-                    <div key={title} className="playlist-item">
-                      {title}
-                    </div>
-                  </Link>
-                ));
+                if (loading) return <option>Loading...</option>;
+                if (error) return <option>{error}</option>;
+                const { currentUser } = data;
+                return (
+                  <Query query={FETCH_PLAYLISTS} pollInterval={200} x>
+                    {({ loading, error, data }) => {
+                      if (loading) return <p>Loading...</p>;
+                      if (error) return <p>Error</p>;
+                      return data.playlists.map(({ _id, title, user }) => {
+                        if (user._id === currentUser) {
+                          return (
+                            <Link key={_id} to={`/playlists/${_id}`}>
+                              <div key={title} className="playlist-item">
+                                {title}
+                              </div>
+                            </Link>
+                          )
+                        }
+                      });
+                    }}
+                  </Query>
+                )
               }}
             </Query>
           </div>
