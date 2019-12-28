@@ -93,9 +93,9 @@ const verifyUser = async data => {
     const decoded = jwt.verify(token, keys);
     const { id } = decoded;
 
-
-    const user = await user.findById(id);
-    let loggedIn = user ? true : false;
+    const user = await User.findById(id);
+    let loggedIn;
+    loggedIn = user ? true : false;
 
     return { loggedIn, ...user._doc };
   } catch (err) {

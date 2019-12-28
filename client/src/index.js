@@ -14,83 +14,86 @@ import resolvers from "./resolvers";
 import { ApolloLink} from "apollo-link"
 const { VERIFY_USER } = Mutations;
 
-let client;
-let cache;
+// let client;
+// let cache;
 
-async function setupClient() {
-  cache = new InMemoryCache({
-    dataIdFromObject: object => object._id || null
-  });
+// async function setupClient() {
+const cache = new InMemoryCache({
+  dataIdFromObject: object => object._id || null
+});
 
-  const httpLink = createHttpLink({
-    uri: "http://localhost:5000/graphql",
-    headers: {
-      authorization: localStorage.getItem("auth-token")
-    }
-  });
+const httpLink = createHttpLink({
+  uri: "http://localhost:5000/graphql",
+  headers: {
+    authorization: localStorage.getItem("auth-token")
+  }
+});
 
-  const errorLink = onError(({ graphQLErrors }) => {
-    if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message));
-  });
+// const errorLink = onError(({ graphQLErrors }) => {
+//   if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message));
+// });
 
-  client = new ApolloClient({
-    link: ApolloLink.from([errorLink, httpLink]),
-    cache,
-    resolvers,
-    onError: ({ networkError, graphQLErrors }) => {
-      console.log("graphQLErrors", graphQLErrors);
-      console.log("networkError", networkError);
-    }
-  });
+const client = new ApolloClient({
+  // link: ApolloLink.from([errorLink, httpLink]),
+  resolvers,
+  link: httpLink,
+  cache,
+  onError: ({ networkError, graphQLErrors }) => {
+    console.log("graphQLErrors", graphQLErrors);
+    console.log("networkError", networkError);
+  }
+});
   
-}
+// }
 
-async function populateCache() {
+// async function populateCache() {
   const token = localStorage.getItem("auth-token");
 
-  await cache.writeData({
-    data: {
-      isLoggedIn: Boolean(token),
-      isModalOpen: false
-    }
-  });
-
-
-  if (token) {
-    await client.mutate({
-      mutation: VERIFY_USER,
-      variables: {
-        token
-      }
-    })
-      .then(({
-        data
-      }) => {
-        cache.writeData({
-          data: {
-            isLoggedIn: data.verifyUser.loggedIn,
-            currentUser: data.verifyUser._id
-          }
-        });
-      });
+  // await cache.writeData({
+cache.writeData({
+  data: {
+    isLoggedIn: Boolean(token),
+    isModalOpen: false
   }
-}
+});
 
-setupClient()
-  .then(() => populateCache())
-  .then(() => {
-    const Root = () => {
-      return (
-        <ApolloProvider client={client}>
-          <HashRouter>
-            <App />
-          </HashRouter>
-        </ApolloProvider>
-      );
-    };
+
+if (token) {
+  // await client.mutate({
+  client.mutate({
+    mutation: VERIFY_USER,
+    variables: {
+      token
+    }
+  })
+    .then(({
+      data
+    }) => {
+      cache.writeData({
+        data: {
+          isLoggedIn: data.verifyUser.loggedIn,
+          currentUser: data.verifyUser._id
+        }
+      });
+    });
+}
+// }
+
+// setupClient()
+//   .then(() => populateCache())
+//   .then(() => {
+const Root = () => {
+  return (
+    <ApolloProvider client={client}>
+      <HashRouter>
+        <App />
+      </HashRouter>
+    </ApolloProvider>
+  );
+};
 
     ReactDOM.render(<Root />, document.getElementById("root"));
-  });
+  // });
 
 
 

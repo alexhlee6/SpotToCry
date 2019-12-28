@@ -9,7 +9,9 @@
 
 .SideBar {
   /* border: 1px solid red; */
-  width: 250px;
+  width: 200px;
+  max-width: 200px;
+  min-width: 200px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -43,7 +45,7 @@
 
 .User-Nav {
   /* border: 1px solid red; */
-  height: 120px;
+  height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -236,3 +238,11 @@
   align-items: center;
 }
 
+.nav-favorites {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  padding-left: 20px;
+  transition: all .2s ease-in;
+}

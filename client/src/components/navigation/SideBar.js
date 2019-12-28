@@ -44,6 +44,12 @@ class NavBar extends React.Component{
               Your Library
             </Link>
           </div>
+          <div className="nav-favorites">
+            <Link to="/favorites" className="favorites-link">
+              <div className="nav-favorites-image"></div>
+              Favorites
+            </Link>
+          </div>
         </div>
         <div className="User-Playlists">
           <div className="nav-playlist-title">PLAYLISTS</div>
