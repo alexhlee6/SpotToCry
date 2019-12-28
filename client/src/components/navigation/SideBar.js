@@ -67,10 +67,11 @@ class NavBar extends React.Component{
             </Mutation>
           </div>
           <div className="playlists">
-            <Query query={CURRENT_USER}>
+            <Query query={Queries.CURRENT_USER}>
               {({ loading, error, data }) => {
                 if (loading) return <option>Loading...</option>;
                 if (error) return <option>{error}</option>;
+                if (data) {
                 const { currentUser } = data;
                 return (
                   <Query query={FETCH_PLAYLISTS} pollInterval={200} x>
@@ -91,6 +92,9 @@ class NavBar extends React.Component{
                     }}
                   </Query>
                 )
+                } else {
+                  return null;
+                }
               }}
             </Query>
           </div>
