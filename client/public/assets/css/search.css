@@ -1,13 +1,15 @@
 .search{
   /* border: 1px solid red; */
-  position: fixed;
-  width: 86vw;
-  height: 95%;
+  /* position: fixed; */
+  width: 100%;
+  padding-top: 10px;
+  /* height: 95%; */
   overflow-y: scroll;
 }
 
 .search-bar{
   /* border: 1px solid red; */
+  position: fixed;
   width: 360px;
   min-width: 195px;
   height: 40px;
@@ -16,8 +18,9 @@
   align-items: center;
   justify-content: space-between;
   margin: 1.5% 0 0 5%;
-  background: white;
+  background: rgb(255, 255, 255);
   border-radius: 20px;
+  box-shadow: 10px 10px 20px #000000;
 }
 
 .search-image{
@@ -34,6 +37,7 @@
   border-radius: 20px;
   border: none;
   font-size: 16px;
+  background-color: rgb(255, 255, 255);
 }
 
 .search-input:focus {
@@ -42,5 +46,5 @@
 
 .search-results {
   height: fit-content;
-  margin-top: 20px;
+  margin-top: 80px;
 }
