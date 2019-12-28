@@ -127,4 +127,18 @@
   color: gray;
   margin-left: 15px;
   margin-right: 10px;
+  cursor: pointer
+}
+
+.genre-artist-song-item .fa-trash-alt:hover {
+  color: lightgray;
+}
+
+.genre-artist-song-item .fa-heart {
+  color: rgb(108, 108, 108);
+  cursor: pointer;
+  position: relative;
+  top: 1px;
+  font-size: 18px;
+  margin-right: 10px;
 }

@@ -50,7 +50,7 @@ class GenreShow extends React.Component {
           ]}
         >
           {addSongLike => (
-            <button onClick={() => {
+            <i className="far fa-heart" onClick={() => {
               addSongLike({
                 variables: {
                   songId, 
@@ -58,8 +58,7 @@ class GenreShow extends React.Component {
                 }
               });
             }}>
-              LIKE
-            </button>
+            </i>
           )}
         </Mutation>
       )
@@ -75,7 +74,7 @@ class GenreShow extends React.Component {
           ]}
         >
           {removeSongLike => (
-            <button onClick={() => {
+            <i className="fas fa-heart" onClick={() => {
               removeSongLike({
                 variables: {
                   songId,
@@ -83,8 +82,7 @@ class GenreShow extends React.Component {
                 }
               });
             }}>
-              UNLIKE
-            </button>
+            </i>
           )}
         </Mutation>
       )
