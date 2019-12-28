@@ -17,6 +17,14 @@ const UserType = new GraphQLObjectType({
         return User.findPlaylists(parentValue.id);
       }
     },
+    likedSongs: {
+      type: new GraphQLList(require("./song_type")),
+      resolve(parentValue) {
+        return User.findById(parentValue._id)
+          .populate("likedSongs")
+          .then(user => user.likedSongs)
+      }
+    }
   })
 });
 
