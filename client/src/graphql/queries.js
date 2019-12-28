@@ -3,7 +3,8 @@ import gql from "graphql-tag";
 export default {
   CURRENT_USER: gql `
     query CurrentUser {
-      currentUser @client
+      currentUser @client,
+      isLoggedIn @client
     }
   `,
   FETCH_PLAYLIST: gql`
