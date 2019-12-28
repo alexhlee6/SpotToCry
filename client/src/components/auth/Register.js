@@ -22,13 +22,13 @@ class Register extends Component {
 
   updateCache(client, { data }) {
     client.writeData({
-      data: { isLoggedIn: data.register.loggedIn }
+      data: { isLoggedIn: data.register.loggedIn, currentUser: data.register._id }
     });
   }
 
   updateDemoCache(client, { data }) {
     client.writeData({
-      data: { isLoggedIn: data.login.loggedIn }
+      data: { isLoggedIn: data.login.loggedIn, currentUser: data.login._id }
     });
   }
 

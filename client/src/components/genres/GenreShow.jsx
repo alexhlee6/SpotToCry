@@ -45,6 +45,23 @@ class GenreShow extends React.Component {
               <div className="genre-show-main">
                 <h1 className="genre-index-header">
                   {data.genre.name}
+
+                  <Query query={Queries.CURRENT_USER}>
+                    {({ loading, error, data}) => {
+                      if (loading) return null;
+                      if (error) return <p>Error</p>;
+                      const {currentUser} = data;
+                      console.log(currentUser);
+                      return (
+                        <div></div>
+                      )
+                    }}
+
+                  </Query>
+
+
+
+
                   <Mutation mutation={PLAY_GENRE_MUTATION}>
                     {
                       playGenreMutation => {
