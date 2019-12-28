@@ -15,6 +15,7 @@ const Genre = mongoose.model("genres");
 const Song = mongoose.model("songs");
 const Playlist = mongoose.model("playlists");
 
+
 const RootQueryType = new GraphQLObjectType({
   name: "RootQueryType",
   fields: () => ({
@@ -82,7 +83,7 @@ const RootQueryType = new GraphQLObjectType({
       resolve(_, args) {
         return Song.findById(args._id);
       }
-    }
+    },
   })
 });
 

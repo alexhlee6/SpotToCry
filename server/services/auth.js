@@ -39,7 +39,6 @@ const register = async data => {
     user.save();
 
     const token = jwt.sign({ id: user._id }, keys);
-
     return { token, loggedIn: true, ...user._doc, password: null };
   } catch (err) {
     throw err;
@@ -80,6 +79,7 @@ const login = async data => {
     
 
     const token = jwt.sign({ id: user.id }, keys);
+    // console.log(user);
 
     return { token, loggedIn: true, ...user._doc, password: null };
   } catch (err) {
