@@ -4,6 +4,7 @@ import Queries from "../../graphql/queries";
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import { Link } from "react-router-dom";
+import Mutations from "../../graphql/mutations";
 
 const OPEN_MODAL_MUTATION = gql`
   mutation {
@@ -31,11 +32,67 @@ class GenreShow extends React.Component {
       playingGenre: false,
       playingSongId: null
     };
+    this.renderLikeButton = this.renderLikeButton.bind(this);
+  }
+
+  renderLikeButton(songId, song) {
+    let currentUserId = this.state.currentUserId;
+    
+    if (!song.likes.includes(currentUserId)) {
+      return (
+        <Mutation 
+          mutation={Mutations.ADD_SONG_LIKE}
+          refetchQueries={[
+            {
+              query: Queries.FETCH_LIKED_SONGS,
+              variables: { id: this.state.currentUserId }
+            }
+          ]}
+        >
+          {addSongLike => (
+            <button onClick={() => {
+              addSongLike({
+                variables: {
+                  songId, 
+                  userId: currentUserId
+                }
+              });
+            }}>
+              LIKE
+            </button>
+          )}
+        </Mutation>
+      )
+    } else {
+      return (
+        <Mutation 
+          mutation={Mutations.REMOVE_SONG_LIKE}
+          refetchQueries={[
+            {
+              query: Queries.FETCH_LIKED_SONGS,
+              variables: { id: this.state.currentUserId }
+            }
+          ]}
+        >
+          {removeSongLike => (
+            <button onClick={() => {
+              removeSongLike({
+                variables: {
+                  songId,
+                  userId: currentUserId
+                }
+              });
+            }}>
+              UNLIKE
+            </button>
+          )}
+        </Mutation>
+      )
+    }
   }
 
   render() {
     return (
-      // <div>
         <Query query={Queries.FETCH_GENRE} variables={{id: this.props.match.params.genreId}}>
           {({ loading, error, data }) => {
             if (loading) return <p>Loading...</p>;
@@ -46,21 +103,22 @@ class GenreShow extends React.Component {
                 <h1 className="genre-index-header">
                   {data.genre.name}
 
-                  {/* <Query query={Queries.CURRENT_USER}>
-                    {({ loading, error, data}) => {
-                      if (loading) return null;
-                      if (error) return <p>Error</p>;
-                      const {currentUser} = data;
-                      console.log(currentUser);
-                      return (
-                        <div></div>
-                      )
-                    }}
-
-                  </Query> */}
-
-
-
+                  { this.state.currentUserId ? (
+                    <span></span>
+                  ) : (
+                    <Query query={Queries.CURRENT_USER}>
+                      {({ loading, error, data }) => {
+                        if (loading) return null;
+                        if (error) return <p>Error</p>;
+                        if (data) {
+                          this.setState({currentUserId: data.currentUser})
+                        }
+                        return (
+                          <span></span>
+                        )
+                      }}
+                    </Query>
+                  )}
 
                   <Mutation mutation={PLAY_GENRE_MUTATION}>
                     {
@@ -70,7 +128,6 @@ class GenreShow extends React.Component {
                       }
                         return (
                             <i 
-                            // className="fas fa-play-circle"
                             className="fas fa-random"
                             onClick={() => {
                               playGenreMutation(
@@ -87,7 +144,6 @@ class GenreShow extends React.Component {
 
                 <ul className="genre-artists-list">
                   {
-                    
                     data.genre.artists.map(artist => {
                       return (
                         <li key={artist._id} className="genre-artists-item">
@@ -119,7 +175,11 @@ class GenreShow extends React.Component {
                                         }
                                       }
                                     </Mutation>
-
+                                    <div>
+                                      {this.state.currentUserId ? (
+                                        this.renderLikeButton(song._id, song)
+                                      ) : null}
+                                    </div>
                                     <span className={this.state.playingSongId !== song._id ? "genre-artist-song-title" :"genre-artist-song-title-playing"}>
                                       {song.title}
                                     </span>
@@ -158,7 +218,6 @@ class GenreShow extends React.Component {
             )
           }}
         </Query>
-      // </div>
     )
   }
 }
