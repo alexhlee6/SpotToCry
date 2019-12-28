@@ -20,8 +20,6 @@ const Song = mongoose.model("songs");
 const GenreType = require("./types/genre_type");
 const Genre = mongoose.model("genres");
 
-const LikelistType = require("./types/likelist_type");
-const Likelist = mongoose.model("likelists");
 
 const mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -179,6 +177,26 @@ const mutation = new GraphQLObjectType({
       },
       resolve(parentValue, { artistId, genreId }) {
         return Artist.addGenre(artistId, genreId);
+      }
+    },
+    addSongLike: {
+      type: SongType,
+      args: {
+        songId: { type: new GraphQLNonNull(GraphQLID) },
+        userId: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(parentValue, { songId, userId }) {
+        return Song.addLike(songId, userId)
+      }
+    },
+    removeSongLike: {
+      type: SongType,
+      args: {
+        songId: { type: new GraphQLNonNull(GraphQLID) },
+        userId: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(parentValue, { songId, userId }) {
+        return Song.removeLike(songId, userId);
       }
     }
   }

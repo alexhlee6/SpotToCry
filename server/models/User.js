@@ -24,18 +24,22 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  likelist: {
+  likedSongs: [{
     type: Schema.Types.ObjectId,
-    ref: "likelists"
-  }
+    ref: "songs"
+  }],
+  // likedArtists: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "likedArtists"
+  // }
 });
 
-UserSchema.statics.findLikelist = (userId) => {
-  const User = mongoose.model("users");
-  return User.findById(userId)
-    .populate('likelists')
-    .then(user => user.likelist);
-}
+// UserSchema.statics.findLikedSongs = (userId) => {
+//   const User = mongoose.model("users");
+//   return User.findById(userId)
+//     .populate('songs')
+//     .then(user => user.likedSongs);
+// }
 UserSchema.statics.findPlaylists = (userId) => {
   return mongoose.model("users").findById(userId)
     .populate('playlists')
