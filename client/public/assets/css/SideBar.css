@@ -33,7 +33,7 @@
 }
 
 .logo-text {
-  margin-left: 3px;
+  margin-left: 8px;
 }
 
 .logo-image {
@@ -246,4 +246,18 @@
   width: 90%;
   padding-left: 20px;
   transition: all .2s ease-in;
+}
+
+.nav-favorites .fa-heart {
+  margin-right: 10px;
+  color: gray;
+  transition: all .2s ease-in;
+}
+
+.nav-favorites:hover {
+  color: lightgray;
+}
+
+.nav-favorites:hover .fa-heart {
+  color: lightgray;
 }

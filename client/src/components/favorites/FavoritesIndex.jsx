@@ -16,6 +16,12 @@ const OPEN_MODAL_MUTATION = gql`
   }
 `;
 
+const PLAY_LIKED_SONGS = gql`
+  mutation {
+    playLikedSongs(id: $id) @client
+  }
+`;
+
 class FavoritesIndex extends React.Component {
 
   constructor(props) {
@@ -88,7 +94,33 @@ class FavoritesIndex extends React.Component {
   render() {
     return (
       <div className="favorites-index-main">
-        <h1 className="genre-index-header"><span className="artist-banner-name">Favorites</span></h1>
+        <h1 className="genre-index-header">
+          <span className="favorite-songs-header">
+            Favorite Songs
+          </span>
+          <Mutation 
+            mutation={PLAY_LIKED_SONGS}
+            variables={{ id: this.state.currentUserId }}
+          >
+            {
+              playLikedSongs => {
+                if (!this.state.currentUserId) {
+                  return null;
+                }
+                return (
+                  <span className="favorite-songs-play"
+                    onClick={() => {
+                      playLikedSongs(
+                        { variables: { id: this.state.currentUserId } }
+                      );
+                      this.setState({ playingLikedSongs: true });
+                    }}
+                  >PLAY ALL</span>
+              )}
+            }
+          </Mutation>
+          
+        </h1>
 
         {this.state.currentUserId ? (
           <div></div>
