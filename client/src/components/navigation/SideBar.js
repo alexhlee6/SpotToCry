@@ -46,7 +46,7 @@ class NavBar extends React.Component{
           </div>
           <div className="nav-favorites">
             <Link to="/favorites" className="favorites-link">
-              <div className="nav-favorites-image"></div>
+              <i className="far fa-heart"></i>
               Favorites
             </Link>
           </div>
