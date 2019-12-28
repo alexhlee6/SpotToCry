@@ -75,6 +75,7 @@
   align-items: center;
   justify-content: space-between;
   font-size: 16px;
+  /* background-color: rgba(0, 0, 0, 0.714); */
 }
 
 .genre-artist-song-title {
@@ -115,9 +116,15 @@
   width: 25%;
   display: flex;
   justify-content: flex-end;
-  margin-right: 10px;
+  margin:0px 10px;
 }
 
 .genre-song-add-button:hover {
   color: lightgray;
+}
+
+.genre-artist-song-item .fa-trash-alt {
+  color: gray;
+  margin-left: 15px;
+  margin-right: 10px;
 }

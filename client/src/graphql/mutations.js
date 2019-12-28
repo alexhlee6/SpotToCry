@@ -75,5 +75,21 @@ export default {
         _id
       }
     }
+  `,
+  ADD_SONG_LIKE: gql`
+    mutation AddSongLike($songId: ID!, $userId: ID!) {
+      addSongLike(songId: $songId, userId: $userId) {
+        _id
+        likes
+      }
+    }
+  `,
+  REMOVE_SONG_LIKE: gql`
+    mutation RemoveSongLike($songId: ID!, $userId: ID!) {
+      removeSongLike(songId: $songId, userId: $userId) {
+        _id
+        likes
+      }
+    }
   `
 };
