@@ -75,6 +75,7 @@ if (token) {
     // user is loggedIn
     .mutate({ mutation: VERIFY_USER, variables: { token } })
     .then(({ data }) => {
+      console.log(data.verifyUser);
       cache.writeData({
         data: {
           isLoggedIn: data.verifyUser.loggedIn,
