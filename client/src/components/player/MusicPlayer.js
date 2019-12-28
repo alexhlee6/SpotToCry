@@ -350,6 +350,7 @@ class MusicPlayer extends React.Component {
           {({ loading, error, data }) => {
             if (loading) return null;
             if (error) return null;
+            
 
             if (data.currentMusic.musicType === "song") {
               return (
@@ -360,6 +361,7 @@ class MusicPlayer extends React.Component {
                   {({ loading, error, data }) => {
                     if (loading) return <p>Loading...</p>;
                     if (error) return <p>Error</p>;
+                    
 
                     if (this.state.playlist[0] !== data.song) {
                       this.receiveNewPlaylist({

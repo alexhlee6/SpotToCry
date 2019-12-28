@@ -46,7 +46,7 @@ class GenreShow extends React.Component {
                 <h1 className="genre-index-header">
                   {data.genre.name}
 
-                  <Query query={Queries.CURRENT_USER}>
+                  {/* <Query query={Queries.CURRENT_USER}>
                     {({ loading, error, data}) => {
                       if (loading) return null;
                       if (error) return <p>Error</p>;
@@ -57,7 +57,7 @@ class GenreShow extends React.Component {
                       )
                     }}
 
-                  </Query>
+                  </Query> */}
 
 
 
