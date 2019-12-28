@@ -1,0 +1,26 @@
+.favorites-index-main {
+  height: 100%;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.favorite-songs-play {
+  /* font-size: 15px; */
+  /* font-weight: bold; */
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 25px;
+  position: relative;
+  bottom: 5px;
+  color: rgb(164, 164, 164);
+  transition: all .2s ease-in;
+  padding: 3px 10px;
+  padding-bottom: 4px;
+  border: 1px solid rgb(164, 164, 164);
+  border-radius: 13px;
+}
+
+.favorite-songs-play:hover {
+  color: lightgray;
+  border: 1px solid lightgray;
+}

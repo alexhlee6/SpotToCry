@@ -9,13 +9,16 @@
 
 .SideBar {
   /* border: 1px solid red; */
-  width: 250px;
+  width: 200px;
+  max-width: 200px;
+  min-width: 200px;
   height: 100%;
   display: flex;
   flex-direction: column;
   background: #040404;
   color: #b3b3b3;
   font-size: 18px;
+  padding-left: 12px;
 }
 
 .SideBar-Logo {
@@ -30,7 +33,7 @@
 }
 
 .logo-text {
-  margin-left: 3px;
+  margin-left: 8px;
 }
 
 .logo-image {
@@ -43,7 +46,7 @@
 
 .User-Nav {
   /* border: 1px solid red; */
-  height: 120px;
+  height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -236,3 +239,25 @@
   align-items: center;
 }
 
+.nav-favorites {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  padding-left: 20px;
+  transition: all .2s ease-in;
+}
+
+.nav-favorites .fa-heart {
+  margin-right: 10px;
+  color: gray;
+  transition: all .2s ease-in;
+}
+
+.nav-favorites:hover {
+  color: lightgray;
+}
+
+.nav-favorites:hover .fa-heart {
+  color: lightgray;
+}

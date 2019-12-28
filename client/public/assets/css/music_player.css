@@ -219,6 +219,7 @@
   height: 300px;
   margin: 0 auto;
   margin-bottom: 15px;
+  overflow: hidden;
 }
 
 .current-song-image-container:hover {

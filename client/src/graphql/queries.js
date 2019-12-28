@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export default {
-  CURRENT_USER: gql `
+  CURRENT_USER: gql`
     query CurrentUser {
       currentUser @client,
       isLoggedIn @client
@@ -132,6 +132,7 @@ export default {
           songs {
             _id
             title
+            likes
           }
         }
       }
@@ -190,6 +191,26 @@ export default {
         }
       }
     }
-  `
+  `,
+  FETCH_LIKED_SONGS: gql`
+    query FetchLikedSongs($id: ID!) {
+      user(_id: $id) {
+        _id
+        email
+        likedSongs {
+          _id
+          title
+          imageUrl
+          songUrl
+          artist {
+            _id
+            name
+            imageUrl
+          }
+          likes
+        }
+      }
+    }
+  `,
 };
 
