@@ -35,77 +35,68 @@ class PlaylistCreate extends Component {
 
   render() {
     let { closeModal } = this.props;
-    debugger;
-    return (
-      // <Mutation mutation={NEW_PLAYLIST}>
-      //   {(newPlaylist, { data }) => (
-            
-              <Query query={CURRENT_USER}>
-                {({ loading, error, data }) => {
-                  if (loading) return <option>Loading...</option>;
-                  if (error) return <option>{error}</option>;
-                  const user = data.currentUser;
-                  debugger;
-                  return (
-                    <Mutation mutation={NEW_PLAYLIST}>
-                    {(newPlaylist, { data }) => (
-                    <div>
-                      <form onSubmit={e => this.handleSubmit(e, newPlaylist, user)}>
-                      <div className="modal-container">
-                        <button className="btn-transparent" onClick={closeModal}>
-                          <svg
-                            width="32"
-                            height="32"
-                            viewBox="0 0 32 32"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <title>Close</title>
-                            <path
-                              d="M31.098 29.794L16.955 15.65 31.097 1.51 29.683.093 15.54 14.237 1.4.094-.016 1.508 14.126 15.65-.016 29.795l1.414 1.414L15.54 17.065l14.144 14.143"
-                              fill="#fff"
-                              fillRule="evenodd"
-                            />
-                          </svg>
-                        </button>
-                        <h1 id="new-playlist-header">Create new playlist</h1>
-                        <div className="new-playlist-input-container">
-                          <div className="new-playlist-input-box">
-                            <div className="new-playlist-content-spacing">
-                              <h4 className="new-playlist-inputBox-label">
-                                Playlist Name
-                              </h4>
-                              <input
-                                type="text"
-                                onChange={this.update("title")}
-                                className="new-playlist-inputBox-input"
-                                value={this.state.title}
-                                placeholder="New Playlist"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="modal-buttons">
-                          <button className="modal-button-cancel" onClick={closeModal}>
-                            CANCEL
-                          </button>
-                          <button className="modal-button-create" type="submit">
-                            CREATE
-                          </button>
-                        </div>
+
+    return (       
+      <Query query={CURRENT_USER}>
+        {({ loading, error, data }) => {
+          if (loading) return <option>Loading...</option>;
+          if (error) return <option>{error}</option>;
+          const {currentUser} = data;
+
+          return (
+            <Mutation mutation={NEW_PLAYLIST}>
+              {(newPlaylist) => (
+              <div>
+                <form onSubmit={e => this.handleSubmit(e, newPlaylist, currentUser)}>
+                <div className="modal-container">
+                  <button className="btn-transparent" onClick={closeModal}>
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 32 32"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <title>Close</title>
+                      <path
+                        d="M31.098 29.794L16.955 15.65 31.097 1.51 29.683.093 15.54 14.237 1.4.094-.016 1.508 14.126 15.65-.016 29.795l1.414 1.414L15.54 17.065l14.144 14.143"
+                        fill="#fff"
+                        fillRule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                  <h1 id="new-playlist-header">Create new playlist</h1>
+                  <div className="new-playlist-input-container">
+                    <div className="new-playlist-input-box">
+                      <div className="new-playlist-content-spacing">
+                        <h4 className="new-playlist-inputBox-label">
+                          Playlist Name
+                        </h4>
+                        <input
+                          type="text"
+                          onChange={this.update("title")}
+                          className="new-playlist-inputBox-input"
+                          value={this.state.title}
+                          placeholder="New Playlist"
+                        />
                       </div>
-                    </form>
+                    </div>
                   </div>
-                     )}
-                  </Mutation>
-                  );
-                }}
-             
-              
-            </Query>
-              
-          
-        // )}
-      // </Mutation>
+                  <div className="modal-buttons">
+                    <button className="modal-button-cancel" onClick={closeModal}>
+                      CANCEL
+                    </button>
+                    <button className="modal-button-create" type="submit">
+                      CREATE
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            )}
+          </Mutation>
+          );
+        }}
+      </Query>
     );
   }
 }

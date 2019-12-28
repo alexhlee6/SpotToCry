@@ -32,6 +32,10 @@ export default {
         _id
         title
         description
+        user {
+          name
+          _id
+        }
         songs {
           _id
           artist {
