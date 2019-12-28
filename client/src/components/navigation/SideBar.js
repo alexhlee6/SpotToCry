@@ -44,6 +44,12 @@ class NavBar extends React.Component{
               Your Library
             </Link>
           </div>
+          <div className="nav-favorites">
+            <Link to="/favorites" className="favorites-link">
+              <i className="far fa-heart"></i>
+              Favorites
+            </Link>
+          </div>
         </div>
         <div className="User-Playlists">
           <div className="nav-playlist-title">PLAYLISTS</div>
@@ -61,10 +67,11 @@ class NavBar extends React.Component{
             </Mutation>
           </div>
           <div className="playlists">
-            <Query query={CURRENT_USER}>
+            <Query query={Queries.CURRENT_USER}>
               {({ loading, error, data }) => {
                 if (loading) return <option>Loading...</option>;
                 if (error) return <option>{error}</option>;
+                if (data) {
                 const { currentUser } = data;
                 return (
                   <Query query={FETCH_PLAYLISTS} pollInterval={200} x>
@@ -85,6 +92,9 @@ class NavBar extends React.Component{
                     }}
                   </Query>
                 )
+                } else {
+                  return null;
+                }
               }}
             </Query>
           </div>

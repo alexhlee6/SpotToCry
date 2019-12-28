@@ -48,6 +48,15 @@ const resolvers = {
       let currentMusic = { id: args.id, musicType: "genre", __typename: "GenreType" };
       window.localStorage.setItem("currentMusic", JSON.stringify(currentMusic));
       return null;
+    },
+
+    playLikedSongs: (_, args, {cache}) => {
+      cache.writeData({
+        data: { currentMusic: { id: args.id, musicType: "likedSongs", __typename: "SongType" }}
+      });
+      let currentMusic = { id: args.id, musicType: "likedSongs", __typename: "SongType" };
+      window.localStorage.setItem("currentMusic", JSON.stringify(currentMusic));
+      return null;
     }
   }
 };

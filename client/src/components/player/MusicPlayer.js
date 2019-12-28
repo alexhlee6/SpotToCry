@@ -430,7 +430,32 @@ class MusicPlayer extends React.Component {
                   }}
                 </Query>
               );
-            } 
+            } else if (data.currentMusic.musicType === "likedSongs") {
+              return (
+                <Query
+                  query={Queries.FETCH_LIKED_SONGS}
+                  variables={{id: data.currentMusic.id}}
+                >
+                  {({loading, error, data}) => {
+                    if (loading) return <p>Loading...</p>;
+                    if (error) return <p>Error</p>;
+                    if (this.state.id !== data.user._id) {
+                      let newList = [];
+                      let songs = data.user.likedSongs;
+                      for (let i = 0; i < songs.length; i++) {
+                        newList.push(songs[i]);
+                      }
+                      this.receiveNewPlaylist({
+                        playlist: newList,
+                        musicType: "likedSongs",
+                        id: data.user._id
+                      });
+                    }
+                    return null;
+                  }}
+                </Query>
+              )
+            }
               
           }}
         </Query>

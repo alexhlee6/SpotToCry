@@ -36,7 +36,7 @@
 .genre-index-item {
   width: 250px;
   height: 250px;
-  border: 1px solid rgb(0, 0, 0);
+  /* border: 1px solid rgb(0, 0, 0); */
   margin: 15px;
   position: relative;
   overflow: hidden;
@@ -61,7 +61,7 @@
   height: 100%;
   position: absolute;
   z-index: -1;
-  filter: grayscale(30%) brightness(90%);
+  filter: grayscale(45%) brightness(90%);
 }
 
 .genre-index-item-link {

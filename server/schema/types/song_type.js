@@ -22,7 +22,7 @@ const SongType = new GraphQLObjectType({
     imageUrl: { type: GraphQLString },
     songUrl: { type: GraphQLString },
     likes: {
-      type: new GraphQLList(require("./user_type")),
+      type: new GraphQLList(GraphQLID),
       resolve(parentValue) {
         return Song.findById(parentValue._id)
           .then(song => song.likes)
