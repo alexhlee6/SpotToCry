@@ -26,7 +26,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(0, 0, 0, 0.7);
+  color: rgba(23, 23, 23, 0.913);
 }
 
 .song-image-hover{
@@ -50,6 +50,7 @@
 .artist-info, .song-info{
   height: 40%;
   width: 90%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -60,7 +61,7 @@
 .artist-item, .song-item{
   height: 250px;
   width: 175px;
-  background: #333333ab;
+  background: #17171797;
   margin: 20px 20px 0 20px;
   border-radius: 7px;
   display: flex;
@@ -73,16 +74,25 @@
 .info-name{
   color: white;
   font-size: 16px;
-  height: 40%;
+  height: 20%;
   display: flex;
+  line-height: 18px;
   justify-content: center;
   align-items: center;
   white-space: pre-wrap;
+  width: 85%;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: 500;
 }
 
 .info-type{
-  color: gray;
-  font-size: 12px;
+  color: rgb(171, 171, 171);
+  font-size: 13px;
+  margin-bottom: 10px;
+  width: 85%;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .song-click{
@@ -91,6 +101,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: rgba(21, 21, 21, 0.735);
 }
 
 .song-click:hover{

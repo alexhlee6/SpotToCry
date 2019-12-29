@@ -26,18 +26,11 @@ footer, header, hgroup, menu, nav, section {
 body {
   line-height: 1;
 	font-family: sans-serif;
-	/* background-color: rgb(56, 95, 116); */
-	/* background-image: url("https://images.unsplash.com/photo-1542328419-3d23e6e7ad96?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80"); */
-	/* background-image: url("https://images.unsplash.com/photo-1502957291543-d85480254bf8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"); */
-	/* background-image: url("https://images.unsplash.com/photo-1520034475321-cbe63696469a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"); */
-	/* background-image: url("https://images.unsplash.com/photo-1518818419601-72c8673f5852?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"); */
 	/* background-image: url("https://images.unsplash.com/photo-1463290812909-272c71d723e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"); */
-	/* background-image: url("https://images.unsplash.com/photo-1542328419-3d23e6e7ad96?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"); */
-	background-image: url("https://images.unsplash.com/photo-1548232979-6c557ee14752?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80");
-	/* background-image: url("https://images.unsplash.com/photo-1550938147-146607757c41?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"); */
-	/* background-image: url("https://images.unsplash.com/photo-1493314894560-5c412a56c17c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"); */
+	/* background-image: url("https://images.unsplash.com/photo-1548232979-6c557ee14752?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80"); */
+	background-image: url("https://images.unsplash.com/photo-1493314894560-5c412a56c17c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80");
 	/* background-image: url("https://images.unsplash.com/photo-1569896963970-f1c06f5ac8bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"); */
-	backdrop-filter: brightness(70%) grayscale(40%);
+	backdrop-filter: brightness(70%) grayscale(30%);
 	position: relative;
 	z-index: 0;
 	background-size: cover;
