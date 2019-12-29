@@ -37,7 +37,7 @@ body {
 	/* background-image: url("https://images.unsplash.com/photo-1550938147-146607757c41?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"); */
 	/* background-image: url("https://images.unsplash.com/photo-1493314894560-5c412a56c17c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"); */
 	/* background-image: url("https://images.unsplash.com/photo-1569896963970-f1c06f5ac8bd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80"); */
-	backdrop-filter: brightness(60%) grayscale(40%);
+	backdrop-filter: brightness(70%) grayscale(40%);
 	position: relative;
 	z-index: 0;
 	background-size: cover;
