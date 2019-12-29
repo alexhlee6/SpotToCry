@@ -3,6 +3,7 @@
   max-height: 100vh;
   position: relative;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 .genre-artists-list {
   width: 95%;
