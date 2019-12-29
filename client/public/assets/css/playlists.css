@@ -20,7 +20,7 @@
   margin: auto;
   width: 85%;
   margin-bottom: 200px;
-  margin-top: 45px;
+  margin-top: 20px;
 }
 
 .playlist-art-container {
@@ -129,15 +129,17 @@
 #playlist-grid-title {
   text-decoration: none;
   font-family: sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 20px;
   letter-spacing: 0.015em;
   max-height: 20px;
-  color: white;
-  opacity: 0.6;
-  transition: opacity 0.05s linear;
+  color: rgb(222, 222, 222);
+  opacity: 0.8;
   border-bottom: 1px solid transparent;
   margin-top: 20px;
+  /* font-weight: 600; */
+  text-shadow: 3px 3px 10px black;
+  transition: opacity 0.05s linear;
 }
 
 #playlist-grid-artist:hover {
@@ -318,6 +320,10 @@
   justify-content: flex-start;
   align-items: flex-start;
   height: 100%;
+}
+
+.title-container {
+  color: white;
 }
 
 .album-show-c3a {
