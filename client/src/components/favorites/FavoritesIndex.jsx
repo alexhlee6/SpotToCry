@@ -96,7 +96,7 @@ class FavoritesIndex extends React.Component {
       <div className="favorites-index-main">
         <h1 className="genre-index-header">
           <span className="favorite-songs-header">
-            Favorite Songs
+            Liked Songs
           </span>
           <Mutation 
             mutation={PLAY_LIKED_SONGS}
@@ -143,12 +143,12 @@ class FavoritesIndex extends React.Component {
 
         {
           this.state.likedSongs ? (
-            <ul className="genre-artist-song-list">
+            <ul className="genre-artist-song-list favorites-list">
               {this.state.likedSongs.map(song => {
                 return (
                   <li
                     key={song._id}
-                    className="genre-artist-song-item"
+                    className="genre-artist-song-item favorites-item"
                   >
                     <Mutation mutation={PLAY_SONG_MUTATION}>
                       {

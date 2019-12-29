@@ -2,6 +2,7 @@
   height: 100%;
   overflow-y: scroll;
   width: 100%;
+  overflow-x: hidden;
 }
 
 .favorite-songs-play {
@@ -23,4 +24,11 @@
 .favorite-songs-play:hover {
   color: lightgray;
   border: 1px solid lightgray;
+}
+
+.favorites-list {
+  background-color: rgba(0, 0, 0, 0.584);
+  max-width: 100%;
+  padding: 0px 13px;
+  padding-left: 20px;
 }
