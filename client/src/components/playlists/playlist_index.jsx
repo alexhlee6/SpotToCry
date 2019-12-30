@@ -70,7 +70,7 @@ class PlaylistIndex extends React.Component {
             return (
               <Query query={FETCH_PLAYLISTS}>
                 {({ loading, error, data }) => {
-                  if (loading) return <p>Loading...</p>;
+                  if (loading) return <div class="loader">Loading...</div>;
                   if (error) return <p>{error}</p>;
    
                   let userPlaylists = data.playlists.map(({ _id, title, songs, user }) => {
