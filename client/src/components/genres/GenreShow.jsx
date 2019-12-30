@@ -93,7 +93,7 @@ class GenreShow extends React.Component {
     return (
         <Query query={Queries.FETCH_GENRE} variables={{id: this.props.match.params.genreId}}>
           {({ loading, error, data }) => {
-            if (loading) return <p>Loading...</p>;
+          if (loading) return <div className="genre-show-main"></div>;;
             if (error) return <p>Error</p>;
             
             return (
@@ -106,7 +106,7 @@ class GenreShow extends React.Component {
                   ) : (
                     <Query query={Queries.CURRENT_USER}>
                       {({ loading, error, data }) => {
-                        if (loading) return null;
+                        if (loading) return <div className="genre-show-main"></div>;
                         if (error) return <p>Error</p>;
                         if (data) {
                           this.setState({currentUserId: data.currentUser})
@@ -158,7 +158,8 @@ class GenreShow extends React.Component {
                                       {
                                         playSongMutation => {
                                           if (this.state.playingSongId === song._id) {
-                                            return <div className="fa-play-circle-hidden"></div>;
+                                            return <i
+                                              className="fas fa-play-circle hidden"></i>;
                                           }
                                           return (
                                             <i

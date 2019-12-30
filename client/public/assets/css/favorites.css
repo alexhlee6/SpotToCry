@@ -3,7 +3,11 @@
   overflow-y: scroll;
   width: 100%;
   overflow-x: hidden;
-  background-color: rgba(0, 0, 0, 0.297);
+  background-color: rgba(0, 0, 0, 0.208);
+}
+
+.favorites-index-main > .genre-index-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.427);
 }
 
 .favorite-songs-play {
@@ -30,11 +34,7 @@
 }
 
 .favorites-list {
-  /* background-color: rgba(0, 0, 0, 0.235); */
   max-width: 100%;
-  /* padding: 0px 13px; */
-  /* padding-left: 20px; */
-  margin-top: 15px;
   width: 100%;
 }
 

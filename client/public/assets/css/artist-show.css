@@ -2,6 +2,7 @@
   /* border: 1px solid red; */
   height: 95vh;
   width: 100%;
+  background-color: rgba(0, 0, 0, 0.303);
 }
 
 .artist-banner{
@@ -9,6 +10,8 @@
   height: 38%;
   display: flex;
   flex-direction: row;
+  /* border-bottom: 1px solid rgba(34, 34, 34, 0.637); */
+  border-bottom: 1px solid rgba(52, 52, 52, 0.427);
 }
 
 .artist-pic{
@@ -21,7 +24,8 @@
 .artist-banner-info{
   height: 100%;
   width: 67%;
-  background: rgb(0, 0, 0, 0.5);
+  
+  background: rgba(0, 0, 0, 0.255);
   display: flex;
   align-items: center;
 }
@@ -30,7 +34,7 @@
   color: white;
   font-size: 64px;
   font-weight: bold;
-  margin-left: 2vw;
+  margin-left: 3vw;
   cursor: default;
 }
 

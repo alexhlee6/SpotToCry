@@ -27,6 +27,12 @@
   height: 100%;
 }
 
+.playlist-show-main {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.208);
+}
+
 .playlist-show-c1 {
   /* height: 100%; */
   height: 100%;
