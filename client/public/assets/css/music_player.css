@@ -24,6 +24,7 @@
   max-width: 100%;
   width: 100%;
   justify-content: space-between;
+  position: relative;
 }
 
 .music-player-left {
@@ -152,11 +153,21 @@
   height:25px;
 }
 
+.no-song-title-container {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .music-player-current-title-none {
   color: rgb(121, 121, 121);
-  margin-left: 20px;
+  /* margin-left: 20px; */
+  /* display: none; */
+  /* position: absolute; */
   font-size: 14px;
-  padding-top: 3px;
+  bottom: 15px;
+  /* padding-top: 3px; */
 }
 
 .music-player-right {
@@ -205,6 +216,10 @@
   overflow: scroll;
 }
 
+.current-song-show-main {
+  margin-top: 2vh;
+}
+
 .current-song-show-A, .current-song-show-B {
   width: 300px;
   margin: 0 auto;
@@ -240,7 +255,7 @@
   width: 100vw;
   bottom: 0px;
   background-color: rgba(0, 0, 0, 0.495);
-  z-index: 3;
+  z-index: 10;
 }
 
 .current-song-info-title {

@@ -6,12 +6,6 @@
   width: 100%;
 }
 
-/* .genre-index-homepage-header {
-  height: 300px;
-  background-image: url("https://images.unsplash.com/photo-1506069748786-1f7a3d5d54cb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80");
-  background-size: cover;
-  background-repeat: no-repeat;
-} */
 
 .genre-index-header {
   color: rgb(255, 255, 255);
@@ -19,24 +13,26 @@
   font-size: 35px;
   font-weight: 400;
   padding: 20px;
-  padding-top: 30px;
+  padding-top: 25px;
   padding-left: 40px;
   z-index: 20;
+  padding-bottom: 30px;
+  /* margin-bottom: 20px; */
   width: 100%;
-  /* background-color: rgba(0, 0, 0, 0.363); */
-  /* border-bottom: 1px solid rgba(147, 147, 147, 0.516); */
-  /* border-bottom: 1px solid rgba(0, 0, 0, 0.262); */
+  border-bottom: 1px solid rgba(150, 150, 150, 0.406);
   text-shadow: 5px 5px 15px rgb(23, 23, 23), -5px -5px 15px rgb(23, 23, 23);
 }
 
 .genre-index-header > .artist-banner-name {
-  font-size: 50px;
+  font-size: 64px;
+  /* margin-bottom: 20px; */
 }
 
 .genre-index-list {
   display: flex;
   width: 99%;
   margin: 0 auto;
+  margin-top: 20px;
   min-height: 100%;
   min-height: fit-content;
   /* padding: 20px 0px; */
@@ -60,13 +56,11 @@
 }
 
 .genre-index-item:hover img{
-  /* transform: scale(1.08); */
   transform-origin: 50% 50%;
 }
 
 .genre-index-item-image {
   display: block;
-  /* transition: transform 0.5s ease-in-out;  */
   min-width: 250px;
   min-height: 250px;
   height: 100%;
@@ -85,6 +79,7 @@
 }
 
 .genre-index-item-name {
+  position: relative;
   z-index: 10;
   color: white;
   font-size: 25px;
