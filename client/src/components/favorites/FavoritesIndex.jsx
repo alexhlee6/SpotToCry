@@ -41,7 +41,7 @@ class FavoritesIndex extends React.Component {
         variables={{id: this.state.currentUserId}}
       >
         {({loading, error, data}) => {
-          if (loading) return null;
+          if (loading) return <div class="loader">Loading...</div>;
           if (error) return <p>Error</p>;
           
           const { user } = data;
