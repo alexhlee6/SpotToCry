@@ -312,7 +312,7 @@ class MusicPlayer extends React.Component {
           { currentSong.title }
         </div> 
       ) : (
-        <div>
+        <div className="no-song-title-container">
           <div className="music-player-current-title-none">
             No Song Selected
           </div>

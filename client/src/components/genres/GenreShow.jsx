@@ -93,7 +93,7 @@ class GenreShow extends React.Component {
     return (
         <Query query={Queries.FETCH_GENRE} variables={{id: this.props.match.params.genreId}}>
           {({ loading, error, data }) => {
-            if (loading) return <p>Loading...</p>;
+          if (loading) return <div className="genre-show-main"></div>;;
             if (error) return <p>Error</p>;
             
             return (
@@ -106,7 +106,7 @@ class GenreShow extends React.Component {
                   ) : (
                     <Query query={Queries.CURRENT_USER}>
                       {({ loading, error, data }) => {
-                        if (loading) return null;
+                        if (loading) return <div className="genre-show-main"></div>;
                         if (error) return <p>Error</p>;
                         if (data) {
                           this.setState({currentUserId: data.currentUser})
@@ -140,24 +140,26 @@ class GenreShow extends React.Component {
                   </Mutation>
                 </h1>
 
-                <ul className="genre-artists-list">
+                {/* <ul className="genre-artists-list"> */}
                   {
                     data.genre.artists.map(artist => {
                       return (
-                        <li key={artist._id} className="genre-artists-item">
+                        // <li key={artist._id} className="genre-artists-item">
                           <ul className="genre-artist-song-list">
                             {
                               artist.songs.map(song => {
                                 return (
-                                  <li
+                                  <div
                                     key={song._id}
                                     className="genre-artist-song-item"
                                   >
+                                  <div className="title-play-like">
                                     <Mutation mutation={PLAY_SONG_MUTATION}>
                                       {
                                         playSongMutation => {
                                           if (this.state.playingSongId === song._id) {
-                                            return <div className="fa-play-circle-hidden"></div>;
+                                            return <i
+                                              className="fas fa-play-circle hidden"></i>;
                                           }
                                           return (
                                             <i
@@ -181,6 +183,7 @@ class GenreShow extends React.Component {
                                     <span className={this.state.playingSongId !== song._id ? "genre-artist-song-title" :"genre-artist-song-title-playing"}>
                                       {song.title}
                                     </span>
+                                  </div>
                                     <span className="genre-artist-item-name">
                                       <Link to={`/artists/${artist._id}`}>
                                         {artist.name}
@@ -201,17 +204,17 @@ class GenreShow extends React.Component {
                                         </span>
                                       )}}
                                     </Mutation>
-                                  </li>
+                                  </div>
                                 );
                               })
                             }
                           </ul>
-                        </li>
+                        // </li>
                       )
                     })
                   }
                   
-                </ul>
+                {/* </ul> */}
               </div>
             )
           }}

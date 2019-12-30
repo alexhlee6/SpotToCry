@@ -154,7 +154,8 @@ class FavoritesIndex extends React.Component {
                       {
                         playSongMutation => {
                           if (this.state.playingSongId === song._id) {
-                            return <div className="fa-play-circle-hidden"></div>;
+                            return <i
+                              className="fas fa-play-circle hidden"></i>
                           }
                           return (
                             <i
