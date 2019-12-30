@@ -75,7 +75,7 @@ class PlaylistShow extends React.Component {
         variables={{ id: this.props.match.params.playlistId }}
       >
         {({ loading, error, data }) => {
-          if (loading) return <div className="playlist-show-main"></div>;
+          if (loading) return <div className="playlist-show-main"><div class="loader">Loading...</div></div>;
           if (error) return <p>{error}</p>;
           let playlistSongs;
           let songs = data.playlist.songs;

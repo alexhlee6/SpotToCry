@@ -20,7 +20,7 @@ class GenreIndex extends React.Component {
         </div>
         <Query query={Queries.FETCH_ALL_GENRES}>
           {({ loading, error, data }) => {
-            if (loading) return null;
+            if (loading) return <div class="loader">Loading...</div>;
             if (error) return <p>Error</p>;
             
             return (

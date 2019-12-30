@@ -86,7 +86,7 @@ class ArtistShow extends React.Component{
     return(
         <Query query={FETCH_ALL_ARTISTS}>
           {({ loading, error, data }) => {
-            if (loading) return null;
+          if (loading) return <div class="loader">Loading...</div>;
             if (error) return `Error! ${error}`;
             for(let i = 0; i < data.artists.length; i++){
               if (data.artists[i]._id === artistId){
