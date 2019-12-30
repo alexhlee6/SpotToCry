@@ -75,7 +75,7 @@ class PlaylistShow extends React.Component {
         variables={{ id: this.props.match.params.playlistId }}
       >
         {({ loading, error, data }) => {
-          if (loading) return <p>Loading...</p>;
+          if (loading) return <div className="playlist-show-main"></div>;
           if (error) return <p>{error}</p>;
           let playlistSongs;
           let songs = data.playlist.songs;
@@ -105,6 +105,7 @@ class PlaylistShow extends React.Component {
           }
 
           return (
+            <div className="playlist-show-main">
             <div className="playlist-show-c1">
               <div className="playlist-show-c2">
                 <section id="album-show-section">
@@ -202,6 +203,7 @@ class PlaylistShow extends React.Component {
                   </div>
                 </section>
               </div>
+            </div>
             </div>
           );
         }}

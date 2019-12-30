@@ -78,6 +78,7 @@ export default {
         songs {
           _id
           title
+          likes
         }
         genres {
           _id
@@ -187,6 +188,7 @@ export default {
             title
             songUrl
             imageUrl
+            likes
           }
         }
       }

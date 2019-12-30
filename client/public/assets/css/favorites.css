@@ -3,32 +3,48 @@
   overflow-y: scroll;
   width: 100%;
   overflow-x: hidden;
+  background-color: rgba(0, 0, 0, 0.208);
+}
+
+.favorites-index-main > .genre-index-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.427);
 }
 
 .favorite-songs-play {
   /* font-size: 15px; */
   /* font-weight: bold; */
-  font-size: 14px;
+  font-size: 15px;
   cursor: pointer;
   margin-left: 25px;
   position: relative;
   bottom: 5px;
-  color: rgb(164, 164, 164);
+  color: rgb(211, 211, 211);
   transition: all .2s ease-in;
   padding: 3px 10px;
   padding-bottom: 4px;
-  border: 1px solid rgb(164, 164, 164);
+  /* border: 1px solid rgb(211, 211, 211); */
   border-radius: 13px;
+  font-weight: 500;
+  /* background-color: rgba(0, 0, 0, 0.151); */
 }
 
 .favorite-songs-play:hover {
-  color: lightgray;
-  border: 1px solid lightgray;
+  color: rgb(255, 255, 255);
+  /* border: 1px solid rgb(255, 255, 255); */
 }
 
 .favorites-list {
-  background-color: rgba(0, 0, 0, 0.584);
   max-width: 100%;
-  padding: 0px 13px;
-  padding-left: 20px;
+  width: 100%;
+}
+
+.favorite-songs-header {
+  color: white;
+  font-weight: 700;
+  font-size: 40px;
+}
+
+.favorites-item {
+  /* border-bottom: 1px solid rgb(150, 150, 150); */
+  /* width: 90%; */
 }

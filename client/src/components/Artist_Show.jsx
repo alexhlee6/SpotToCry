@@ -2,6 +2,7 @@ import React from 'react';
 import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import { ApolloConsumer, Query } from 'react-apollo';
+import Mutations from "../graphql/mutations";
 import queries from '../graphql/queries';
 const { FETCH_ALL_ARTISTS } = queries;
 
@@ -23,11 +24,64 @@ class ArtistShow extends React.Component{
     this.state = {
       songs: []
     }
+    this.renderLikeButton = this.renderLikeButton.bind(this);
+  }
+
+  renderLikeButton(songId, song) {
+    let currentUserId = this.state.currentUserId;
+    if (!song.likes.includes(currentUserId)) {
+      return (
+        <Mutation
+          mutation={Mutations.ADD_SONG_LIKE}
+          refetchQueries={[
+            {
+              query: queries.FETCH_LIKED_SONGS,
+              variables: { id: this.state.currentUserId }
+            }
+          ]}
+        >
+          {addSongLike => (
+            <i className="far fa-heart" onClick={() => {
+              addSongLike({
+                variables: {
+                  songId,
+                  userId: currentUserId
+                }
+              });
+            }}>
+            </i>
+          )}
+        </Mutation>
+      )
+    } else {
+      return (
+        <Mutation
+          mutation={Mutations.REMOVE_SONG_LIKE}
+          refetchQueries={[
+            {
+              query: queries.FETCH_LIKED_SONGS,
+              variables: { id: this.state.currentUserId }
+            }
+          ]}
+        >
+          {removeSongLike => (
+            <i className="fas fa-heart" onClick={() => {
+              removeSongLike({
+                variables: {
+                  songId,
+                  userId: currentUserId
+                }
+              });
+            }}>
+            </i>
+          )}
+        </Mutation>
+      )
+    }
   }
 
   render(){
     const artistId = window.location.href.split('/').slice(-1)[0];
-    
     
     return(
         <Query query={FETCH_ALL_ARTISTS}>
@@ -46,10 +100,27 @@ class ArtistShow extends React.Component{
             }
 
             const artistSongs = this.artist.songs.map((song) => (
-              <li key={song.id} className='artist-song'>
-                <div className='artist-song-info'>
+              <li key={song.id} className='genre-artist-song-item'>
+                {/* <div className='artist-song-info'> */}
                   <div className='artist-song-play'>
+                    <div className="title-play-like">
                     <div className='artist-play-btn'>
+                      {this.state.currentUserId ? (
+                        <span></span>
+                      ) : (
+                          <Query query={queries.CURRENT_USER}>
+                            {({ loading, error, data }) => {
+                              if (loading) return <div className="genre-show-main"></div>;
+                              if (error) return <p>Error</p>;
+                              if (data) {
+                                this.setState({ currentUserId: data.currentUser })
+                              }
+                              return (
+                                <span></span>
+                              )
+                            }}
+                          </Query>
+                        )}
                       <Mutation mutation={PLAY_SONG_MUTATION}>
                         {
                           playSongMutation => {
@@ -67,9 +138,13 @@ class ArtistShow extends React.Component{
                         }
                       </Mutation>
                     </div>
-                    <p className='artist-song-title'>{song.title}</p>
+                    {this.state.currentUserId ? (
+                      this.renderLikeButton(song._id, song)
+                    ) : null}
+                    <p className='genre-artist-song-title'>{song.title}</p>
+                    </div>
                   </div>
-                  <p className='artist-song-name'>{this.artist.name}</p>
+                  <p className='genre-artist-item-name'>{this.artist.name}</p>
                   <Mutation mutation={OPEN_MODAL_MUTATION}>
                     {openNewPlaylistSongModalMutation => {
                       return (
@@ -84,7 +159,7 @@ class ArtistShow extends React.Component{
                       )
                     }}
                   </Mutation>
-                </div>
+                {/* </div> */}
               </li>
             )); 
             
@@ -98,7 +173,7 @@ class ArtistShow extends React.Component{
                   </div>
                 </div>
                 <div className='artist-songs'>
-                  <ul className='artist-song-list'>
+                  <ul className='genre-artist-song-list'>
                     {artistSongs}
                   </ul>
                 </div>
