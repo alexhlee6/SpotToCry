@@ -69,71 +69,99 @@ render() {
   </Query>
 }            
 ```
+I also saved the audio player element to the window as `window.player` so that the element was easily accessible from the many parts of this component that needed to change its properties. One example is the `receiveNewPlaylist` function:
 
+```javascript
+// client/src/components/player/MusicPlayer.js
 
+receiveNewPlaylist({playlist, musicType, id}) {
+  window.player.pause();
+  window.player.src = playlist[0].songUrl;
+  window.player.volume = this.state.volume;
+  window.player.play();
+  this.setState({ playlist, musicType, id, playing: true });
+}
+```
 
+## Additional Music Player Features
 
-## MVP List 
+Some other features I felt were necessary to add to the music player component included volume adjustment, displaying the current time and duration of the played song, and a drag-and-drop timeline to change the current time of the song. 
 
-### 1. Song/Playlist CRUD
-* Users can create, edit, or delete playlists.
-* Users can add songs to their own playlists and add other playlists to their library.
+To have the current time and duration displayed next to the song title and a timeline used for seeking through the track, I added an event listener to the music player element on `componentDidMount`:
 
-### 2. Search
-* Users can search for songs, albums, and artists. 
-* Users can search for other users.
-* Users can select a genre or decade to filter their results.
+```javascript
+// client/src/components/player/MusicPlayer.js
 
-### 3. Continuous Play 
-* Users can continuously listen to audio while navigating the app.
-* Song bar includes buttons to play/pause, skip to next/previous, and add current song to playlist. 
+componentDidMount(){
+  window.player = document.getElementById("player");
+  window.player.addEventListener("timeupdate", function () {
+    let currentTime;
+    let duration;
+    if (window.player.currentTime) {
+      if (Math.floor(window.player.currentTime % 60) < 10) {
+        currentTime = (
+          `${Math.floor(window.player.currentTime / 60)}` + (
+            `:0${Math.floor(window.player.currentTime % 60)}`
+        ));
+      } else {
+        currentTime = (
+          `${Math.floor(window.player.currentTime / 60)}` + (
+            `:${Math.floor(window.player.currentTime % 60)}`
+        ));
+      }
+    } else {
+      currentTime = "0:00";
+    }
+    // (Similar logic here for changing duration into a more readable format...)
+    
+    document.getElementById('tracktime-1').innerHTML = (
+      currentTime 
+    );
+    document.getElementById('tracktime-2').innerHTML = (
+      duration
+    );
+    // On every timeupdate event, change the innerHTML of the tracktime elements to update the currentTime and duration displayed 
+    document.getElementById("timeskip").value = (
+      Math.floor(
+        (window.player.currentTime / window.player.duration) * 100
+      )
+    );  // On timeupdate, also set the value of the range input to be the song's elapsed time divided by the duration
+  });
+}
+```
+To allow users to drag the input to change the `currentTime` of the song, I added an `onChange` event to the `timeskip` element which invokes the `changeCurrentTime` function: 
 
-### 4. Following Users/Playlists
-* Users can follow other users and/or their playlists. 
+```javascript
+// client/src/components/player/MusicPlayer.js
 
-### 5. Artist/Song Info using Genius API
-* Information about the artist, genre, and album are available on a song's show page.
-* Users may view lyrics on a song's show page.
+changeCurrentTime(e) {
+  if (window.player) {
+    let duration = window.player.duration;
+    let inputVal = parseInt(e.currentTarget.value) / 100; 
+    let newTime = duration * inputVal; 
+    window.player.currentTime = newTime;
+    this.setState({ timeInputVal: parseInt(e.currentTarget.value) });
+  }
+}
+```
 
-### 6. User Authentication 
-* Login, signup, demo login.
-* Auth and protected routes.
-* Persistent auth token across refreshes.
-* Users must be logged in to access CRUD playlist features and follow other users.
+## Updating the Music Player from Unattached Components
+To update the playlist from different components across the site, I devised a resolver function with writes the `currentMusic` to the cache directly.
 
-### 7. Hosting on Heroku
+```javascript
+// client/src/resolvers.js
 
-### 8. Uploading Images for Avatar and Playlist Thumbnails (Bonus)
+const resolvers = {
+  Mutation: {
+    // ...
+    playGenreMutation: (_, args, {cache}) => {
+      cache.writeData({ 
+        data: { currentMusic: { id: args.id, musicType: "genre", __typename: "GenreType"} } 
+      });
+      return null;
+    }
+  }
+}
+```
 
-## Work Breakdown
-
-* ### Day 0 
-   * Create Github repo with README - All
-   * Create new MongoDB project and collections - All
-   * Set up Express server - Seth 
-* ### Day 1
-   * Setup User Authentication, Login/Register forms - Tony
-   * Setup Database/Mongoose Schemas, Root Queries, Configuring server - Seth 
-   * Setup GraphQL Types, Basic Mutations and Static methods - Alex
-   
-* ### Day 2
-   * Playlists - Tony
-   * Search - Seth
-   * Audio Player - Alex
-   
-* ### Day 3
-   * Library/Following - Tony
-   * Song show page using Genius API - Seth
-   * Artist/Genre show page using Genius API - Alex
-   
-* ### Day 4
-   * Styling Splash, Forms, Search - Tony
-   * Styling Index, Song show - Seth
-   * Styling Homepage, Artists/Genre show - Alex
-   
-* ### Day 5 
-   * Image uploading for user avatar and custom playlist thumbnail
-   * (Maybe) Queue next song
-   * Styling finishing touches
-   * Deploy to Heroku
-   
+So if a user were to click "play all" while on a `GenreShow` component, the `playGenreMutation` would be invoked passing in the genre's id, and the `musicType` would be set to "genre" so that the `MusicPlayer` component would know which query to use when retrieving all of the songs necessary to update the current playlist.
