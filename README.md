@@ -188,7 +188,6 @@ const ArtistType = new GraphQLObjectType({
       resolve(parentValue) {
         return axios.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${parentValue.name}`)
           .then(res => {
-            // console.log(Object.values(res.data.query.pages)[0].extract)
             return Object.values(res.data.query.pages)[0].extract;
           })
       }
