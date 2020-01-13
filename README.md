@@ -1,7 +1,7 @@
-# SpotToCry
+# SpotToCry :umbrella:
 
 
-### **[Live Link](http://spottocry.herokuapp.com)**
+#### **[Live Link](http://spottocry.herokuapp.com)**
 
 **SpotToCry** is a full-stack clone of popular music streaming service Spotify, which caters to users who need a place to shed some tears while being immersed in a melancholic mood. 
 
@@ -11,17 +11,21 @@ This project was built by applying the MERN stack and integrating Apollo GraphQL
 
 *Note: SpotToCry was a one-week project completed as part of App Academy's MERN stack curriculum.*
 
+### Technologies/Libraries Used
+1. MongoDB
+2. React.js
+3. Apollo
+4. GraphQL
+4. Node.js
+5. Express
+6. Wikipedia API
+7. HTML5 / CSS3 / SCSS
+
 ![Full-1](/client/public/assets/images/README/full-1.png?raw=true)
 
-## Technologies Used
-* MongoDB 
-* GraphQL 
-* Heroku 
-* React 
-* Apollo 
-* NodeJS 
-* Express 
-* AWS S3 
+---
+
+
 
 ## MVP List 
 
