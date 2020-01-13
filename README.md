@@ -19,11 +19,11 @@ This project was built by applying the MERN stack and integrating Apollo GraphQL
 4. Node.js
 5. Express
 6. Wikipedia API
-7. HTML5 / CSS3 / SCSS
+7. Axios
+8. HTML5 / CSS3 / SCSS
 
 ![Full-1](/client/public/assets/images/README/full-1.png?raw=true)
 
----
 
 ## Uninterrupted Listening 
 I found that the most challenging part of this project was creating a music player that could stay fixed to the bottom of the page across the application and allow for uninterrupted listening regardless of the user's navigation through the site. 
@@ -82,6 +82,8 @@ receiveNewPlaylist({playlist, musicType, id}) {
   this.setState({ playlist, musicType, id, playing: true });
 }
 ```
+
+---
 
 ## Additional Music Player Features
 
@@ -145,6 +147,8 @@ changeCurrentTime(e) {
 }
 ```
 
+---
+
 ## Updating the Music Player from Unattached Components
 To update the playlist from different components across the site, I devised a resolver function with writes the `currentMusic` to the cache directly.
 
@@ -165,3 +169,30 @@ const resolvers = {
 ```
 
 So if a user were to click "play all" while on a `GenreShow` component, the `playGenreMutation` would be invoked passing in the genre's id, and the `musicType` would be set to "genre" so that the `MusicPlayer` component would know which query to use when retrieving all of the songs necessary to update the current playlist.
+
+---
+
+## Integrating Wikipedia API for Artist Description
+In the `ArtistType`, I included a field for `description` which has a resolve function that makes an axios request to Wikipedia's API and parses the response to extract only the article's introduction. This information is displayed in the music player component when a user clicks a button to view more about the current song's artist.
+
+```javascript
+// server/schema/types/artist_type.js
+
+const ArtistType = new GraphQLObjectType({
+  name: "ArtistType",
+  
+  fields: () => ({
+    // ...
+    description: { 
+      type: GraphQLString,
+      resolve(parentValue) {
+        return axios.get(`https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=${parentValue.name}`)
+          .then(res => {
+            // console.log(Object.values(res.data.query.pages)[0].extract)
+            return Object.values(res.data.query.pages)[0].extract;
+          })
+      }
+    }
+  })
+});
+```
