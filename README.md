@@ -131,7 +131,7 @@ componentDidMount(){
   });
 }
 ```
-To allow users to drag the input to change the `currentTime` of the song, I added an `onChange` event to the `timeskip` element which invokes the `changeCurrentTime` function: 
+To allow users to drag the `timeskip` input and change the `currentTime` of the song, I added an `onChange` event to the element which invokes the `changeCurrentTime` function: 
 
 ```javascript
 // client/src/components/player/MusicPlayer.js
