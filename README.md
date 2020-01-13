@@ -25,6 +25,52 @@ This project was built by applying the MERN stack and integrating Apollo GraphQL
 
 ---
 
+## Uninterrupted Listening 
+I found that the most challenging part of this project was creating a music player that could stay fixed to the bottom of the page across the application and allow for uninterrupted listening regardless of the user's navigation through the site. 
+
+This was a difficult problem to approach because my prior experience with React led me to believe I should have a parent component which responds to changes in the current playlist and provides that playlist as props to the `MusicPlayer` component. However, I realized that this would likely cause the entire music player element to unmount and remount upon a state change/re-render in this outer component, which would also create significant interference with the audio playback and volume settings.
+
+My solution was to have a single audio player component which mounts once upon logging in and unmounts on logout. This component would directly respond to changes in the currently played music via a `currentMusic` query, and update its state accordingly. 
+
+```javascript
+// client/src/components/player/MusicPlayer.js
+
+render() {
+  // ...
+  <Query query={CURRENT_MUSIC_QUERY}>
+    {({ loading, error, data }) => {
+      if (loading) return null;
+      if (error) return null;
+      
+      if (data.currentMusic.musicType === "playlist") {
+        return (
+          <Query query={Queries.FETCH_PLAYLIST} variables={{ id: data.currentMusic.id }}>
+            {({ loading, error, data }) => {
+              if (loading) return <p>Loading...</p>;
+              if (error) return <p>Error</p>;
+
+              if (this.state.id !== data.playlist._id) {
+                let newList = [];
+                let songs = data.playlist.songs;
+                for (let i = 0; i < songs.length; i++) {
+                  newList.push(songs[i]);
+                }
+                this.receiveNewPlaylist({
+                  playlist: newList,
+                  musicType: "playlist",
+                  id: data.playlist._id
+                });
+              }  
+              return null;
+          </Query>
+        )
+      }
+    }}
+  </Query>
+}            
+```
+
+
 
 
 ## MVP List 
