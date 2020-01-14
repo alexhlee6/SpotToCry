@@ -74,7 +74,7 @@ class NavBar extends React.Component{
                 if (data) {
                 const { currentUser } = data;
                 return (
-                  <Query query={FETCH_PLAYLISTS} pollInterval={200} x>
+                  <Query query={FETCH_PLAYLISTS} pollInterval={200}>
                     {({ loading, error, data }) => {
                       if (loading) return <p>Loading...</p>;
                       if (error) return <p>Error</p>;

@@ -1,81 +1,140 @@
-# SpotToCry
+# [SpotToCry] (http://spottocry.herokuapp.com/#/)
 
-## Overview
+## Technologies
 
-SpotToCry is a full-stack clone of the popular music streaming service Spotify, centered around sad music.  
-Users can listen to music, create playlists, follow other users, and search for their favorite music. 
-
-## Technologies Used
 * MongoDB 
-* GraphQL 
-* Heroku 
+* GraphQL  
 * React 
 * Apollo 
 * NodeJS 
 * Express 
-* AWS S3 
+* HTML5
+* CSS3
+* Node.js
 
-## MVP List 
+## Summary
 
-### 1. Song/Playlist CRUD
-* Users can create, edit, or delete playlists.
-* Users can add songs to their own playlists and add other playlists to their library.
+SpotToCry is a full-stack clone of the popular music streaming service Spotify. The title is derived from the somber style of music that is provided for the user in order to stream songs, create playlists, favorite songs, and run searches. React and Apollo make up the front-end, along with GraphQL, Express, and MongoDB on the back-end. 
 
-### 2. Search
-* Users can search for songs, albums, and artists. 
-* Users can search for other users.
-* Users can select a genre or decade to filter their results.
+Features for this group project were divided out and assigned to team members. I was responsible for Playlist CRUD.
 
-### 3. Continuous Play 
-* Users can continuously listen to audio while navigating the app.
-* Song bar includes buttons to play/pause, skip to next/previous, and add current song to playlist. 
 
-### 4. Following Users/Playlists
-* Users can follow other users and/or their playlists. 
+<img src="client/public/assets/images/Screenshots/playlist.png">
 
-### 5. Artist/Song Info using Genius API
-* Information about the artist, genre, and album are available on a song's show page.
-* Users may view lyrics on a song's show page.
+## Playlist CRUD
 
-### 6. User Authentication 
-* Login, signup, demo login.
-* Auth and protected routes.
-* Persistent auth token across refreshes.
-* Users must be logged in to access CRUD playlist features and follow other users.
+Users can create/delete custom playlists and customize them by adding and deleting songs. One challenge was to have the current user's playlists update in real-time when adding or deleting data. The quickest and easiest solution was to refetch data on a specific internal via polling in order to achieve near-real time data. Polling, however, does not scale well. If this were a larger project, using the update function on the cache or refetchQueries prop to refresh would be more optimal.  
 
-### 7. Hosting on Heroku
+```javascript
+<Query query={FETCH_PLAYLISTS} pollInterval={200}>
+   {({ loading, error, data }) => {
+      if (loading) return <p>Loading...</p>;
+      if (error) return <p>Error</p>;
+      return data.playlists.map(({ _id, title, user }) => {
+         if (user._id === currentUser) {
+            return (
+               <Link key={_id} to={`/playlists/${_id}`}>
+                  <div key={title} className="playlist-item">
+                     {title}
+                  </div>
+               </Link>
+            )
+         }
+      });
+   }}
+</Query>
+```
+## Playlist Modals
 
-### 8. Uploading Images for Avatar and Playlist Thumbnails (Bonus)
+A resolvers object was initialized with the Apollo client to use local state. Mutations to open and close modals work together with a modal function to streamline the development of future modals.  
 
-## Work Breakdown
+<img src="client/public/assets/images/Screenshots/add_song.png">
 
-* ### Day 0 
-   * Create Github repo with README - All
-   * Create new MongoDB project and collections - All
-   * Set up Express server - Seth 
-* ### Day 1
-   * Setup User Authentication, Login/Register forms - Tony
-   * Setup Database/Mongoose Schemas, Root Queries, Configuring server - Seth 
-   * Setup GraphQL Types, Basic Mutations and Static methods - Alex
-   
-* ### Day 2
-   * Playlists - Tony
-   * Search - Seth
-   * Audio Player - Alex
-   
-* ### Day 3
-   * Library/Following - Tony
-   * Song show page using Genius API - Seth
-   * Artist/Genre show page using Genius API - Alex
-   
-* ### Day 4
-   * Styling Splash, Forms, Search - Tony
-   * Styling Index, Song show - Seth
-   * Styling Homepage, Artists/Genre show - Alex
-   
-* ### Day 5 
-   * Image uploading for user avatar and custom playlist thumbnail
-   * (Maybe) Queue next song
-   * Styling finishing touches
-   * Deploy to Heroku
+```javascript
+const resolvers = {
+  Mutation: {
+    openNewPlaylistModalMutation: (_, args, { cache }) => {
+      cache.writeData({
+        data: { songId: null, isModalOpen: true, modalType: "newPlaylist" }
+      });
+      return null;
+    },
+    openNewPlaylistSongModalMutation: (_, args, { cache }) => {
+      cache.writeData({
+        data: { songId: args.id, isModalOpen: true, modalType: "newPlaylistSong" }
+      });
+      return null;
+    },
+
+    closeModalMutation: (_, args, { cache }) => {
+      cache.writeData({ data: { isModalOpen: false, modalType: null } });
+      return null;
+    },
+```
+```javascript
+const Modal = () => (
+  <Query query={MODAL_OPEN_QUERY}>
+    {({ data }) => {
+      if (data.isModalOpen){
+        return <Query query={MODAL_TYPE_QUERY}>
+          {({ data }) => {
+            if (data.modalType === "newPlaylist") {
+              return (
+                <Mutation mutation={CLOSE_MODAL_MUTATION}>
+                  {closeModal => {
+                    return (
+                      <div className="modal-background">
+                        <div
+                          className="modal-child-np"
+                          onClick={e => e.stopPropagation()}
+                        >
+                          <NewPlaylist closeModal={closeModal} />
+                        </div>
+                      </div>
+                    );
+                  }}
+                </Mutation>
+              );
+            } else if (data.modalType === "newPlaylistSong") {
+              return (
+                <Mutation mutation={CLOSE_MODAL_MUTATION}>
+                  {closeModal => {
+                    return (
+                      <div className="modal-background">
+                        <div
+                          className="modal-child-asp"
+                          onClick={e => e.stopPropagation()}
+                        >
+                          <NewPlaylistSong closeModal={closeModal} songId={data.songId}/>
+                        </div>
+                      </div>
+                    );
+                  }}
+                </Mutation>
+              );
+            }
+        }         
+      } 
+        </Query>
+
+      } else {
+        return null;
+      }
+    }
+  }
+  </Query>
+);
+```
+
+## Future Implementations
+
+* Allow users to follow other users
+* Add shuffle functionality for music player
+* Allow user to edit title of playlist
+
+
+
+
+
+
    
